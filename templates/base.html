@@ -5,27 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>{% block title %}Yalla Habibi{% endblock %}</title>
+<title>{% block title %}Yalla Habibi AI{% endblock %}</title>
 
-<!-- SEO -->
-<meta name="description" content="YallaHabibi AI — Multilingual Voice AI Assistant by SEOSiri">
-<meta name="author" content="Momenul Ahmad">
-<link rel="canonical" href="https://yallahabibi.seosiri.com">
-
-<!-- OpenGraph -->
-<meta property="og:title" content="Yalla Habibi">
-<meta property="og:description" content="Multilingual AI Voice Assistant by SEOSiri">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yallahabibi.seosiri.com">
-<meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.svg">
-
-<!-- Icon / Logo -->
-<link rel="icon" type="image/png" href="/static/icon.png">
+<meta name="description" content="Yalla Habibi — Multilingual Voice AI Assistant by SEOSiri">
+<link rel="icon" href="/static/icon.png">
 <link rel="apple-touch-icon" href="/static/icon.png">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
 
 <style>
@@ -39,51 +25,67 @@ body{
     flex-direction:column;
 }
 
-/* CENTER MAIN APP */
-.app-container{
+/* HEADER */
+.header{
+    text-align:center;
+    padding:20px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#4ade80;
+}
+
+/* CENTER CONTENT */
+.page-container{
     flex:1;
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     padding:40px 20px;
 }
 
-/* CARD */
-.glass-card{
+.content-card{
     width:100%;
-    max-width:560px;
+    max-width:720px;
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(14px);
     border-radius:22px;
-    padding:30px;
+    padding:40px;
     box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
-/* FOOTER */
+/* LEGAL TEXT FIX */
+.content-card h1,
+.content-card h2{
+    color:#4ade80;
+}
 
+.content-card p, li{
+    color:#d1d5db;
+    line-height:1.7;
+}
+
+/* FOOTER */
 .legal-footer{
     text-align:center;
     padding:18px;
     font-size:13px;
-    opacity:.85;
+    opacity:.8;
 }
 
 .legal-footer a{
     color:#4ade80;
-    margin:0 10px;
+    margin:0 8px;
     text-decoration:none;
 }
 
 .legal-footer a:hover{
     color:#22c55e;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-    .glass-card{
-        padding:22px;
-    }
 }
 
 </style>
@@ -92,8 +94,16 @@ body{
 
 <body>
 
-<div class="app-container">
+<div class="header">
+<div class="logo">
+Yalla <span>Habibi</span>
+</div>
+</div>
+
+<div class="page-container">
+<div class="content-card">
 {% block content %}{% endblock %}
+</div>
 </div>
 
 <footer class="legal-footer">

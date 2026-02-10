@@ -1,6 +1,6 @@
 # 🌍 Yalla Habibi AI | Native Cultural Bridge & Voice Assistant
 
-![Yalla Habibi AI Banner](https://via.placeholder.com/1200x400/0f172a/2ecc71?text=Yalla+Habibi+AI+|+The+Cultural+Voice+Bridge)
+!![Yalla Habibi AI Banner](https://via.placeholder.com/1200x400/0f172a/2ecc71?text=Yalla+Habibi+AI+|+The+Cultural+Voice+Bridge)
 
 > **"I am your Native Arabic host. How can I bridge your world today?"**
 

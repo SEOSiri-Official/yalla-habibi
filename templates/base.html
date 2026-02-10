@@ -2,101 +2,107 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}YallaHabibi AI{% endblock %}</title>
+<title>{% block title %}Yalla Habibi{% endblock %}</title>
 
-    <!-- Global SEO -->
-    <meta name="description" content="YallaHabibi AI — Multilingual Voice AI Assistant by SEOSiri. Built by Momenul Ahmad.">
-    <meta name="author" content="Momenul Ahmad">
+<!-- SEO -->
+<meta name="description" content="YallaHabibi AI — Multilingual Voice AI Assistant by SEOSiri">
+<meta name="author" content="Momenul Ahmad">
+<link rel="canonical" href="https://yallahabibi.seosiri.com">
 
-    <link rel="canonical" href="https://yallahabibi.seosiri.com">
+<!-- OpenGraph -->
+<meta property="og:title" content="Yalla Habibi">
+<meta property="og:description" content="Multilingual AI Voice Assistant by SEOSiri">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yallahabibi.seosiri.com">
+<meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.svg">
 
-    <!-- OpenGraph -->
-    <meta property="og:title" content="YallaHabibi AI">
-    <meta property="og:description" content="Multilingual AI Voice Assistant by SEOSiri">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yallahabibi.seosiri.com">
-    <meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.svg">
+<!-- Icon / Logo -->
+<link rel="icon" type="image/png" href="/static/icon.png">
+<link rel="apple-touch-icon" href="/static/icon.png">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- ICON -->
-    <link rel="icon" href="/static/icon.png">
-    <link rel="apple-touch-icon" href="/static/icon.png">
+<link rel="stylesheet" href="/static/style.css">
 
-    <!-- Fonts + Global CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css">
-
-    <!-- AEO Schema -->
-    <script type="application/ld+json">
-    {
-     "@context": "https://schema.org",
-     "@type": "SoftwareApplication",
-     "name": "YallaHabibi AI",
-     "operatingSystem": "Web",
-     "applicationCategory": "AIApplication",
-     "creator": {
-       "@type": "Person",
-       "name": "Momenul Ahmad"
-     },
-     "publisher": {
-       "@type": "Organization",
-       "name": "SEOSiri",
-       "url": "https://seosiri.com"
-     },
-     "url": "https://yallahabibi.seosiri.com",
-     "description": "Multilingual AI voice assistant designed for cross-language communication."
-    }
-    </script>
 <style>
-html, body {
-    height:100%;
+
+body{
+    margin:0;
+    font-family:'Tajawal', sans-serif;
+    background:linear-gradient(135deg,#020617,#0f172a);
+    min-height:100vh;
     display:flex;
     flex-direction:column;
 }
 
-main {
+/* CENTER MAIN APP */
+.app-container{
     flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
 }
 
-.legal-footer {
+/* CARD */
+.glass-card{
+    width:100%;
+    max-width:560px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(14px);
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+/* FOOTER */
+
+.legal-footer{
     text-align:center;
-    padding:20px;
+    padding:18px;
     font-size:13px;
+    opacity:.85;
 }
 
-.legal-footer a {
+.legal-footer a{
     color:#4ade80;
     margin:0 10px;
     text-decoration:none;
 }
 
-.legal-footer a:hover {
+.legal-footer a:hover{
     color:#22c55e;
 }
-</style>
 
+/* MOBILE */
+
+@media(max-width:600px){
+    .glass-card{
+        padding:22px;
+    }
+}
+
+</style>
 
 </head>
 
 <body>
 
-<main>
-{% block content %}
-{% endblock %}
-</main>
+<div class="app-container">
+{% block content %}{% endblock %}
+</div>
 
 <footer class="legal-footer">
-    <a href="/about">About</a>
-    <a href="/security">Security</a>
-    <a href="/terms">Terms</a>
-    <a href="/privacy">Privacy</a>
-    <a href="/ai-policy">AI Transparency</a>
-    <a href="/cookies">Cookies</a>
+<a href="/about">About</a>
+<a href="/security">Security</a>
+<a href="/terms">Terms</a>
+<a href="/privacy">Privacy</a>
+<a href="/ai-policy">AI Transparency</a>
+<a href="/cookies">Cookies</a>
 </footer>
 
 </body>

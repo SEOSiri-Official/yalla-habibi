@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yalla Habibi AI | Native Arabic Global Bridge</title>
+    <meta name="description" content="Yalla Habibi: Native Arabic host for Bengalis, Indians, Spanish, and Brazilians. By Momenul Ahmad.">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* ===== VOICE CONTROL STYLES ===== */
+        .voice-controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .voice-controls h3 {
+            margin: 0 0 15px 0;
+            color: #4ade80;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #e5e7eb;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .control-group label span {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4ade80;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            background: #22c55e;
+            transform: scale(1.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4ade80;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            background: #22c55e;
+            transform: scale(1.2);
+        }
+
+        .voice-action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .voice-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .voice-btn.stop {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .voice-btn.stop:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-2px);
+        }
+
+        .voice-btn.replay {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .voice-btn.replay:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+        }
+
+        .voice-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .speaking-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: #4ade80;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .speaking-indicator.active {
+            display: flex;
+        }
+
+        .wave {
+            width: 4px;
+            height: 15px;
+            background: #4ade80;
+            margin: 0 2px;
+            animation: wave 1s ease-in-out infinite;
+            border-radius: 2px;
+        }
+
+        .wave:nth-child(2) { animation-delay: 0.1s; }
+        .wave:nth-child(3) { animation-delay: 0.2s; }
+        .wave:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes wave {
+            0%, 100% { height: 10px; }
+            50% { height: 20px; }
+        }
+
+        #mic-btn.recording {
+            animation: pulse-red 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+        }
+
+        /* ===== SOCIAL SHARE BUTTONS ===== */
+        .social-share-section {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(34, 197, 94, 0.05));
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-share-section h3 {
+            margin: 0 0 12px 0;
+            color: #4ade80;
+            font-size: 18px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .share-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .share-btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .share-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .share-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .share-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .share-btn.facebook {
+            background: linear-gradient(135deg, #1877f2, #0c63d4);
+        }
+
+        .share-btn.facebook:hover {
+            background: linear-gradient(135deg, #0c63d4, #0a58ca);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+        }
+
+        .share-btn.twitter {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+        }
+
+        .share-btn.twitter:hover {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .share-btn.linkedin {
+            background: linear-gradient(135deg, #0a66c2, #004182);
+        }
+
+        .share-btn.linkedin:hover {
+            background: linear-gradient(135deg, #004182, #003366);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 102, 194, 0.4);
+        }
+
+        .share-btn.whatsapp {
+            background: linear-gradient(135deg, #25d366, #20ba5a);
+        }
+
+        .share-btn.whatsapp:hover {
+            background: linear-gradient(135deg, #20ba5a, #1ca851);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .share-btn.telegram {
+            background: linear-gradient(135deg, #0088cc, #006699);
+        }
+
+        .share-btn.telegram:hover {
+            background: linear-gradient(135deg, #006699, #005580);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+        }
+
+        .share-btn.reddit {
+            background: linear-gradient(135deg, #ff4500, #cc3700);
+        }
+
+        .share-btn.reddit:hover {
+            background: linear-gradient(135deg, #cc3700, #b32f00);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .copy-link-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .copy-link-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: #e5e7eb;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .copy-link-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .copy-link-btn:hover {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            transform: translateY(-2px);
+        }
+
+        .copy-link-btn.copied {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .share-stats {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(74, 222, 128, 0.2);
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .share-stats span {
+            color: #4ade80;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <header>
+            <h1>Yalla <span>Habibi</span></h1>
+            <p id="hook">"I am your Native Arabic host. How can I bridge your world today?"</p>
+            
+            <div class="pref-container">
+                <label>Select Your Tongue:</label>
+                <select id="pref-lang">
+                    <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
+                    <option value="hi-IN">🇮🇳 Hindi (हिन्दी)</option>
+                    <option value="es-ES">🇪🇸 Spanish (Español)</option>
+                    <option value="pt-BR">🇧🇷 Brazilian (Português)</option>
+                    <option value="tl-PH">🇵🇭 Tagalog (Filipino)</option>
+                    <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
+                    <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
+                    <option value="en-US" selected>🌐 English</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- DEMOGRAPHIC HINT SYMBOLS -->
+        <div class="benefit-hints">
+            <span>👷‍♂️ Translation for Work</span> • <span>🎓 Moral Lessons</span> • <span>🌍 Eco Tips</span>
+        </div>
+
+        <!-- ===== VOICE CONTROLS SECTION ===== -->
+        <div class="voice-controls">
+            <h3>🎚️ Voice Controls</h3>
+            
+            <div class="control-group">
+                <label>
+                    🔊 Volume
+                    <span id="volume-value">100%</span>
+                </label>
+                <input type="range" min="0" max="100" value="100" class="slider" id="volume-slider">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    ⚡ Speed
+                    <span id="speed-value">Normal</span>
+                </label>
+                <input type="range" min="50" max="200" value="95" class="slider" id="speed-slider">
+            </div>
+
+            <div class="voice-action-buttons">
+                <button class="voice-btn stop" id="stop-btn" onclick="stopSpeaking()" disabled>
+                    ⏹️ Stop Speaking
+                </button>
+                <button class="voice-btn replay" id="replay-btn" onclick="replaySpeech()" disabled>
+                    🔁 Replay Last
+                </button>
+            </div>
+
+            <div class="speaking-indicator" id="speaking-indicator">
+                <span>Speaking:</span>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+
+        <div class="main-body">
+            <div id="status">Speak to Habibi...</div>
+            <button id="mic-btn" onclick="startSpeech()">
+                <div class="pulse" id="pulse"></div>
+                <span>🎙️</span>
+            </button>
+            <div id="user-transcript">...</div>
+
+            <div class="ai-box">
+                <div id="response-text">Marhaba! I assist foreigners across the Peninsula.</div>
+                <div id="map-wrap" class="hidden">
+                    <iframe id="google-map" width="100%" height="200" src=""></iframe>
+                </div>
+                <div id="wisdom-box" class="hidden"><p id="wisdom-text"></p></div>
+            </div>
+        </div>
+
+        <!-- ===== NEW: SOCIAL SHARE SECTION ===== -->
+        <div class="social-share-section">
+            <h3>🚀 Share Yalla Habibi AI</h3>
+            <p class="share-subtitle">Help others discover this multilingual AI assistant!</p>
+            
+            <div class="share-buttons">
+                <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;">
+                    <span>📘 Facebook</span>
+                </a>
+                <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;">
+                    <span>𝕏 Twitter</span>
+                </a>
+                <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(); return false;">
+                    <span>💼 LinkedIn</span>
+                </a>
+                <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;">
+                    <span>💬 WhatsApp</span>
+                </a>
+                <a href="#" class="share-btn telegram" onclick="shareOnTelegram(); return false;">
+                    <span>✈️ Telegram</span>
+                </a>
+                <a href="#" class="share-btn reddit" onclick="shareOnReddit(); return false;">
+                    <span>🤖 Reddit</span>
+                </a>
+            </div>
+
+            <div class="copy-link-section">
+                <input type="text" class="copy-link-input" id="share-url" readonly value="https://www.seosiri.com">
+                <button class="copy-link-btn" id="copy-btn" onclick="copyShareLink()">
+                    📋 Copy Link
+                </button>
+            </div>
+
+            <div class="share-stats">
+                Thank you for sharing! Every share helps grow our community 💚
+            </div>
+        </div>
+
+        <div class="community-ticker">
+            <div class="ticker-content" id="ticker">"Worlds are waiting to listen to you..." - Share your feedback!</div>
+        </div>
+
+        <div class="feedback-box">
+            <input type="text" id="feedback-in" placeholder="Loved Yalla Habibi? Share...">
+            <button onclick="postFeedback()">Post</button>
+        </div>
+
+        <footer>
+            Created by <a href="https://www.seosiri.com/p/about.html" target="_blank">Momenul Ahmad</a> | SEOSiri
+        </footer>
+    </div>
+
+    <script>
+        // =====================================================================
+        // VOICE CONTROL VARIABLES
+        // =====================================================================
+        let currentUtterance = null;
+        let lastResponseText = "";
+        let lastResponseLang = "en-US";
+        let isSpeaking = false;
+        let speechVolume = 1.0;
+        let speechRate = 0.95;
+
+        // =====================================================================
+        // SOCIAL SHARE CONFIGURATION
+        // =====================================================================
+        const SHARE_CONFIG = {
+            url: window.location.href || 'https://your-domain.com',
+            title: 'Yalla Habibi AI - Multilingual AI Assistant',
+            description: 'Experience Yalla Habibi AI - a Native Arabic host helping foreigners in 8 languages. Created by Momenul Ahmad at SEOSiri.com',
+            hashtags: 'YallaHabibi,AI,Multilingual,SEOSiri',
+            via: 'SEOSiri'
+        };
+
+        // =====================================================================
+        // SOCIAL SHARE FUNCTIONS
+        // =====================================================================
+        function shareOnFacebook() {
+            const shareText = encodeURIComponent(
+                `Check out Yalla Habibi AI - Amazing multilingual AI assistant! 🌍\n\nCreated by Momenul Ahmad | SEOSiri\n👉 https://www.seosiri.com`
+            );
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.seosiri.com')}&quote=${shareText}`;
+            window.open(url, 'facebook-share', 'width=600,height=400');
+            trackShare('Facebook');
+        }
+
+        function shareOnTwitter() {
+            const text = encodeURIComponent(
+                `🎙️ Yalla Habibi AI - Your multilingual Arabic host!\n\n✨ 8 Languages\n🎤 Voice Controls\n🗺️ Smart Maps\n\nBy @MomenulAhmad | SEOSiri\n\n#YallaHabibi #AI #Multilingual`
+            );
+            const url = `https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent('https://www.seosiri.com')}`;
+            window.open(url, 'twitter-share', 'width=600,height=400');
+            trackShare('Twitter');
+        }
+
+        function shareOnLinkedIn() {
+            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://www.seosiri.com')}`;
+            window.open(url, 'linkedin-share', 'width=600,height=400');
+            trackShare('LinkedIn');
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent(
+                `🌍 *Yalla Habibi AI* - Multilingual AI Assistant!\n\n` +
+                `🎙️ Voice-powered conversations\n` +
+                `🌐 8 languages supported\n` +
+                `🗺️ Smart location mapping\n\n` +
+                `Created by *Momenul Ahmad* | SEOSiri\n` +
+                `👉 https://www.seosiri.com`
+            );
+            const url = `https://wa.me/?text=${text}`;
+            window.open(url, 'whatsapp-share');
+            trackShare('WhatsApp');
+        }
+
+        function shareOnTelegram() {
+            const text = encodeURIComponent(
+                `🎙️ Yalla Habibi AI - Your Multilingual Assistant!\n\n` +
+                `Experience AI-powered conversations in 8 languages.\n\n` +
+                `Created by Momenul Ahmad | SEOSiri\n` +
+                `https://www.seosiri.com`
+            );
+            const url = `https://t.me/share/url?url=${encodeURIComponent('https://www.seosiri.com')}&text=${text}`;
+            window.open(url, 'telegram-share');
+            trackShare('Telegram');
+        }
+
+        function shareOnReddit() {
+            const title = encodeURIComponent('Yalla Habibi AI - Multilingual AI Assistant by SEOSiri');
+            const url = `https://reddit.com/submit?url=${encodeURIComponent('https://www.seosiri.com')}&title=${title}`;
+            window.open(url, 'reddit-share', 'width=800,height=600');
+            trackShare('Reddit');
+        }
+
+        function copyShareLink() {
+            const input = document.getElementById('share-url');
+            const btn = document.getElementById('copy-btn');
+            
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile
+            
+            navigator.clipboard.writeText(input.value).then(() => {
+                // Visual feedback
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy Link';
+                    btn.classList.remove('copied');
+                }, 2000);
+                
+                trackShare('Copy Link');
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                alert('Failed to copy. Please try manually selecting and copying.');
+            });
+        }
+
+        function trackShare(platform) {
+            console.log(`✅ Shared on ${platform}`);
+            // Optional: Send analytics to your backend
+            // fetch('/api/track-share', { method: 'POST', body: JSON.stringify({ platform }) });
+        }
+
+        // =====================================================================
+        // SPEECH RECOGNITION SETUP
+        // =====================================================================
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        
+        // =====================================================================
+        // VOICE CONTROL SLIDERS
+        // =====================================================================
+        const volumeSlider = document.getElementById('volume-slider');
+        const speedSlider = document.getElementById('speed-slider');
+        const volumeValue = document.getElementById('volume-value');
+        const speedValue = document.getElementById('speed-value');
+
+        volumeSlider.addEventListener('input', function() {
+            speechVolume = this.value / 100;
+            volumeValue.textContent = this.value + '%';
+            
+            if (currentUtterance && isSpeaking) {
+                currentUtterance.volume = speechVolume;
+            }
+        });
+
+        speedSlider.addEventListener('input', function() {
+            speechRate = this.value / 100;
+            const speedText = this.value < 80 ? 'Slow' : 
+                            this.value < 110 ? 'Normal' : 'Fast';
+            speedValue.textContent = speedText + ' (' + this.value + '%)';
+            
+            if (currentUtterance && isSpeaking) {
+                currentUtterance.rate = speechRate;
+            }
+        });
+
+        // =====================================================================
+        // UI RESET HELPER
+        // =====================================================================
+        function resetUI(message = "Speak to Habibi...") {
+            document.getElementById('pulse').style.display = 'none';
+            document.getElementById('status').innerText = message;
+            document.getElementById('mic-btn').classList.remove('recording');
+        }
+
+        // =====================================================================
+        // SPEECH RECOGNITION HANDLERS
+        // =====================================================================
+        recognition.onstart = () => {
+            document.getElementById('pulse').style.display = 'block';
+            document.getElementById('status').innerText = "Habibi is listening...";
+            document.getElementById('mic-btn').classList.add('recording');
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            resetUI("Error: " + event.error + ". Try again!");
+        };
+
+        recognition.onend = () => {
+            if (document.getElementById('status').innerText === "Habibi is listening...") {
+                resetUI("No speech detected. Try again!");
+            }
+        };
+
+        function startSpeech() { 
+            try { 
+                recognition.start(); 
+            } catch(e) {
+                console.log('Recognition already started or error:', e);
+            } 
+        }
+
+        // =====================================================================
+        // SPEECH RECOGNITION RESULT HANDLER
+        // =====================================================================
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+            const pref = document.getElementById('pref-lang').value;
+            
+            document.getElementById('user-transcript').innerText = `"${text}"`;
+            document.getElementById('status').innerText = "Processing...";
+            document.getElementById('pulse').style.display = 'none';
+
+            fetch(`/api/chat?user_input=${encodeURIComponent(text)}&pref=${pref}`)
+                .then(r => {
+                    if (!r.ok) throw new Error('Network response was not ok');
+                    return r.json();
+                })
+                .then(data => {
+                    resetUI("Response received! Speak again...");
+                    
+                    const parts = data.reply.split('--- Wisdom:');
+                    document.getElementById('response-text').innerText = parts[0];
+                    
+                    if(parts[1]) {
+                        document.getElementById('wisdom-box').classList.remove('hidden');
+                        document.getElementById('wisdom-text').innerText = "🌱 " + parts[1];
+                    } else {
+                        document.getElementById('wisdom-box').classList.add('hidden');
+                    }
+
+                    if(data.map_link) {
+                        document.getElementById('map-wrap').classList.remove('hidden');
+                        document.getElementById('google-map').src = data.map_link;
+                    } else { 
+                        document.getElementById('map-wrap').classList.add('hidden'); 
+                    }
+
+                    lastResponseText = data.reply;
+                    lastResponseLang = data.voice_lang;
+                    speak(data.reply, data.voice_lang);
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    resetUI("Error connecting. Try again!");
+                    document.getElementById('response-text').innerText = "Habibi encountered an error. Please try again.";
+                });
+        };
+
+        // =====================================================================
+        // ENHANCED SPEAK FUNCTION WITH CONTROLS
+        // =====================================================================
+        function speak(text, lang) {
+            window.speechSynthesis.cancel();
+            
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = lang;
+            currentUtterance.volume = speechVolume;
+            currentUtterance.rate = speechRate;
+            
+            document.getElementById('stop-btn').disabled = false;
+            document.getElementById('replay-btn').disabled = true;
+            document.getElementById('speaking-indicator').classList.add('active');
+            isSpeaking = true;
+            
+            currentUtterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('stop-btn').disabled = true;
+                document.getElementById('replay-btn').disabled = false;
+                document.getElementById('speaking-indicator').classList.remove('active');
+            };
+            
+            currentUtterance.onerror = (event) => {
+                console.error('Speech synthesis error:', event);
+                isSpeaking = false;
+                document.getElementById('stop-btn').disabled = true;
+                document.getElementById('replay-btn').disabled = false;
+                document.getElementById('speaking-indicator').classList.remove('active');
+            };
+            
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        // =====================================================================
+        // STOP SPEAKING FUNCTION
+        // =====================================================================
+        function stopSpeaking() {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            document.getElementById('stop-btn').disabled = true;
+            document.getElementById('replay-btn').disabled = false;
+            document.getElementById('speaking-indicator').classList.remove('active');
+            console.log('🛑 Speech stopped by user');
+        }
+
+        // =====================================================================
+        // REPLAY LAST RESPONSE FUNCTION
+        // =====================================================================
+        function replaySpeech() {
+            if (lastResponseText) {
+                console.log('🔁 Replaying last response');
+                speak(lastResponseText, lastResponseLang);
+            }
+        }
+
+        // =====================================================================
+        // FEEDBACK FUNCTION
+        // =====================================================================
+        function postFeedback() {
+            const val = document.getElementById('feedback-in').value;
+            if(val) {
+                document.getElementById('ticker').innerText = `"${val}" - ` + document.getElementById('ticker').innerText;
+                document.getElementById('feedback-in').value = "";
+                alert("Mabrouk! Feedback shared with the world.");
+            }
+        }
+
+        // =====================================================================
+        // KEYBOARD SHORTCUTS
+        // =====================================================================
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' && event.target.tagName !== 'INPUT') {
+                event.preventDefault();
+                startSpeech();
+            }
+            if (event.code === 'Escape') {
+                stopSpeaking();
+            }
+            if (event.code === 'KeyR' && !event.ctrlKey && event.target.tagName !== 'INPUT') {
+                replaySpeech();
+            }
+        });
+
+        console.log('🎤 Shortcuts: SPACE=Listen | ESC=Stop | R=Replay');
+        console.log('🚀 Share buttons ready! Help spread the word about Yalla Habibi AI');
+    </script>
+</body>
+</html>

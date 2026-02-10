@@ -1,0 +1,52 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#006C35;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bg)" rx="0" />
+
+  <!-- The Bridge Network -->
+  <g stroke="rgba(255,255,255,0.15)" stroke-width="2">
+    <!-- Connecting Lines -->
+    <line x1="200" y1="300" x2="400" y2="150" />
+    <line x1="400" y1="150" x2="600" y2="250" />
+    <line x1="600" y1="250" x2="800" y2="150" />
+    <line x1="800" y1="150" x2="1000" y2="300" />
+    <line x1="400" y1="150" x2="800" y2="150" stroke-dasharray="5,5" />
+    
+    <!-- Nodes (Languages) -->
+    <circle cx="200" cy="300" r="6" fill="#2ecc71" />
+    <circle cx="400" cy="150" r="6" fill="#fbbf24" />
+    <circle cx="600" cy="250" r="12" fill="#fff" stroke="#006C35" stroke-width="3" /> <!-- Core -->
+    <circle cx="800" cy="150" r="6" fill="#fbbf24" />
+    <circle cx="1000" cy="300" r="6" fill="#2ecc71" />
+  </g>
+
+  <!-- Main Text -->
+  <text x="600" y="190" font-family="Arial, sans-serif" font-weight="bold" font-size="70" fill="white" text-anchor="middle" filter="url(#glow)">
+    Yalla <tspan fill="#fbbf24">Habibi</tspan> AI
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="240" font-family="Arial, sans-serif" font-size="22" fill="#cbd5e1" text-anchor="middle" letter-spacing="4">
+    NATIVE CULTURAL BRIDGE
+  </text>
+  
+  <!-- Features -->
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle" letter-spacing="1">
+    ARABIC • BENGALI • HINDI • SPANISH • ENGLISH • URDU
+  </text>
+
+  <!-- Branding -->
+  <text x="1180" y="380" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.3)" text-anchor="end">
+    Built by Momenul Ahmad | SEOSiri
+  </text>
+</svg>

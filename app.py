@@ -7,8 +7,16 @@ from dotenv import load_dotenv
 import uvicorn
 import logging
 import traceback
-app = FastAPI()
+app = FastAPI(
+    title="Yalla Habibi AI - The Global Host",
+    description="Native Arabic AI Host for Global Foreigners by Momenul Ahmad (SEOSiri)",
+    version="1.0.0"
+)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+
 @app.get("/terms")
 async def terms(request: Request):
     return templates.TemplateResponse("legal/terms.html", {"request": request})
@@ -112,16 +120,7 @@ except Exception as e:
 # ============================================================================
 # FASTAPI APP SETUP
 # ============================================================================
-app = FastAPI(
-    title="Yalla Habibi AI - The Global Host",
-    description="Native Arabic AI Host for Global Foreigners by Momenul Ahmad (SEOSiri)",
-    version="1.0.0"
-)
 
-# Mount static files and templates
-try:
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-    templates = Jinja2Templates(directory="templates")
     logger.info("✅ Static files and templates loaded")
 except Exception as e:
     logger.error(f"❌ Error loading static files or templates: {e}")

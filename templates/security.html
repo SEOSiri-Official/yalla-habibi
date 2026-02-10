@@ -1,0 +1,19 @@
+Set-Content templates\security.html @"
+{% extends "base.html" %}
+{% block title %}Trust & Security{% endblock %}
+
+{% block content %}
+
+<h1>Trust & Security</h1>
+
+<p>SEOSiri applies responsible AI practices.</p>
+
+<ul>
+<li>No sale of personal data</li>
+<li>Minimal logging</li>
+<li>Secure API handling</li>
+<li>Abuse prevention</li>
+</ul>
+
+{% endblock %}
+"@

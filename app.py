@@ -7,6 +7,31 @@ from dotenv import load_dotenv
 import uvicorn
 import logging
 import traceback
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+@app.get("/terms")
+async def terms(request: Request):
+    return templates.TemplateResponse("legal/terms.html", {"request": request})
+
+@app.get("/privacy")
+async def privacy(request: Request):
+    return templates.TemplateResponse("legal/privacy.html", {"request": request})
+
+@app.get("/ai-policy")
+async def ai_policy(request: Request):
+    return templates.TemplateResponse("legal/ai-policy.html", {"request": request})
+
+@app.get("/cookies")
+async def cookies(request: Request):
+    return templates.TemplateResponse("legal/cookies.html", {"request": request})
+
+@app.get("/about")
+async def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
+
+@app.get("/security")
+async def security(request: Request):
+    return templates.TemplateResponse("security.html", {"request": request})
 
 # ============================================================================
 # SETUP LOGGING

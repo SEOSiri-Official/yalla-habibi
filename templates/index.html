@@ -42,6 +42,9 @@
   <!-- ===== VOICE CONTROLS SECTION ===== -->
   <div class="voice-controls">
     <h3>🎚️ Voice Controls</h3>
+    <div class="voice-hint">
+        To hear responses in your language, please enable your language voice in your device settings. Need help? I’ll gladly guide you.
+    </div>
 
     <div class="control-group">
       <label>
@@ -495,33 +498,49 @@
   function speak(text, lang) {
     window.speechSynthesis.cancel();
 
-    currentUtterance = new SpeechSynthesisUtterance(text);
-    currentUtterance.lang = lang;
-    currentUtterance.volume = speechVolume;
-    currentUtterance.rate = speechRate;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.volume = speechVolume;
+    utterance.rate = speechRate;
 
+    const voices = window.speechSynthesis.getVoices();
+
+    // Try exact match first
+    let selectedVoice = voices.find(v => v.lang === lang);
+
+    if (!selectedVoice) {
+    document.querySelector('.voice-hint').style.display = 'block';
+}
+
+    // Fallback by language prefix (bn, ar, en etc)
+    if (!selectedVoice) {
+        const prefix = lang.split('-')[0];
+        selectedVoice = voices.find(v => v.lang.startsWith(prefix));
+    }
+
+    if (selectedVoice) {
+        utterance.voice = selectedVoice;
+        console.log("✅ Voice selected:", selectedVoice.name);
+    } else {
+        console.warn("⚠ No native voice for:", lang, "→ Using default");
+    }
+
+    currentUtterance = utterance;
     isSpeaking = true;
-    isPaused = false;
-    setSpeakingUI(true);
-    setPausedUI(false);
 
-    currentUtterance.onend = () => {
-      isSpeaking = false;
-      isPaused = false;
-      setSpeakingUI(false);
-      setPausedUI(false);
+    document.getElementById('speaking-indicator').classList.add('active');
+    document.getElementById('stop-btn').disabled = false;
+
+    utterance.onend = () => {
+        isSpeaking = false;
+        isPaused = false;
+        document.getElementById('speaking-indicator').classList.remove('active');
+        document.getElementById('stop-btn').disabled = true;
+        document.getElementById('replay-btn').disabled = false;
     };
 
-    currentUtterance.onerror = (event) => {
-      console.error('Speech synthesis error:', event);
-      isSpeaking = false;
-      isPaused = false;
-      setSpeakingUI(false);
-      setPausedUI(false);
-    };
-
-    window.speechSynthesis.speak(currentUtterance);
-  }
+    window.speechSynthesis.speak(utterance);
+}
 
   function pauseSpeaking() {
     if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {

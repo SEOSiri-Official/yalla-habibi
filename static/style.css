@@ -1,57 +1,361 @@
-:root { --main: #2ecc71; --accent: #fbbf24; --bg: #0f172a; }
+/* =========================================================
+   ROOT VARIABLES (Single Source of Truth)
+========================================================= */
+:root {
+    --main: #2ecc71;
+    --accent: #fbbf24;
+    --bg: #0f172a;
 
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.10);
+}
+
+/* =========================================================
+   BODY / LAYOUT
+========================================================= */
 body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+
+    font-family: 'Tajawal', 'Hind Siliguri', sans-serif;
+    color: white;
+
     background: radial-gradient(circle at center, #1e293b, #020617);
-    min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;
-    font-family: 'Tajawal', 'Hind Siliguri', sans-serif; color: white; padding: 15px;
 }
 
+/* =========================================================
+   GLASS CARD (Reduced Paint Cost)
+========================================================= */
 .glass-card {
-    background: rgba(255,255,255,0.06); backdrop-filter: blur(25px);
-    width: 100%; max-width: 450px; padding: 25px; border-radius: 40px;
-    border: 1px solid rgba(255,255,255,0.1); text-align: center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 15px;
+    width: 100%;
+    max-width: 450px;
+    padding: 24px;
+    border-radius: 32px;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
+/* Headings */
 h1 span { color: var(--main); }
-#hook { font-size: 0.9rem; opacity: 0.8; font-style: italic; }
+
+#hook {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    font-style: italic;
+}
+
+/* =========================================================
+   LANGUAGE SELECT (Unified)
+========================================================= */
+.pref-container {
+    position: relative;
+}
 
 .pref-container select {
-    width: 100%; background: rgba(0,0,0,0.4); color: var(--main); border: 1px solid var(--main);
-    padding: 12px; border-radius: 15px; font-weight: bold; cursor: pointer;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    cursor: pointer;
+
+    background: rgba(2, 6, 23, 0.9);
+    color: var(--text-main);
+    border: 1px solid rgba(46, 204, 113, 0.35);
+
+    appearance: none;
 }
 
-.benefit-hints { font-size: 0.75rem; color: var(--accent); opacity: 0.9; }
+.pref-container::after {
+    content: "▾";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--main);
+    pointer-events: none;
+}
 
+/* =========================================================
+   BENEFIT HINTS
+========================================================= */
+.benefit-hints {
+    font-size: 0.75rem;
+    color: var(--accent);
+    opacity: 0.9;
+}
+
+/* =========================================================
+   MIC BUTTON (Lighter Shadow)
+========================================================= */
 #mic-btn {
-    width: 90px; height: 90px; border-radius: 50%; border: none; background: white;
-    font-size: 2.5rem; cursor: pointer; position: relative; z-index: 5;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    font-size: 2.4rem;
+    cursor: pointer;
+    position: relative;
 }
 
+/* Pulse Animation */
 .pulse {
-    position: absolute; top:50%; left:50%; transform: translate(-50%, -50%);
-    width: 100%; height: 100%; background: var(--main); border-radius: 50%;
-    display: none; animation: pulse-kf 1.5s infinite; z-index: 1;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--main);
+
+    display: none;
+    animation: pulse-kf 1.5s infinite;
 }
 
-@keyframes pulse-kf { 
-    0% {transform:translate(-50%,-50%) scale(1); opacity:0.6;} 
-    100% {transform:translate(-50%,-50%) scale(2.8); opacity:0;} 
+@keyframes pulse-kf {
+    from { transform: scale(1); opacity: 0.55; }
+    to   { transform: scale(2.6); opacity: 0; }
 }
 
-.ai-box { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 25px; line-height: 1.6; font-size: 1.05rem; }
+/* =========================================================
+   AI RESPONSE BOX
+========================================================= */
+.ai-box {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 16px;
+    border-radius: 18px;
+    line-height: 1.6;
+    font-size: 1rem;
+}
 
-#wisdom-box { margin-top: 12px; padding: 10px; border-radius: 15px; background: rgba(46, 204, 113, 0.1); border-left: 4px solid var(--main); }
-#wisdom-text { font-size: 0.85rem; color: #4ade80; margin: 0; text-align: left; }
+/* Wisdom Box */
+#wisdom-box {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(46, 204, 113, 0.08);
+    border-left: 3px solid var(--main);
+}
 
-.community-ticker { overflow: hidden; white-space: nowrap; font-size: 0.8rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 10px;}
-.ticker-content { display: inline-block; animation: tick-kf 25s linear infinite; }
-@keyframes tick-kf { 0% {transform: translateX(100%);} 100% {transform: translateX(-100%);} }
+#wisdom-text {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #4ade80;
+    text-align: left;
+}
 
-.feedback-box { display: flex; gap: 8px; }
-.feedback-box input { flex: 1; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 12px; padding: 10px; }
-.feedback-box button { background: var(--main); border: none; color: white; padding: 0 20px; border-radius: 12px; cursor: pointer; font-weight: bold; }
+/* =========================================================
+   MAP
+========================================================= */
+#map-wrap {
+    margin-top: 10px;
+    border-radius: 16px;
+    overflow: hidden;
+}
 
-#map-wrap { border-radius: 20px; overflow: hidden; margin-top: 10px; }
 .hidden { display: none !important; }
-footer a { color: var(--main); text-decoration: none; font-weight: bold; }
+
+/* =========================================================
+   COMMUNITY TICKER (Optimized Animation)
+========================================================= */
+.community-ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.78rem;
+
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: tick-kf 22s linear infinite;
+}
+
+@keyframes tick-kf {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(-100%); }
+}
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+.feedback-box {
+    display: flex;
+    gap: 6px;
+}
+
+.feedback-box input {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 10px;
+
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.feedback-box button {
+    border: none;
+    border-radius: 10px;
+    padding: 0 16px;
+
+    background: var(--main);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================================================
+   PANELS (VOICE + SHARE)
+========================================================= */
+.voice-controls,
+.social-share-section {
+    border-radius: 14px;
+    padding: 16px;
+    margin: 16px 0;
+    backdrop-filter: blur(10px);
+}
+
+/* Voice Controls */
+.voice-controls {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.voice-controls h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: #4ade80;
+}
+
+.control-group { margin-bottom: 12px; }
+
+.control-group label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+/* Sliders */
+.slider {
+    width: 100%;
+    height: 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb,
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4ade80;
+    border: none;
+    cursor: pointer;
+}
+
+/* Buttons */
+.voice-btn {
+    flex: 1;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.voice-btn:hover { transform: translateY(-1px); }
+
+/* =========================================================
+   SHARE PANEL
+========================================================= */
+.social-share-section {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 222, 128, 0.12),
+        rgba(34, 197, 94, 0.03)
+    );
+    border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.share-gpt {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.share-gpt a {
+    color: #4ade80;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Buttons Grid */
+.share-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+}
+
+.share-btn {
+    padding: 9px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.15s ease, opacity 0.2s;
+}
+
+.share-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* Brand Colors */
+.facebook { background: #1877f2; }
+.twitter { background: #111; }
+.linkedin { background: #0a66c2; }
+.whatsapp { background: #25d366; }
+.telegram { background: #0088cc; }
+.reddit { background: #ff4500; }
+
+/* =========================================================
+   FOOTER / LINKS
+========================================================= */
+.secondary-links {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.secondary-links a {
+    color: #4ade80;
+    text-decoration: none;
+}
+
+footer a {
+    color: var(--main);
+    text-decoration: none;
+    font-weight: 600;
+}

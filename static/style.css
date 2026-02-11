@@ -359,3 +359,20 @@ footer a {
     text-decoration: none;
     font-weight: 600;
 }
+
+.voice-btn.pause {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+.voice-btn.pause:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  transform: translateY(-2px);
+}
+.voice-btn.resume {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+.voice-btn.resume:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+}

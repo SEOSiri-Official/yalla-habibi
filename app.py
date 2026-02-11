@@ -41,6 +41,10 @@ async def about(request: Request):
 async def security(request: Request):
     return templates.TemplateResponse("security.html", {"request": request})
 
+@app.get("/manual")
+async def manual(request: Request):
+    return templates.TemplateResponse("manual.html", {"request": request})
+
 # ============================================================================
 # SETUP LOGGING
 # ============================================================================
@@ -131,13 +135,19 @@ except Exception as e:
 # ============================================================================
 LANG_MAP = {
     "bn-BD": "Bengali (বাংলা)",
-    "ar-SA": "Arabic (العربية)", 
+    "ar-SA": "Arabic (العربية)",
     "en-US": "English",
-    "hi-IN": "Hindi (हिन्दी)",
-    "es-ES": "Spanish (Español)",
-    "pt-BR": "Brazilian Portuguese (Português)",
-    "ur-PK": "Urdu (اردو)",
-    "tl-PH": "Tagalog (Filipino)"
+    "hi-IN": "Hindi",
+    "es-ES": "Spanish",
+    "pt-BR": "Portuguese",
+    "fr-FR": "French",
+    "de-DE": "German",
+    "it-IT": "Italian",
+    "ru-RU": "Russian",
+    "ja-JP": "Japanese",
+    "ko-KR": "Korean",
+    "zh-CN": "Chinese",
+    "tr-TR": "Turkish"
 }
 
 # Map trigger words for map feature

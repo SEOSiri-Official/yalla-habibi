@@ -1,30 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>`n<link rel="stylesheet" href="/static/style.css">
-<meta charset="UTF-8">
-<title>AI Transparency - YallaHabibi</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}AI Transparency | Yalla Habibi{% endblock %}
+
+{% block content %}
+
+<div class="glass-card" style="max-width:900px">
 
 <h1>AI Transparency & Responsible Use</h1>
 
+<p>
+Yalla Habibi is a multilingual AI-powered voice assistant designed to support
+cross-language communication in a responsible and transparent manner.
+</p>
+
+<hr style="margin:25px 0; opacity:.2;">
+
 <h2>How the AI Works</h2>
-<p>YallaHabibi uses advanced language and speech processing models.</p>
+<p>
+Yalla Habibi uses advanced language processing and speech recognition technologies
+to generate responses. The system processes user input and returns AI-generated replies.
+</p>
 
 <h2>Limitations</h2>
 <ul>
-<li>Responses may be incomplete or incorrect</li>
-<li>Not intended for legal, medical, or financial decisions</li>
+<li>Responses may be incomplete, outdated, or incorrect.</li>
+<li>The system is not a substitute for legal, medical, or financial advice.</li>
+<li>Outputs should be independently verified when accuracy is critical.</li>
 </ul>
 
 <h2>Data Handling</h2>
-<p>Voice and text inputs may be processed by third-party AI services.</p>
+<p>
+Voice and text inputs may be processed through secure third-party AI services
+to generate responses. Yalla Habibi does not intentionally store personal data
+unless explicitly required for system functionality.
+</p>
 
 <h2>Responsible Usage</h2>
-<p>Users must not use the system for harmful or abusive purposes.</p>
+<p>
+Users must not use the system for harmful, abusive, illegal, or deceptive purposes.
+Violation of these guidelines may result in restricted access.
+</p>
 
 <h2>Continuous Improvement</h2>
-<p>The AI system is regularly improved for accuracy and safety.</p>
+<p>
+The AI system is continuously improved to enhance safety, reliability,
+and user experience.
+</p>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

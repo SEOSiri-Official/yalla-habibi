@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}YallaHabibi AI{% endblock %}
+{% block title %}Yalla Habibi{% endblock %}
 
 {% block content %}
 
@@ -358,6 +358,24 @@
             color: #4ade80;
             font-weight: 600;
         }
+
+        .share-stats {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+}
+
+.share-stats a {
+    color: #4ade80;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+.share-stats a:hover {
+    color: #22c55e;
+}
     </style>
 
     <div class="glass-card">
@@ -368,15 +386,21 @@
             <div class="pref-container">
                 <label>Select Your Tongue:</label>
                 <select id="pref-lang">
-                    <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
-                    <option value="hi-IN">🇮🇳 Hindi (हिन्दी)</option>
-                    <option value="es-ES">🇪🇸 Spanish (Español)</option>
-                    <option value="pt-BR">🇧🇷 Brazilian (Português)</option>
-                    <option value="tl-PH">🇵🇭 Tagalog (Filipino)</option>
-                    <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
-                    <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
-                    <option value="en-US" selected>🌐 English</option>
-                </select>
+            <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
+            <option value="hi-IN">🇮🇳 Hindi</option>
+            <option value="es-ES">🇪🇸 Spanish</option>
+            <option value="pt-BR">🇧🇷 Portuguese</option>
+            <option value="fr-FR">🇫🇷 French</option>
+            <option value="de-DE">🇩🇪 German</option>
+            <option value="it-IT">🇮🇹 Italian</option>
+            <option value="ru-RU">🇷🇺 Russian</option>
+            <option value="ja-JP">🇯🇵 Japanese</option>
+            <option value="ko-KR">🇰🇷 Korean</option>
+            <option value="zh-CN">🇨🇳 Chinese</option>
+            <option value="tr-TR">🇹🇷 Turkish</option>
+            <option value="ar-SA">🇸🇦 Arabic</option>
+            <option value="en-US" selected>🌐 English</option>
+        </select>
             </div>
         </header>
 
@@ -503,107 +527,65 @@
         let speechVolume = 1.0;
         let speechRate = 0.95;
 
-        // =====================================================================
-        // SOCIAL SHARE CONFIGURATION
-        // =====================================================================
-        const SHARE_CONFIG = {
-            url: window.location.href || 'https://your-domain.com',
-            title: 'Yalla Habibi AI - Multilingual AI Assistant',
-            description: 'Experience Yalla Habibi AI - a Native Arabic host helping foreigners in 8 languages. Created by Momenul Ahmad at SEOSiri.com',
-            hashtags: 'YallaHabibi,AI,Multilingual,SEOSiri',
-            via: 'SEOSiri'
-        };
 
-        // =====================================================================
-        // SOCIAL SHARE FUNCTIONS
-        // =====================================================================
-        function shareOnFacebook() {
-            const shareText = encodeURIComponent(
-                `Check out Yalla Habibi AI - Amazing multilingual AI assistant! 🌍\n\nCreated by Momenul Ahmad | SEOSiri\n👉 https://www.seosiri.com`
-            );
-            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.seosiri.com')}&quote=${shareText}`;
-            window.open(url, 'facebook-share', 'width=600,height=400');
-            trackShare('Facebook');
-        }
 
-        function shareOnTwitter() {
-            const text = encodeURIComponent(
-                `🎙️ Yalla Habibi AI - Your multilingual Arabic host!\n\n✨ 8 Languages\n🎤 Voice Controls\n🗺️ Smart Maps\n\nBy @MomenulAhmad | SEOSiri\n\n#YallaHabibi #AI #Multilingual`
-            );
-            const url = `https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent('https://www.seosiri.com')}`;
-            window.open(url, 'twitter-share', 'width=600,height=400');
-            trackShare('Twitter');
-        }
+        /* ============================================================
+   DOMAIN-SAFE SHARE CONFIG
+============================================================ */
+const SHARE_CONFIG = {
+    url: window.location.origin,
+    title: "Yalla Habibi - Multilingual Voice Assistant"
+};
 
-        function shareOnLinkedIn() {
-            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://www.seosiri.com')}`;
-            window.open(url, 'linkedin-share', 'width=600,height=400');
-            trackShare('LinkedIn');
-        }
+document.getElementById('share-url').value = SHARE_CONFIG.url;
 
-        function shareOnWhatsApp() {
-            const text = encodeURIComponent(
-                `🌍 *Yalla Habibi AI* - Multilingual AI Assistant!\n\n` +
-                `🎙️ Voice-powered conversations\n` +
-                `🌐 8 languages supported\n` +
-                `🗺️ Smart location mapping\n\n` +
-                `Created by *Momenul Ahmad* | SEOSiri\n` +
-                `👉 https://www.seosiri.com`
-            );
-            const url = `https://wa.me/?text=${text}`;
-            window.open(url, 'whatsapp-share');
-            trackShare('WhatsApp');
-        }
+/* ============================================================
+   SHARE FUNCTIONS (FIXED)
+============================================================ */
+function shareOnFacebook() {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_CONFIG.url)}`;
+    window.open(url, 'fb', 'width=600,height=400');
+}
 
-        function shareOnTelegram() {
-            const text = encodeURIComponent(
-                `🎙️ Yalla Habibi AI - Your Multilingual Assistant!\n\n` +
-                `Experience AI-powered conversations in 8 languages.\n\n` +
-                `Created by Momenul Ahmad | SEOSiri\n` +
-                `https://www.seosiri.com`
-            );
-            const url = `https://t.me/share/url?url=${encodeURIComponent('https://www.seosiri.com')}&text=${text}`;
-            window.open(url, 'telegram-share');
-            trackShare('Telegram');
-        }
+function shareOnTwitter() {
+    const text = encodeURIComponent(`🎙️ Yalla Habibi\n${SHARE_CONFIG.url}`);
+    window.open(`https://twitter.com/intent/tweet?text=${text}`);
+}
 
-        function shareOnReddit() {
-            const title = encodeURIComponent('Yalla Habibi AI - Multilingual AI Assistant by SEOSiri');
-            const url = `https://reddit.com/submit?url=${encodeURIComponent('https://www.seosiri.com')}&title=${title}`;
-            window.open(url, 'reddit-share', 'width=800,height=600');
-            trackShare('Reddit');
-        }
+function shareOnLinkedIn() {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+}
 
-        function copyShareLink() {
-            const input = document.getElementById('share-url');
-            const btn = document.getElementById('copy-btn');
-            
-            input.select();
-            input.setSelectionRange(0, 99999); // For mobile
-            
-            navigator.clipboard.writeText(input.value).then(() => {
-                // Visual feedback
-                btn.textContent = '✅ Copied!';
-                btn.classList.add('copied');
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    btn.textContent = '📋 Copy Link';
-                    btn.classList.remove('copied');
-                }, 2000);
-                
-                trackShare('Copy Link');
-            }).catch(err => {
-                console.error('Copy failed:', err);
-                alert('Failed to copy. Please try manually selecting and copying.');
-            });
-        }
+function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Yalla Habibi\n${SHARE_CONFIG.url}`);
+    window.open(`https://wa.me/?text=${text}`);
+}
 
-        function trackShare(platform) {
-            console.log(`✅ Shared on ${platform}`);
-            // Optional: Send analytics to your backend
-            // fetch('/api/track-share', { method: 'POST', body: JSON.stringify({ platform }) });
-        }
+function shareOnTelegram() {
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+}
+
+function shareOnReddit() {
+    window.open(`https://reddit.com/submit?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+}
+
+function copyShareLink() {
+    navigator.clipboard.writeText(SHARE_CONFIG.url);
+    const btn = document.getElementById("copy-btn");
+    btn.innerText = "✅ Copied!";
+    setTimeout(() => btn.innerText = "📋 Copy Link", 1500);
+}
+
+console.log("✅ Share system locked to:", SHARE_CONFIG.url);
+</script>
+
+<div class="share-stats">
+    ✨ Explore Habibi on GPT:
+    <a href="https://chatgpt.com/g/g-698b641c04208191bb1c0f8861bac508-yalla-habibi-multilingual-voice-translation"
+       target="_blank">
+       Yalla Habibi GPT Experience
+    </a>
+</div>
 
         // =====================================================================
         // SPEECH RECOGNITION SETUP

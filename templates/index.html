@@ -376,6 +376,56 @@
 .share-stats a:hover {
     color: #22c55e;
 }
+
+/* Language Dropdown – Dark Glass Style */
+select {
+    background: rgba(15, 23, 42, 0.95);
+    color: #e5e7eb;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    /* Remove ugly default UI */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Dropdown options */
+select option {
+    background: #020617;
+    color: #e5e7eb;
+}
+
+/* Hover / focus */
+select:hover,
+select:focus {
+    border-color: #4ade80;
+}
+
+.pref-container {
+    position: relative;
+}
+
+.pref-container select {
+    width: 100%;
+}
+
+/* Fake arrow */
+.pref-container::after {
+    content: "▾";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4ade80;
+    pointer-events: none;
+    font-size: 14px;
+}
+
     </style>
 
     <div class="glass-card">
@@ -577,7 +627,6 @@ function copyShareLink() {
 }
 
 console.log("✅ Share system locked to:", SHARE_CONFIG.url);
-</script>
 
 <div class="share-stats">
     ✨ Explore Habibi on GPT:

@@ -1,0 +1,17 @@
+<div class="lang-dedication" role="region" aria-label="Language & Inclusion Dedication">
+    <div class="lang-dedication-inner">
+        <span class="dedication-icon">🌍</span>
+        <div class="dedication-text">
+            {% if active_lang == "bn" %}
+                <strong>ভাষার প্রতি শ্রদ্ধা</strong>
+                <p>আপনার মাতৃভাষায় কথা বলুন. ভাষা মানব পরিচয়ের অংশ.</p>
+            {% elif active_lang == "ar" %}
+                <strong>تكريم اللغة</strong>
+                <p>تحدث بلغتك الأم. اللغة جزء من الهوية الإنسانية.</p>
+            {% else %}
+                <strong>Language Matters</strong>
+                <p>Speak in your native language. Language is identity, culture, and connection.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

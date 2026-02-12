@@ -384,3 +384,60 @@ footer a {
     text-align: center;
     line-height: 1.4;
 }
+
+/* ===== Language Dedication Banner ===== */
+
+.lang-dedication {
+    width: 100%;
+    margin: 18px 0;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.lang-dedication-inner {
+    max-width: 900px;
+    width: 92%;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: auto;
+}
+
+.dedication-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.dedication-text strong {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.dedication-text p {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+
+/* Mobile Optimization */
+@media (max-width: 640px) {
+    .lang-dedication-inner {
+        flex-direction: row;
+        padding: 12px 14px;
+    }
+
+    .dedication-text strong {
+        font-size: 13px;
+    }
+
+    .dedication-text p {
+        font-size: 12px;
+    }
+}

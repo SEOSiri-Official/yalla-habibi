@@ -1,44 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Default -->
   <url>
     <loc>https://yallahabibi.seosiri.com/</loc>
     <priority>1.0</priority>
   </url>
 
-  <url>
-    <loc>https://yallahabibi.seosiri.com/manual</loc>
-    <priority>0.8</priority>
-  </url>
+  <!-- Language Homes -->
+  <url><loc>https://yallahabibi.seosiri.com/en</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/ar</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/bn</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/hi</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/es</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/fr</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/de</loc></url>
 
-  <url>
-    <loc>https://yallahabibi.seosiri.com/about</loc>
-    <priority>0.6</priority>
-  </url>
+  <!-- Core Pages -->
+  <url><loc>https://yallahabibi.seosiri.com/about</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/security</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/manual</loc></url>
 
-  <url>
-    <loc>https://yallahabibi.seosiri.com/security</loc>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://yallahabibi.seosiri.com/terms</loc>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://yallahabibi.seosiri.com/privacy</loc>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://yallahabibi.seosiri.com/cookies</loc>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://yallahabibi.seosiri.com/ai-policy</loc>
-    <priority>0.3</priority>
-  </url>
+  <!-- FAQ -->
+  <url><loc>https://yallahabibi.seosiri.com/faq</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/en/faq</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/ar/faq</loc></url>
+  <url><loc>https://yallahabibi.seosiri.com/bn/faq</loc></url>
 
 </urlset>

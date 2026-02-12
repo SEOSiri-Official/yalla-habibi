@@ -251,15 +251,20 @@ async def robots():
 # ============================================================================
 # LOCALIZED HOME (language-based URLs)
 # ============================================================================
-@app.get("/{lang}", response_class=HTMLResponse)
-async def localized_home(request: Request, lang: str):
+@app.get("/{lang}/faq", response_class=HTMLResponse)
+async def localized_faq(request: Request, lang: str):
+
     if lang not in SUPPORTED_LANGS:
         lang = "en"
 
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "active_lang": lang},
-    )
+        "faq.html",
+        {
+            "request": request,
+            "active_lang": lang
+        }
+    ) 
+
 
 
 # ============================================================================

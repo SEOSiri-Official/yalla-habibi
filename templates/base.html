@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>{% block title %}Yalla Habibi AI{% endblock %}</title>
+<title>{% block title %}Yalla Habibi – Multilingual Voice Assistant for Arabic & Global Languages
+{% endblock %}</title>
 
-<meta name="description" content="Yalla Habibi — Multilingual Voice AI Assistant by SEOSiri">
+<meta name="description" content="Speak naturally with Yalla Habibi, a multilingual Arabic-first AI voice assistant helping users translate, learn, and navigate across languages and cultures.">
 <meta property="og:title" content="{% block og_title %}Yalla Habibi{% endblock %}">
 <meta property="og:description" content="{% block og_description %}Speak naturally. Get intelligent responses in your language.{% endblock %}">
 <meta property="og:url" content="{{ request.url }}">
@@ -97,6 +98,109 @@ body{
 }
 
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Yalla Habibi",
+  "url": "https://yallahabibi.seosiri.com",
+  "applicationCategory": "AssistantApplication",
+  "operatingSystem": "Any",
+  "description": "Multilingual culturally-aware AI voice assistant designed to help global users communicate across languages with an Arabic-first persona.",
+  "inLanguage": [
+    "en",
+    "ar",
+    "bn",
+    "hi",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "ru",
+    "ja",
+    "ko",
+    "zh",
+    "tr"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "SEOSiri",
+    "url": "https://www.seosiri.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SEOSiri",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.seosiri.com/logo.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "What is Yalla Habibi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yalla Habibi is a multilingual Arabic-first AI voice assistant designed to help users communicate, learn, and navigate across languages and cultures."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Which languages does Yalla Habibi support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yalla Habibi supports Arabic, English, Bengali, Hindi, Spanish, Portuguese, French, German, Russian, Japanese, Korean, Chinese, Turkish, and additional languages as platform capabilities expand."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Why is voice output not always available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voice playback depends on voices installed on your device and browser support. Some languages require native system voices. Text responses remain fully functional."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Does Yalla Habibi provide maps or directions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When queries involve locations or navigation-related requests, Yalla Habibi may generate an embedded map for visual assistance."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Are AI responses always accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI-generated responses aim to be helpful but may occasionally contain inaccuracies. Users should verify important information."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Is Yalla Habibi free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Yalla Habibi is publicly accessible as a multilingual AI assistant. Future enhancements may expand capabilities."
+      }
+    }
+
+  ]
+}
+</script>
 
 </head>
 

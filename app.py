@@ -62,6 +62,9 @@ async def robots():
 @app.get("/donate", response_class=HTMLResponse)
 async def donate(request: Request):
     return templates.TemplateResponse("donate.html", {"request": request})
+@app.get("/faq")
+async def faq_page(request: Request):
+    return templates.TemplateResponse("faq.html", {"request": request})
 
 
 # ============================================================================

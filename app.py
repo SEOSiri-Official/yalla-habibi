@@ -59,6 +59,10 @@ async def manual_page(request: Request):
 @app.get("/robots.txt")
 async def robots():
     return FileResponse("static/robots.txt")
+@app.get("/donate", response_class=HTMLResponse)
+async def donate(request: Request):
+    return templates.TemplateResponse("donate.html", {"request": request})
+
 
 # ============================================================================
 # LOGGING

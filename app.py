@@ -66,6 +66,20 @@ async def donate(request: Request):
 async def faq_page(request: Request):
     return templates.TemplateResponse("faq.html", {"request": request})
 
+SUPPORTED_LANGS = ["en", "bn", "ar", "hi", "es", "fr", "de"]
+
+@app.get("/{lang}", response_class=HTMLResponse)
+async def localized_home(request: Request, lang: str):
+    if lang not in SUPPORTED_LANGS:
+        lang = "en"
+
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "active_lang": lang
+        }
+    )
 
 # ============================================================================
 # LOGGING

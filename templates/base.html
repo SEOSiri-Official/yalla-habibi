@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/static/style.css">
 <link rel="canonical" href="{{ request.url }}" />
 
+<html lang="{{ active_lang or 'en' }}">
 
 <style>
 
@@ -232,6 +233,7 @@ Yalla <span>Habibi</span>
 
 <footer class="legal-footer">
 <a href="/about">About</a>
+<a href="/{{ active_lang or 'en' }}/faq">FAQ</a>
 <a href="/security">Security</a>
 <a href="/terms">Terms</a>
 <a href="/privacy">Privacy</a>

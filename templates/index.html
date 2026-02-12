@@ -97,6 +97,15 @@
 
   <div class="main-body">
     <div id="status">Speak to Habibi...</div>
+<div id="status">
+{% if active_lang == "bn" %}
+হাবিবির সাথে কথা বলতে মাইক চাপুন...
+{% elif active_lang == "ar" %}
+اضغط على الميكروفون للتحدث...
+{% else %}
+Speak to Habibi...
+{% endif %}
+</div>
 
     <!-- Better mobile interaction: pointerdown -->
     <button id="mic-btn" type="button">

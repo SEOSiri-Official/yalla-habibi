@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request, Query, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 import uvicorn
 import logging
@@ -55,6 +56,9 @@ async def security(request: Request):
 @app.get("/manual", response_class=HTMLResponse)
 async def manual_page(request: Request):
     return templates.TemplateResponse("manual.html", {"request": request})
+@app.get("/robots.txt")
+async def robots():
+    return FileResponse("static/robots.txt")
 
 # ============================================================================
 # LOGGING

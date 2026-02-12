@@ -8,11 +8,19 @@
 <title>{% block title %}Yalla Habibi AI{% endblock %}</title>
 
 <meta name="description" content="Yalla Habibi — Multilingual Voice AI Assistant by SEOSiri">
+<meta property="og:title" content="{% block og_title %}Yalla Habibi{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Speak naturally. Get intelligent responses in your language.{% endblock %}">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/static/icon.png">
 <link rel="apple-touch-icon" href="/static/icon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
+<link rel="canonical" href="{{ request.url }}" />
+
 
 <style>
 

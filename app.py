@@ -228,11 +228,14 @@ async def donate(request: Request):
 
 @app.get("/faq", response_class=HTMLResponse)
 async def faq_page(request: Request):
-    active_lang = get_lang_from_request(request)
     return templates.TemplateResponse(
         "faq.html",
-        {"request": request, "active_lang": active_lang},
+        {
+            "request": request,
+            "active_lang": "en"
+        }
     )
+
 
 
 @app.get("/robots.txt")

@@ -1,26 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ active_lang or 'en' }}">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>{% block title %}Yalla Habibi | Multilingual Voice Assistant for Arabic & Global Languages{% endblock %}</title>
+
 <meta name="description" content="Speak naturally with Yalla Habibi, a multilingual Arabic-first AI voice assistant helping users translate, learn, and navigate across languages and cultures.">
+
+<!-- Indexing Control -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- Open Graph -->
 <meta property="og:title" content="{% block og_title %}Yalla Habibi{% endblock %}">
 <meta property="og:description" content="{% block og_description %}Speak naturally. Get intelligent responses in your language.{% endblock %}">
-<meta property="og:url" content="{{ request.url }}">
+<meta property="og:url" content="https://yallahabibi.seosiri.com{{ request.url.path }}">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
+
+<!-- Icons -->
 <link rel="icon" href="/static/icon.png">
 <link rel="apple-touch-icon" href="/static/icon.png">
 
+<!-- Canonical (Stable) -->
+<link rel="canonical" href="https://yallahabibi.seosiri.com{{ request.url.path }}" />
+
+<!-- Hreflang (Correct Multilingual Targeting) -->
+<link rel="alternate" hreflang="en" href="https://yallahabibi.seosiri.com/en" />
+<link rel="alternate" hreflang="bn" href="https://yallahabibi.seosiri.com/bn" />
+<link rel="alternate" hreflang="ar" href="https://yallahabibi.seosiri.com/ar" />
+<link rel="alternate" hreflang="hi" href="https://yallahabibi.seosiri.com/hi" />
+<link rel="alternate" hreflang="es" href="https://yallahabibi.seosiri.com/es" />
+<link rel="alternate" hreflang="fr" href="https://yallahabibi.seosiri.com/fr" />
+<link rel="alternate" hreflang="de" href="https://yallahabibi.seosiri.com/de" />
+<link rel="alternate" hreflang="x-default" href="https://yallahabibi.seosiri.com/" />
+
+<!-- Fonts & Styles -->
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
-<link rel="canonical" href="{{ request.url }}" />
-
-<html lang="{{ active_lang or 'en' }}">
 
 <style>
 
@@ -67,7 +90,7 @@ body{
     box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
-/* LEGAL TEXT FIX */
+/* TYPOGRAPHY */
 .content-card h1,
 .content-card h2{
     color:#4ade80;
@@ -98,6 +121,7 @@ body{
 
 </style>
 
+<!-- WebApplication Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,119 +131,21 @@ body{
   "applicationCategory": "AssistantApplication",
   "operatingSystem": "Any",
   "description": "Multilingual culturally-aware AI voice assistant designed to help global users communicate across languages with an Arabic-first persona.",
-  "inLanguage": [
-    "en",
-    "ar",
-    "bn",
-    "hi",
-    "es",
-    "fr",
-    "de",
-    "pt",
-    "ru",
-    "ja",
-    "ko",
-    "zh",
-    "tr"
-  ],
+  "inLanguage": ["en","ar","bn","hi","es","fr","de"],
   "creator": {
     "@type": "Organization",
     "name": "SEOSiri",
     "url": "https://www.seosiri.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "SEOSiri",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.seosiri.com/logo.png"
-    }
   }
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-
-    {
-      "@type": "Question",
-      "name": "What is Yalla Habibi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yalla Habibi is a multilingual Arabic-first AI voice assistant designed to help users communicate, learn, and navigate across languages and cultures."
-      }
-    },
-
-    {
-      "@type": "Question",
-      "name": "Which languages does Yalla Habibi support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yalla Habibi supports Arabic, English, Bengali, Hindi, Spanish, Portuguese, French, German, Russian, Japanese, Korean, Chinese, Turkish, and additional languages as platform capabilities expand."
-      }
-    },
-
-    {
-      "@type": "Question",
-      "name": "Why is voice output not always available?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Voice playback depends on voices installed on your device and browser support. Some languages require native system voices. Text responses remain fully functional."
-      }
-    },
-
-    {
-      "@type": "Question",
-      "name": "Does Yalla Habibi provide maps or directions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. When queries involve locations or navigation-related requests, Yalla Habibi may generate an embedded map for visual assistance."
-      }
-    },
-
-    {
-      "@type": "Question",
-      "name": "Are AI responses always accurate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "AI-generated responses aim to be helpful but may occasionally contain inaccuracies. Users should verify important information."
-      }
-    },
-
-    {
-      "@type": "Question",
-      "name": "Is Yalla Habibi free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Yalla Habibi is publicly accessible as a multilingual AI assistant. Future enhancements may expand capabilities."
-      }
-    }
-
-  ]
-}
-</script>
-<link rel="alternate" hreflang="x-default" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="en" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="ar" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="bn" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="hi" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="es" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="fr" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="de" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="pt" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="ru" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="ja" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="ko" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="zh" href="https://yallahabibi.seosiri.com/">
-<link rel="alternate" hreflang="tr" href="https://yallahabibi.seosiri.com/">
 
 </head>
 
- {% include "partials/language_dedication.html" %}
-
 <body>
+
+<!-- Language Dedication Banner -->
+{% include "partials/language_dedication.html" %}
 
 <div class="header">
 <div class="logo">
@@ -235,7 +161,7 @@ Yalla <span>Habibi</span>
 
 <footer class="legal-footer">
 <a href="/about">About</a>
-<a href="/{{ active_lang or 'en' }}/faq">FAQ</a>
+<a href="/faq">FAQ</a>
 <a href="/security">Security</a>
 <a href="/terms">Terms</a>
 <a href="/privacy">Privacy</a>

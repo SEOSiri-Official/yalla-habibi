@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Yalla Habibi{% endblock %}
+{% block title %}Yalla Habibi | Multilingual Voice Assistant{% endblock %}
 {% block og_title %}Yalla Habibi – Multilingual Voice Assistant{% endblock %}
-{% block og_description %}Speak naturally. Get intelligent multilingual responses.{% endblock %}
+{% block og_description %}Speak naturally. Get intelligent multilingual responses in 40+ languages.{% endblock %}
 
 {% block content %}
-
 
 <div class="glass-card">
   <header>
@@ -13,81 +12,167 @@
     <p id="hook">"I am your Native Arabic host. How can I bridge your world today?"</p>
 
     <div class="pref-container">
-      <label>Select Your Tongue:</label>
-      <select id="pref-lang">
-        <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
-        <option value="hi-IN">🇮🇳 Hindi</option>
-        <option value="es-ES">🇪🇸 Spanish</option>
-        <option value="pt-BR">🇧🇷 Portuguese</option>
-        <option value="fr-FR">🇫🇷 French</option>
-        <option value="de-DE">🇩🇪 German</option>
-        <option value="it-IT">🇮🇹 Italian</option>
-        <option value="ru-RU">🇷🇺 Russian</option>
-        <option value="ja-JP">🇯🇵 Japanese</option>
-        <option value="ko-KR">🇰🇷 Korean</option>
-        <option value="zh-CN">🇨🇳 Chinese</option>
-        <option value="tr-TR">🇹🇷 Turkish</option>
-        <option value="ar-SA">🇸🇦 Arabic</option>
+      <label for="pref-lang">🌍 Select Your Language:</label>
+      <select id="pref-lang" aria-label="Select your preferred language">
+        <!-- Most Popular Languages (Top of List) -->
         <option value="en-US" selected>🌐 English</option>
+        <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
+        <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
+        <option value="hi-IN">🇮🇳 Hindi (हिंदी)</option>
+        <option value="es-ES">🇪🇸 Spanish (Español)</option>
+        <option value="fr-FR">🇫🇷 French (Français)</option>
+        <option value="de-DE">🇩🇪 German (Deutsch)</option>
+        
+        <!-- Additional Major Languages -->
+        <option value="pt-BR">🇧🇷 Portuguese (Português)</option>
+        <option value="ru-RU">🇷🇺 Russian (Русский)</option>
+        <option value="ja-JP">🇯🇵 Japanese (日本語)</option>
+        <option value="ko-KR">🇰🇷 Korean (한국어)</option>
+        <option value="zh-CN">🇨🇳 Chinese (中文)</option>
+        <option value="it-IT">🇮🇹 Italian (Italiano)</option>
+        <option value="tr-TR">🇹🇷 Turkish (Türkçe)</option>
+        
+        <!-- Middle Eastern Languages -->
+        <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
+        <option value="fa-IR">🇮🇷 Persian (فارسی)</option>
+        <option value="he-IL">🇮🇱 Hebrew (עברית)</option>
+        
+        <!-- South Asian Languages -->
+        <option value="ta-IN">🇮🇳 Tamil (தமிழ்)</option>
+        <option value="te-IN">🇮🇳 Telugu (తెలుగు)</option>
+        <option value="ml-IN">🇮🇳 Malayalam (മലയാളം)</option>
+        <option value="mr-IN">🇮🇳 Marathi (मराठी)</option>
+        <option value="gu-IN">🇮🇳 Gujarati (ગુજરાતી)</option>
+        <option value="kn-IN">🇮🇳 Kannada (ಕನ್ನಡ)</option>
+        <option value="pa-IN">🇮🇳 Punjabi (ਪੰਜਾਬੀ)</option>
+        
+        <!-- Southeast Asian Languages -->
+        <option value="id-ID">🇮🇩 Indonesian (Bahasa Indonesia)</option>
+        <option value="ms-MY">🇲🇾 Malay (Bahasa Melayu)</option>
+        <option value="th-TH">🇹🇭 Thai (ไทย)</option>
+        <option value="vi-VN">🇻🇳 Vietnamese (Tiếng Việt)</option>
+        
+        <!-- European Languages -->
+        <option value="nl-NL">🇳🇱 Dutch (Nederlands)</option>
+        <option value="pl-PL">🇵🇱 Polish (Polski)</option>
+        <option value="sv-SE">🇸🇪 Swedish (Svenska)</option>
+        <option value="no-NO">🇳🇴 Norwegian (Norsk)</option>
+        <option value="da-DK">🇩🇰 Danish (Dansk)</option>
+        <option value="fi-FI">🇫🇮 Finnish (Suomi)</option>
+        <option value="el-GR">🇬🇷 Greek (Ελληνικά)</option>
+        <option value="cs-CZ">🇨🇿 Czech (Čeština)</option>
+        <option value="hu-HU">🇭🇺 Hungarian (Magyar)</option>
+        <option value="ro-RO">🇷🇴 Romanian (Română)</option>
+        <option value="uk-UA">🇺🇦 Ukrainian (Українська)</option>
+        
+        <!-- African Languages -->
+        <option value="sw-KE">🇰🇪 Swahili (Kiswahili)</option>
+        <option value="am-ET">🇪🇹 Amharic (አማርኛ)</option>
       </select>
     </div>
 
     <div class="secondary-links">
-      <a href="/manual">📘 User Manual</a>
+      <a href="/manual" title="Learn how to use Yalla Habibi">📘 User Manual</a>
+      <span class="divider">|</span>
+      <a href="/api/languages" title="View all supported languages">🌐 All Languages</a>
     </div>
   </header>
 
   <!-- DEMOGRAPHIC HINT SYMBOLS -->
   <div class="benefit-hints">
-    <span>👷‍♂️ Translation for Work</span> • <span>🎓 Moral Lessons</span> • <span>🌍 Eco Tips</span>
+    <span>👷‍♂️ Translation for Work</span> • 
+    <span>🎓 Moral Lessons</span> • 
+    <span>🌍 Eco Tips</span> • 
+    <span>🗺️ Location Help</span>
   </div>
 
   <!-- ===== VOICE CONTROLS SECTION ===== -->
   <div class="voice-controls">
     <h3>🎚️ Voice Controls</h3>
-    <div class="voice-hint">
-        To hear responses in your language, please enable your language voice in your device settings. Need help? I’ll gladly guide you.
+    <div class="voice-hint" id="voice-setup-hint">
+      💡 <strong>Voice Setup:</strong> To hear responses in your language, enable your language voice in device settings. 
+      <a href="/manual#voice-setup" target="_blank">Need help?</a>
     </div>
 
     <div class="control-group">
-      <label>
+      <label for="volume-slider">
         🔊 Volume
         <span id="volume-value">100%</span>
       </label>
-      <input type="range" min="0" max="100" value="100" class="slider" id="volume-slider">
+      <input 
+        type="range" 
+        min="0" 
+        max="100" 
+        value="100" 
+        class="slider" 
+        id="volume-slider"
+        aria-label="Adjust volume"
+      >
     </div>
 
     <div class="control-group">
-      <label>
+      <label for="speed-slider">
         ⚡ Speed
         <span id="speed-value">Normal</span>
       </label>
-      <input type="range" min="50" max="200" value="95" class="slider" id="speed-slider">
+      <input 
+        type="range" 
+        min="50" 
+        max="200" 
+        value="95" 
+        class="slider" 
+        id="speed-slider"
+        aria-label="Adjust speaking speed"
+      >
     </div>
 
     <div class="voice-action-buttons">
-      <button class="voice-btn stop" id="stop-btn" onclick="stopSpeaking()" disabled>
-        ⏹️ Stop Speaking
+      <button 
+        class="voice-btn stop" 
+        id="stop-btn" 
+        onclick="stopSpeaking()" 
+        disabled
+        aria-label="Stop speaking"
+      >
+        ⏹️ Stop
       </button>
 
-      <button class="voice-btn replay" id="replay-btn" onclick="replaySpeech()" disabled>
-        🔁 Replay Last
+      <button 
+        class="voice-btn replay" 
+        id="replay-btn" 
+        onclick="replaySpeech()" 
+        disabled
+        aria-label="Replay last response"
+      >
+        🔁 Replay
       </button>
     </div>
 
-    <!-- NEW: Pause/Resume -->
+    <!-- Pause/Resume Controls -->
     <div class="voice-action-buttons">
-      <button class="voice-btn pause" id="pause-btn" onclick="pauseSpeaking()" disabled>
+      <button 
+        class="voice-btn pause" 
+        id="pause-btn" 
+        onclick="pauseSpeaking()" 
+        disabled
+        aria-label="Pause speaking"
+      >
         ⏸️ Pause
       </button>
 
-      <button class="voice-btn resume" id="resume-btn" onclick="resumeSpeaking()" disabled>
+      <button 
+        class="voice-btn resume" 
+        id="resume-btn" 
+        onclick="resumeSpeaking()" 
+        disabled
+        aria-label="Resume speaking"
+      >
         ▶️ Resume
       </button>
     </div>
 
     <div class="speaking-indicator" id="speaking-indicator">
-      <span></span>
+      <span>🔊 Speaking...</span>
       <div class="wave"></div>
       <div class="wave"></div>
       <div class="wave"></div>
@@ -95,45 +180,81 @@
     </div>
   </div>
 
+  <!-- MAIN INTERACTION AREA -->
   <div class="main-body">
+    <div id="status" role="status" aria-live="polite">
+      {% if active_lang == "bn" %}
+        হাবিবির সাথে কথা বলতে মাইক চাপুন...
+      {% elif active_lang == "ar" %}
+        اضغط على الميكروفون للتحدث مع حبيبي...
+      {% elif active_lang == "hi" %}
+        हबीबी से बात करने के लिए माइक दबाएं...
+      {% elif active_lang == "ur" %}
+        حبیبی سے بات کرنے کے لیے مائیک دبائیں...
+      {% elif active_lang == "es" %}
+        Presiona el micrófono para hablar con Habibi...
+      {% elif active_lang == "fr" %}
+        Appuyez sur le micro pour parler avec Habibi...
+      {% elif active_lang == "de" %}
+        Drücken Sie das Mikrofon, um mit Habibi zu sprechen...
+      {% else %}
+        Press the microphone to speak with Habibi...
+      {% endif %}
+    </div>
 
-<div id="status">
-{% if active_lang == "bn" %}
-হাবিবির সাথে কথা বলতে মাইক চাপুন...
-{% elif active_lang == "ar" %}
-اضغط على الميكروفون للتحدث...
-{% else %}
-Speak to Habibi...
-{% endif %}
-</div>
-
-    <!-- Better mobile interaction: pointerdown -->
-    <button id="mic-btn" type="button">
+    <!-- Microphone Button -->
+    <button 
+      id="mic-btn" 
+      type="button"
+      aria-label="Press to start speaking"
+      title="Press and speak (or press SPACE)"
+    >
       <div class="pulse" id="pulse"></div>
       <span>🎙️</span>
     </button>
 
-    <div id="user-transcript">...</div>
+    <div id="user-transcript" aria-live="polite">...</div>
 
+    <!-- AI Response Box -->
     <div class="ai-box">
-      <div id="response-text">Marhaba! I assist foreigners across the Peninsula.</div>
-      <p class="voice-hint">
-Speak naturally. Ask things like:<br>
-“Translate Arabic to Bengali” • “Find mosque near me” • “Explain visa rules”
-</p>
-
-      <div id="map-wrap" class="hidden">
-        <iframe id="google-map" width="100%" height="200" src=""></iframe>
+      <div id="response-text">
+        Marhaba! 👋 I assist foreigners across the Peninsula in 40+ languages.
       </div>
-      <div id="wisdom-box" class="hidden"><p id="wisdom-text"></p></div>
+      
+      <p class="voice-hint">
+        <strong>Try asking:</strong><br>
+        "Translate Arabic to Bengali" • "Find mosque near me" • "Explain visa rules" • 
+        "What's the weather?" • "Direction to hospital"
+      </p>
+
+      <!-- Map Container -->
+      <div id="map-wrap" class="hidden">
+        <iframe 
+          id="google-map" 
+          width="100%" 
+          height="200" 
+          src=""
+          title="Location map"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- Wisdom Box -->
+      <div id="wisdom-box" class="hidden">
+        <p id="wisdom-text"></p>
+      </div>
     </div>
   </div>
 
   <!-- ===== SOCIAL SHARE SECTION ===== -->
   <div class="social-share-section">
     <div class="share-gpt">
-      ✨ Explore Habibi on GPT:
-      <a href="https://chatgpt.com/g/g-698b641c04208191bb1c0f8861bac508-yalla-habibi-multilingual-voice-translation" target="_blank">
+      ✨ <strong>Try on ChatGPT:</strong>
+      <a 
+        href="https://chatgpt.com/g/g-698b641c04208191bb1c0f8861bac508-yalla-habibi-multilingual-voice-translation" 
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Yalla Habibi GPT Experience
       </a>
     </div>
@@ -142,61 +263,86 @@ Speak naturally. Ask things like:<br>
     <p class="share-subtitle">Help others discover this multilingual AI assistant!</p>
 
     <div class="share-buttons">
-      <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;">
+      <button class="share-btn facebook" onclick="shareOnFacebook()" aria-label="Share on Facebook">
         <span>📘 Facebook</span>
-      </a>
-      <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;">
+      </button>
+      <button class="share-btn twitter" onclick="shareOnTwitter()" aria-label="Share on Twitter">
         <span>𝕏 Twitter</span>
-      </a>
-      <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(); return false;">
+      </button>
+      <button class="share-btn linkedin" onclick="shareOnLinkedIn()" aria-label="Share on LinkedIn">
         <span>💼 LinkedIn</span>
-      </a>
-      <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;">
+      </button>
+      <button class="share-btn whatsapp" onclick="shareOnWhatsApp()" aria-label="Share on WhatsApp">
         <span>💬 WhatsApp</span>
-      </a>
-      <a href="#" class="share-btn telegram" onclick="shareOnTelegram(); return false;">
+      </button>
+      <button class="share-btn telegram" onclick="shareOnTelegram()" aria-label="Share on Telegram">
         <span>✈️ Telegram</span>
-      </a>
-      <a href="#" class="share-btn reddit" onclick="shareOnReddit(); return false;">
+      </button>
+      <button class="share-btn reddit" onclick="shareOnReddit()" aria-label="Share on Reddit">
         <span>🤖 Reddit</span>
-      </a>
+      </button>
     </div>
 
     <div class="copy-link-section">
-      <input type="text" class="copy-link-input" id="share-url" readonly value="https://www.seosiri.com">
-      <button class="copy-link-btn" id="copy-btn" onclick="copyShareLink()">
+      <input 
+        type="text" 
+        class="copy-link-input" 
+        id="share-url" 
+        readonly 
+        value="https://yallahabibi.seosiri.com"
+        aria-label="Share URL"
+      >
+      <button 
+        class="copy-link-btn" 
+        id="copy-btn" 
+        onclick="copyShareLink()"
+        aria-label="Copy link to clipboard"
+      >
         📋 Copy Link
       </button>
     </div>
 
     <div class="share-stats">
-      Thank you for sharing! Every share helps grow our community 💚
+      Thank you for sharing! Every share helps grow our global community 💚
     </div>
   </div>
 
+  <!-- COMMUNITY TICKER -->
   <div class="community-ticker">
-    <div class="ticker-content" id="ticker">"Worlds are waiting to listen to you..." - Share your feedback!</div>
+    <div class="ticker-content" id="ticker">
+      "Worlds are waiting to listen to you..." - Share your feedback and join our multilingual community!
+    </div>
   </div>
 
+  <!-- FEEDBACK BOX -->
   <div class="feedback-box">
-    <input type="text" id="feedback-in" placeholder="Loved Yalla Habibi? Share...">
-    <button onclick="postFeedback()">Post</button>
+    <input 
+      type="text" 
+      id="feedback-in" 
+      placeholder="Loved Yalla Habibi? Share your experience..."
+      aria-label="Feedback input"
+      maxlength="200"
+    >
+    <button onclick="postFeedback()" aria-label="Post feedback">Post</button>
   </div>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <span class="made-in-badge">🇧🇩 Made in Bangladesh</span>
       <span class="footer-divider">•</span>
-      <span>Created by <a href="https://www.seosiri.com/p/about.html" target="_blank">Momenul Ahmad</a></span>
+      <span>Created by <a href="https://www.seosiri.com/p/about.html" target="_blank" rel="noopener">Momenul Ahmad</a></span>
       <span class="footer-divider">•</span>
-      <span>SEOSiri</span>
+      <span><a href="https://www.seosiri.com" target="_blank" rel="noopener">SEOSiri</a></span>
+      <span class="footer-divider">•</span>
+      <span>40+ Languages Supported</span>
     </div>
   </footer>
 </div>
 
 <script>
   // =====================================================================
-  // STATE
+  // STATE MANAGEMENT
   // =====================================================================
   let currentUtterance = null;
   let lastResponseText = "";
@@ -204,55 +350,77 @@ Speak naturally. Ask things like:<br>
   let isSpeaking = false;
   let isPaused = false;
 
-  // slider values -> mapped (not linear)
-  let speechVolume = 1.0;  // 0..1 (perceived curve)
-  let speechRate = 1.0;    // natural mapping
+  // Voice control values
+  let speechVolume = 1.0;
+  let speechRate = 1.0;
 
-  // recognition control
+  // Recognition control
   let recognitionActive = false;
 
   // =====================================================================
-  // SHARE (domain-safe)
+  // SHARE CONFIGURATION
   // =====================================================================
   const SHARE_CONFIG = {
-    url: window.location.origin,
-    title: "Yalla Habibi – Multilingual Voice Assistant"
+    url: window.location.origin || "https://yallahabibi.seosiri.com",
+    title: "Yalla Habibi – Multilingual Voice Assistant",
+    description: "Speak naturally with AI in 40+ languages"
   };
 
-  // ensure input shows correct URL
+  // Initialize share URL input
   const shareInput = document.getElementById('share-url');
   if (shareInput) shareInput.value = SHARE_CONFIG.url;
 
+  // Share Functions
   function shareOnFacebook() {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_CONFIG.url)}`;
-    window.open(url, 'fb', 'width=600,height=400');
+    window.open(url, 'fb-share', 'width=600,height=400');
   }
+
   function shareOnTwitter() {
-    const text = encodeURIComponent(`🎙️ Yalla Habibi\n${SHARE_CONFIG.url}`);
-    window.open(`https://twitter.com/intent/tweet?text=${text}`);
+    const text = encodeURIComponent(`🎙️ ${SHARE_CONFIG.title}\n${SHARE_CONFIG.description}\n${SHARE_CONFIG.url}`);
+    window.open(`https://twitter.com/intent/tweet?text=${text}`, 'twitter-share', 'width=600,height=400');
   }
+
   function shareOnLinkedIn() {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SHARE_CONFIG.url)}`, 'linkedin-share', 'width=600,height=400');
   }
+
   function shareOnWhatsApp() {
-    const text = encodeURIComponent(`Yalla Habibi\n${SHARE_CONFIG.url}`);
-    window.open(`https://wa.me/?text=${text}`);
+    const text = encodeURIComponent(`${SHARE_CONFIG.title}\n${SHARE_CONFIG.url}`);
+    window.open(`https://wa.me/?text=${text}`, 'whatsapp-share');
   }
+
   function shareOnTelegram() {
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+    const text = encodeURIComponent(SHARE_CONFIG.title);
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_CONFIG.url)}&text=${text}`, 'telegram-share');
   }
+
   function shareOnReddit() {
-    window.open(`https://reddit.com/submit?url=${encodeURIComponent(SHARE_CONFIG.url)}`);
+    window.open(`https://reddit.com/submit?url=${encodeURIComponent(SHARE_CONFIG.url)}&title=${encodeURIComponent(SHARE_CONFIG.title)}`, 'reddit-share', 'width=800,height=600');
   }
+
   function copyShareLink() {
-    navigator.clipboard.writeText(SHARE_CONFIG.url);
-    const btn = document.getElementById("copy-btn");
-    btn.innerText = "✅ Copied!";
-    setTimeout(() => btn.innerText = "📋 Copy Link", 1500);
+    const input = document.getElementById('share-url');
+    input.select();
+    input.setSelectionRange(0, 99999); // Mobile support
+    
+    navigator.clipboard.writeText(SHARE_CONFIG.url).then(() => {
+      const btn = document.getElementById("copy-btn");
+      const originalText = btn.innerHTML;
+      btn.innerHTML = "✅ Copied!";
+      btn.style.background = "#10b981";
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = "";
+      }, 2000);
+    }).catch(err => {
+      console.error('Copy failed:', err);
+      alert('Link copied: ' + SHARE_CONFIG.url);
+    });
   }
 
   // =====================================================================
-  // SPEECH RECOGNITION (auto language detect + correct pref)
+  // SPEECH RECOGNITION SETUP
   // =====================================================================
   const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = SpeechRec ? new SpeechRec() : null;
@@ -263,86 +431,84 @@ Speak naturally. Ask things like:<br>
     recognition.maxAlternatives = 1;
   }
 
-  // BCP-47 language hinting (for better auto results)
+  // Enhanced language mapping for recognition
   const PREF_TO_RECO_LANG = {
-    "bn-BD": "bn-BD",
-    "hi-IN": "hi-IN",
-    "es-ES": "es-ES",
-    "pt-BR": "pt-BR",
-    "fr-FR": "fr-FR",
-    "de-DE": "de-DE",
-    "it-IT": "it-IT",
-    "ru-RU": "ru-RU",
-    "ja-JP": "ja-JP",
-    "ko-KR": "ko-KR",
-    "zh-CN": "zh-CN",
-    "tr-TR": "tr-TR",
-    "ar-SA": "ar-SA",
-    "en-US": "en-US"
+    "bn-BD": "bn-BD", "hi-IN": "hi-IN", "es-ES": "es-ES", "pt-BR": "pt-BR",
+    "fr-FR": "fr-FR", "de-DE": "de-DE", "it-IT": "it-IT", "ru-RU": "ru-RU",
+    "ja-JP": "ja-JP", "ko-KR": "ko-KR", "zh-CN": "zh-CN", "tr-TR": "tr-TR",
+    "ar-SA": "ar-SA", "en-US": "en-US", "ur-PK": "ur-PK", "fa-IR": "fa-IR",
+    "id-ID": "id-ID", "ms-MY": "ms-MY", "th-TH": "th-TH", "vi-VN": "vi-VN",
+    "nl-NL": "nl-NL", "pl-PL": "pl-PL", "sv-SE": "sv-SE", "no-NO": "no-NO",
+    "da-DK": "da-DK", "fi-FI": "fi-FI", "el-GR": "el-GR", "he-IL": "he-IL",
+    "cs-CZ": "cs-CZ", "hu-HU": "hu-HU", "ro-RO": "ro-RO", "uk-UA": "uk-UA",
+    "sw-KE": "sw-KE", "am-ET": "am-ET", "ta-IN": "ta-IN", "te-IN": "te-IN",
+    "ml-IN": "ml-IN", "mr-IN": "mr-IN", "gu-IN": "gu-IN", "kn-IN": "kn-IN",
+    "pa-IN": "pa-IN"
   };
 
-  // Prefer actual detected language; fallback to dropdown
   function pickRecognitionLang() {
     const pref = document.getElementById('pref-lang').value;
     return PREF_TO_RECO_LANG[pref] || "en-US";
   }
 
-  // Map detected language -> our pref codes
+  // Auto-detect and map language codes
   function mapDetectedToPref(det) {
     if (!det) return null;
     const d = det.toLowerCase();
-    // normalize: "bn", "bn-bd" etc
-    if (d.startsWith("bn")) return "bn-BD";
-    if (d.startsWith("hi")) return "hi-IN";
-    if (d.startsWith("es")) return "es-ES";
-    if (d.startsWith("pt")) return "pt-BR";
-    if (d.startsWith("fr")) return "fr-FR";
-    if (d.startsWith("de")) return "de-DE";
-    if (d.startsWith("it")) return "it-IT";
-    if (d.startsWith("ru")) return "ru-RU";
-    if (d.startsWith("ja")) return "ja-JP";
-    if (d.startsWith("ko")) return "ko-KR";
-    if (d.startsWith("zh")) return "zh-CN";
-    if (d.startsWith("tr")) return "tr-TR";
-    if (d.startsWith("ar")) return "ar-SA";
-    if (d.startsWith("en")) return "en-US";
+    
+    const langMap = {
+      "bn": "bn-BD", "hi": "hi-IN", "es": "es-ES", "pt": "pt-BR",
+      "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "ru": "ru-RU",
+      "ja": "ja-JP", "ko": "ko-KR", "zh": "zh-CN", "tr": "tr-TR",
+      "ar": "ar-SA", "en": "en-US", "ur": "ur-PK", "fa": "fa-IR",
+      "id": "id-ID", "ms": "ms-MY", "th": "th-TH", "vi": "vi-VN",
+      "nl": "nl-NL", "pl": "pl-PL", "sv": "sv-SE", "no": "no-NO",
+      "da": "da-DK", "fi": "fi-FI", "el": "el-GR", "he": "he-IL",
+      "cs": "cs-CZ", "hu": "hu-HU", "ro": "ro-RO", "uk": "uk-UA",
+      "sw": "sw-KE", "am": "am-ET", "ta": "ta-IN", "te": "te-IN",
+      "ml": "ml-IN", "mr": "mr-IN", "gu": "gu-IN", "kn": "kn-IN",
+      "pa": "pa-IN"
+    };
+    
+    for (const [prefix, code] of Object.entries(langMap)) {
+      if (d.startsWith(prefix)) return code;
+    }
     return null;
   }
 
   // =====================================================================
-  // VOICE CONTROLS (smooth)
+  // VOICE CONTROLS (Perceptual Mapping)
   // =====================================================================
   const volumeSlider = document.getElementById('volume-slider');
   const speedSlider = document.getElementById('speed-slider');
   const volumeValue = document.getElementById('volume-value');
   const speedValue = document.getElementById('speed-value');
 
-  // perceptual volume curve: slider 0..100 -> (x^1.8)
+  // Perceptual volume curve
   function mapVolume(sliderVal) {
     const x = Math.max(0, Math.min(100, sliderVal)) / 100;
     return Math.pow(x, 1.8);
   }
 
-  // smooth, natural rate: slider 50..200 -> ~0.75..1.5 (log-ish)
+  // Natural rate mapping
   function mapRate(sliderVal) {
     const v = Math.max(50, Math.min(200, sliderVal));
-    const t = (v - 50) / 150; // 0..1
-    // ease-in-out curve then scale
+    const t = (v - 50) / 150;
     const eased = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2;
-    return 0.75 + eased * 0.75; // 0.75..1.5
+    return 0.75 + eased * 0.75;
   }
 
   function updateSpeedLabel(raw) {
     const v = Number(raw);
     const label = v < 80 ? "Slow" : v < 115 ? "Normal" : "Fast";
-    speedValue.textContent = `${label}`;
+    speedValue.textContent = label;
   }
 
   function updateVolumeLabel(raw) {
     volumeValue.textContent = `${raw}%`;
   }
 
-  // init
+  // Initialize
   speechVolume = mapVolume(Number(volumeSlider.value));
   speechRate = mapRate(Number(speedSlider.value));
   updateVolumeLabel(volumeSlider.value);
@@ -351,19 +517,23 @@ Speak naturally. Ask things like:<br>
   volumeSlider.addEventListener('input', function() {
     speechVolume = mapVolume(Number(this.value));
     updateVolumeLabel(this.value);
-    if (currentUtterance && isSpeaking) currentUtterance.volume = speechVolume;
+    if (currentUtterance && isSpeaking) {
+      currentUtterance.volume = speechVolume;
+    }
   });
 
   speedSlider.addEventListener('input', function() {
     speechRate = mapRate(Number(this.value));
     updateSpeedLabel(this.value);
-    if (currentUtterance && isSpeaking) currentUtterance.rate = speechRate;
+    if (currentUtterance && isSpeaking) {
+      currentUtterance.rate = speechRate;
+    }
   });
 
   // =====================================================================
   // UI HELPERS
   // =====================================================================
-  function resetUI(message = "Speak to Habibi...") {
+  function resetUI(message = "Press the microphone to speak...") {
     document.getElementById('pulse').style.display = 'none';
     document.getElementById('status').innerText = message;
     document.getElementById('mic-btn').classList.remove('recording');
@@ -374,25 +544,27 @@ Speak naturally. Ask things like:<br>
     const replayBtn = document.getElementById('replay-btn');
     const pauseBtn = document.getElementById('pause-btn');
     const resumeBtn = document.getElementById('resume-btn');
+    const indicator = document.getElementById('speaking-indicator');
 
     if (active) {
       stopBtn.disabled = false;
       replayBtn.disabled = true;
       pauseBtn.disabled = false;
       resumeBtn.disabled = true;
-      document.getElementById('speaking-indicator').classList.add('active');
+      indicator.classList.add('active');
     } else {
       stopBtn.disabled = true;
       replayBtn.disabled = !lastResponseText;
       pauseBtn.disabled = true;
       resumeBtn.disabled = true;
-      document.getElementById('speaking-indicator').classList.remove('active');
+      indicator.classList.remove('active');
     }
   }
 
   function setPausedUI(paused) {
     const pauseBtn = document.getElementById('pause-btn');
     const resumeBtn = document.getElementById('resume-btn');
+    
     if (paused) {
       pauseBtn.disabled = true;
       resumeBtn.disabled = false;
@@ -403,7 +575,7 @@ Speak naturally. Ask things like:<br>
   }
 
   // =====================================================================
-  // MIC BUTTON: better mobile behavior
+  // MICROPHONE BUTTON (Mobile-Optimized)
   // =====================================================================
   const micBtn = document.getElementById('mic-btn');
 
@@ -419,21 +591,28 @@ Speak naturally. Ask things like:<br>
     recognition.onstart = () => {
       recognitionActive = true;
       document.getElementById('pulse').style.display = 'block';
-      document.getElementById('status').innerText = "Habibi is listening...";
+      document.getElementById('status').innerText = "🎤 Listening...";
       document.getElementById('mic-btn').classList.add('recording');
     };
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       recognitionActive = false;
-      resetUI("Error: " + event.error + ". Try again!");
+      
+      const errorMessages = {
+        'no-speech': 'No speech detected. Please try again.',
+        'audio-capture': 'Microphone access error. Please check permissions.',
+        'not-allowed': 'Microphone permission denied.',
+        'network': 'Network error. Please check your connection.'
+      };
+      
+      resetUI(errorMessages[event.error] || `Error: ${event.error}. Try again!`);
     };
 
     recognition.onend = () => {
       recognitionActive = false;
-      // if still showing listening, then it ended without results
-      if (document.getElementById('status').innerText === "Habibi is listening...") {
-        resetUI("No speech detected. Try again!");
+      if (document.getElementById('status').innerText === "🎤 Listening...") {
+        resetUI("No speech detected. Please try again!");
       }
     };
 
@@ -442,30 +621,35 @@ Speak naturally. Ask things like:<br>
       const text = result.transcript || "";
       const detectedLang = (result.lang || event.results[0].lang || recognition.lang || "").trim();
 
-      // AUTO: if browser provides language, switch pref to match
+      // Auto-switch language
       const mapped = mapDetectedToPref(detectedLang);
       if (mapped) {
         const prefEl = document.getElementById('pref-lang');
-        if (prefEl && prefEl.value !== mapped) prefEl.value = mapped;
+        if (prefEl && prefEl.value !== mapped) {
+          prefEl.value = mapped;
+          console.log('🌍 Auto-switched to:', mapped);
+        }
       }
 
       const pref = document.getElementById('pref-lang').value;
 
       document.getElementById('user-transcript').innerText = `"${text}"`;
-      document.getElementById('status').innerText = "Processing...";
+      document.getElementById('status').innerText = "⚙️ Processing...";
       document.getElementById('pulse').style.display = 'none';
 
+      // API Call
       fetch(`/api/chat?user_input=${encodeURIComponent(text)}&pref=${encodeURIComponent(pref)}`)
         .then(r => {
-          if (!r.ok) throw new Error('Network response was not ok');
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
           return r.json();
         })
         .then(data => {
-          resetUI("Response received! Speak again...");
+          resetUI("✅ Response received! Speak again...");
 
           const parts = (data.reply || "").split('--- Wisdom:');
           document.getElementById('response-text').innerText = parts[0] || "";
 
+          // Wisdom Box
           if (parts[1]) {
             document.getElementById('wisdom-box').classList.remove('hidden');
             document.getElementById('wisdom-text').innerText = "🌱 " + parts[1].trim();
@@ -473,6 +657,7 @@ Speak naturally. Ask things like:<br>
             document.getElementById('wisdom-box').classList.add('hidden');
           }
 
+          // Map Integration
           if (data.map_link) {
             document.getElementById('map-wrap').classList.remove('hidden');
             document.getElementById('google-map').src = data.map_link;
@@ -486,19 +671,20 @@ Speak naturally. Ask things like:<br>
           speak(lastResponseText, lastResponseLang);
         })
         .catch(error => {
-          console.error('Fetch error:', error);
-          resetUI("Error connecting. Try again!");
-          document.getElementById('response-text').innerText = "Habibi encountered an error. Please try again.";
+          console.error('API error:', error);
+          resetUI("❌ Connection error. Try again!");
+          document.getElementById('response-text').innerText = "Habibi encountered an error. Please try again or check your internet connection.";
         });
     };
   }
 
   function startSpeech() {
     if (!recognition) {
-      alert("Speech recognition not supported in this browser.");
+      alert("⚠️ Speech recognition not supported in this browser. Please use Chrome, Edge, or Safari.");
       return;
     }
-    // stop TTS if user starts speaking
+
+    // Stop TTS if speaking
     if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
       window.speechSynthesis.cancel();
       isSpeaking = false;
@@ -506,17 +692,19 @@ Speak naturally. Ask things like:<br>
       setSpeakingUI(false);
     }
 
-    if (recognitionActive) return; // prevent double-start
+    if (recognitionActive) return;
+
     try {
-      recognition.lang = pickRecognitionLang(); // IMPORTANT: set before start
+      recognition.lang = pickRecognitionLang();
       recognition.start();
     } catch (e) {
-      console.log('Recognition start error:', e);
+      console.error('Recognition start error:', e);
+      resetUI("Microphone in use. Please try again.");
     }
   }
 
   // =====================================================================
-  // SPEAK + PAUSE/RESUME (true mid-utterance)
+  // TEXT-TO-SPEECH WITH VOICE SELECTION
   // =====================================================================
   function speak(text, lang) {
     window.speechSynthesis.cancel();
@@ -528,42 +716,42 @@ Speak naturally. Ask things like:<br>
 
     const voices = window.speechSynthesis.getVoices();
 
-    // Try exact match first
+    // Voice selection logic
     let selectedVoice = voices.find(v => v.lang === lang);
 
     if (!selectedVoice) {
-    document.querySelector('.voice-hint').style.display = 'block';
-}
-
-    // Fallback by language prefix (bn, ar, en etc)
-    if (!selectedVoice) {
-        const prefix = lang.split('-')[0];
-        selectedVoice = voices.find(v => v.lang.startsWith(prefix));
+      const prefix = lang.split('-')[0];
+      selectedVoice = voices.find(v => v.lang.startsWith(prefix));
     }
 
     if (selectedVoice) {
-        utterance.voice = selectedVoice;
-        console.log("✅ Voice selected:", selectedVoice.name);
+      utterance.voice = selectedVoice;
+      console.log("✅ Voice selected:", selectedVoice.name, selectedVoice.lang);
+      document.getElementById('voice-setup-hint').style.display = 'none';
     } else {
-        console.warn("⚠ No native voice for:", lang, "→ Using default");
+      console.warn("⚠️ No native voice for:", lang, "→ Using default");
+      document.getElementById('voice-setup-hint').style.display = 'block';
     }
 
     currentUtterance = utterance;
     isSpeaking = true;
-
-    document.getElementById('speaking-indicator').classList.add('active');
-    document.getElementById('stop-btn').disabled = false;
+    setSpeakingUI(true);
 
     utterance.onend = () => {
-        isSpeaking = false;
-        isPaused = false;
-        document.getElementById('speaking-indicator').classList.remove('active');
-        document.getElementById('stop-btn').disabled = true;
-        document.getElementById('replay-btn').disabled = false;
+      isSpeaking = false;
+      isPaused = false;
+      setSpeakingUI(false);
+      console.log('✅ Speech ended');
+    };
+
+    utterance.onerror = (e) => {
+      console.error('Speech error:', e);
+      isSpeaking = false;
+      setSpeakingUI(false);
     };
 
     window.speechSynthesis.speak(utterance);
-}
+  }
 
   function pauseSpeaking() {
     if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
@@ -589,7 +777,7 @@ Speak naturally. Ask things like:<br>
     isPaused = false;
     setSpeakingUI(false);
     setPausedUI(false);
-    console.log('🛑 Speech stopped by user');
+    console.log('🛑 Speech stopped');
   }
 
   function replaySpeech() {
@@ -600,40 +788,80 @@ Speak naturally. Ask things like:<br>
   }
 
   // =====================================================================
-  // FEEDBACK (kept)
+  // FEEDBACK SYSTEM
   // =====================================================================
   function postFeedback() {
-    const val = document.getElementById('feedback-in').value;
+    const input = document.getElementById('feedback-in');
+    const val = input.value.trim();
+    
     if (val) {
-      document.getElementById('ticker').innerText = `"${val}" - ` + document.getElementById('ticker').innerText;
-      document.getElementById('feedback-in').value = "";
-      alert("Mabrouk! Feedback shared with the world.");
+      const ticker = document.getElementById('ticker');
+      ticker.innerText = `"${val}" - ${ticker.innerText}`;
+      input.value = "";
+      
+      // Visual feedback
+      input.style.borderColor = "#10b981";
+      setTimeout(() => {
+        input.style.borderColor = "";
+      }, 1000);
+      
+      console.log('💬 Feedback posted:', val);
+    } else {
+      alert("Please write your feedback before posting!");
     }
   }
 
   // =====================================================================
-  // KEYBOARD SHORTCUTS (kept + added pause/resume)
-  // SPACE=Listen | ESC=Stop | R=Replay | P=Pause/Resume
+  // KEYBOARD SHORTCUTS
   // =====================================================================
   document.addEventListener('keydown', function(event) {
-    if (event.code === 'Space' && event.target.tagName !== 'INPUT') {
+    // Ignore if typing in input
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+      return;
+    }
+
+    // SPACE = Start listening
+    if (event.code === 'Space') {
       event.preventDefault();
       startSpeech();
     }
+
+    // ESC = Stop speaking
     if (event.code === 'Escape') {
       stopSpeaking();
     }
-    if (event.code === 'KeyR' && !event.ctrlKey && event.target.tagName !== 'INPUT') {
+
+    // R = Replay
+    if (event.code === 'KeyR' && !event.ctrlKey) {
       replaySpeech();
     }
-    if (event.code === 'KeyP' && !event.ctrlKey && event.target.tagName !== 'INPUT') {
-      if (window.speechSynthesis.paused) resumeSpeaking();
-      else pauseSpeaking();
+
+    // P = Pause/Resume
+    if (event.code === 'KeyP' && !event.ctrlKey) {
+      if (window.speechSynthesis.paused) {
+        resumeSpeaking();
+      } else if (window.speechSynthesis.speaking) {
+        pauseSpeaking();
+      }
     }
   });
 
-  console.log('🎤 Shortcuts: SPACE=Listen | ESC=Stop | R=Replay | P=Pause/Resume');
-  console.log("✅ Share system locked to:", SHARE_CONFIG.url);
+  // =====================================================================
+  // INITIALIZATION
+  // =====================================================================
+  // Load voices when available
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      const voices = window.speechSynthesis.getVoices();
+      console.log(`🔊 ${voices.length} voices loaded`);
+    };
+  }
+
+  // Console info
+  console.log('🎙️ Yalla Habibi initialized');
+  console.log('⌨️ Shortcuts: SPACE=Listen | ESC=Stop | R=Replay | P=Pause/Resume');
+  console.log('🌍 Share URL:', SHARE_CONFIG.url);
+  console.log('🗣️ Supported languages: 40+');
 </script>
 
 {% endblock %}

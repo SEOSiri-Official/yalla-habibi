@@ -54,6 +54,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
+
+    /* Optimize rendering performance */
+    contain: layout style paint;
 }
 
 /* Headings */
@@ -117,6 +120,9 @@ h1 span { color: var(--main); }
     font-size: 2.4rem;
     cursor: pointer;
     position: relative;
+    
+    /* Hardware acceleration */
+    transform: translateZ(0);
 }
 
 /* Pulse Animation */
@@ -128,7 +134,10 @@ h1 span { color: var(--main); }
 
     display: none;
     animation: pulse-kf 1.5s infinite;
-    will-change: transform;
+    will-change: transform, opacity;
+    
+    /* Isolate animation layer */
+    contain: layout style paint;
 }
 
 @keyframes pulse-kf {
@@ -187,6 +196,9 @@ h1 span { color: var(--main); }
 
     padding: 6px;
     border-radius: 10px;
+    
+    /* Optimize ticker performance */
+    contain: layout style paint;
 }
 
 .ticker-content {
@@ -227,6 +239,13 @@ h1 span { color: var(--main); }
     color: white;
     font-weight: 600;
     cursor: pointer;
+    
+    /* Smooth interaction */
+    transition: transform 0.12s ease;
+}
+
+.feedback-box button:hover {
+    transform: translateY(-1px);
 }
 
 /* =========================================================
@@ -272,7 +291,15 @@ h1 span { color: var(--main); }
     appearance: none;
 }
 
-.slider::-webkit-slider-thumb,
+.slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4ade80;
+    border: none;
+    cursor: pointer;
+}
+
 .slider::-moz-range-thumb {
     width: 16px;
     height: 16px;
@@ -306,12 +333,12 @@ h1 span { color: var(--main); }
 }
 
 /* Brand Colors */
-.facebook { background: #1877f2; }
-.twitter { background: #111; }
-.linkedin { background: #0a66c2; }
-.whatsapp { background: #25d366; }
-.telegram { background: #0088cc; }
-.reddit { background: #ff4500; }
+.facebook { background: #1877f2; color: white; }
+.twitter { background: #111; color: white; }
+.linkedin { background: #0a66c2; color: white; }
+.whatsapp { background: #25d366; color: white; }
+.telegram { background: #0088cc; color: white; }
+.reddit { background: #ff4500; color: white; }
 
 /* =========================================================
    FOOTER (Animation Cost Reduced)
@@ -341,6 +368,7 @@ footer {
 
     box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
     animation: badgePulse 3s ease-in-out infinite;
+    will-change: transform;
 }
 
 @keyframes badgePulse {
@@ -351,6 +379,7 @@ footer {
 footer a {
     color: #4ade80;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 footer a:hover {
@@ -358,13 +387,8 @@ footer a:hover {
 }
 
 /* =========================================================
-   BANNER (Fully Responsive & Fast)
-========================================================= */
-/* =========================================================
    LANGUAGE BANNER (CLS-SAFE + RESPONSIVE)
 ========================================================= */
-/* ===== Global Banner Wrapper ===== */
-
 .language-dedication-banner {
     width: 100%;
     display: flex;
@@ -384,6 +408,9 @@ footer a:hover {
     border-radius: 14px;
     overflow: hidden;
     line-height: 0;
+    
+    /* Optimize image container */
+    contain: layout;
 }
 
 .language-banner img {
@@ -394,5 +421,7 @@ footer a:hover {
     /* Prevents layout instability */
     aspect-ratio: 16 / 5;
     object-fit: cover;
+    
+    /* Hardware acceleration for smooth rendering */
+    transform: translateZ(0);
 }
-

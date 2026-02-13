@@ -4,17 +4,17 @@
 :root {
     --main: #2ecc71;
     --accent: #fbbf24;
-    --bg: #0f172a;
+    --bg: #020617;
 
     --text-main: #e5e7eb;
     --text-muted: #94a3b8;
 
-    --glass-bg: rgba(255, 255, 255, 0.06);
-    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
-   BODY / LAYOUT
+   BODY / LAYOUT (Cheaper Paint)
 ========================================================= */
 body {
     margin: 0;
@@ -27,23 +27,28 @@ body {
     font-family: 'Tajawal', 'Hind Siliguri', sans-serif;
     color: white;
 
-    background: radial-gradient(circle at center, #1e293b, #020617);
+    background: var(--bg);
+    background-image: radial-gradient(circle at top, #1e293b, #020617);
 }
 
 /* =========================================================
-   GLASS CARD (Reduced Paint Cost)
+   GLASS CARD (Reduced GPU Cost)
 ========================================================= */
 .glass-card {
     width: 100%;
     max-width: 450px;
     padding: 24px;
-    border-radius: 32px;
+    border-radius: 28px;
 
     background: var(--glass-bg);
-    backdrop-filter: blur(18px);
+
+    /* Reduced blur = major performance gain */
+    backdrop-filter: blur(10px);
 
     border: 1px solid var(--glass-border);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+
+    /* Smaller shadow paint area */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
 
     text-align: center;
     display: flex;
@@ -61,7 +66,7 @@ h1 span { color: var(--main); }
 }
 
 /* =========================================================
-   LANGUAGE SELECT (Unified)
+   LANGUAGE SELECT
 ========================================================= */
 .pref-container {
     position: relative;
@@ -101,7 +106,7 @@ h1 span { color: var(--main); }
 }
 
 /* =========================================================
-   MIC BUTTON (Lighter Shadow)
+   MIC BUTTON (Reduced Shadow Cost)
 ========================================================= */
 #mic-btn {
     width: 88px;
@@ -123,11 +128,12 @@ h1 span { color: var(--main); }
 
     display: none;
     animation: pulse-kf 1.5s infinite;
+    will-change: transform;
 }
 
 @keyframes pulse-kf {
-    from { transform: scale(1); opacity: 0.55; }
-    to   { transform: scale(2.6); opacity: 0; }
+    from { transform: scale(1); opacity: 0.5; }
+    to   { transform: scale(2.2); opacity: 0; }
 }
 
 /* =========================================================
@@ -169,7 +175,7 @@ h1 span { color: var(--main); }
 .hidden { display: none !important; }
 
 /* =========================================================
-   COMMUNITY TICKER (Optimized Animation)
+   COMMUNITY TICKER (GPU Friendly)
 ========================================================= */
 .community-ticker {
     overflow: hidden;
@@ -185,7 +191,8 @@ h1 span { color: var(--main); }
 
 .ticker-content {
     display: inline-block;
-    animation: tick-kf 22s linear infinite;
+    animation: tick-kf 28s linear infinite;
+    will-change: transform;
 }
 
 @keyframes tick-kf {
@@ -223,21 +230,24 @@ h1 span { color: var(--main); }
 }
 
 /* =========================================================
-   PANELS (VOICE + SHARE)
+   PANELS (Blur Removed for Speed)
 ========================================================= */
 .voice-controls,
-.social-share-section {
+.social-share-section,
+.lang-dedication-inner {
     border-radius: 14px;
     padding: 16px;
     margin: 16px 0;
-    backdrop-filter: blur(10px);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    /* Blur removed = major GPU savings */
+    backdrop-filter: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Voice Controls */
-.voice-controls {
-    background: rgba(255, 255, 255, 0.05);
-}
-
 .voice-controls h3 {
     margin: 0 0 10px;
     font-size: 14px;
@@ -273,6 +283,12 @@ h1 span { color: var(--main); }
 }
 
 /* Buttons */
+.voice-btn,
+.share-btn {
+    transition: transform 0.12s ease, opacity 0.12s ease;
+    will-change: transform;
+}
+
 .voice-btn {
     flex: 1;
     border-radius: 8px;
@@ -281,53 +297,9 @@ h1 span { color: var(--main); }
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.15s ease;
 }
 
-.voice-btn:hover { transform: translateY(-1px); }
-
-/* =========================================================
-   SHARE PANEL
-========================================================= */
-.social-share-section {
-    background: linear-gradient(
-        135deg,
-        rgba(74, 222, 128, 0.12),
-        rgba(34, 197, 94, 0.03)
-    );
-    border: 1px solid rgba(74, 222, 128, 0.25);
-}
-
-.share-gpt {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-}
-
-.share-gpt a {
-    color: #4ade80;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* Buttons Grid */
-.share-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 8px;
-}
-
-.share-btn {
-    padding: 9px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    transition: transform 0.15s ease, opacity 0.2s;
-}
-
+.voice-btn:hover,
 .share-btn:hover {
     transform: translateY(-1px);
     opacity: 0.9;
@@ -342,172 +314,68 @@ h1 span { color: var(--main); }
 .reddit { background: #ff4500; }
 
 /* =========================================================
-   FOOTER / LINKS
+   FOOTER (Animation Cost Reduced)
 ========================================================= */
-.secondary-links {
-    margin-top: 4px;
-    font-size: 12px;
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.secondary-links a {
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+.made-in-badge {
+    background: linear-gradient(135deg, #059669, #10b981);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.03); }
+}
+
+footer a {
     color: #4ade80;
     text-decoration: none;
 }
 
-footer a {
-    color: var(--main);
-    text-decoration: none;
-    font-weight: 600;
+footer a:hover {
+    color: #22c55e;
 }
 
-.voice-btn.pause {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-}
-.voice-btn.pause:hover {
-  background: linear-gradient(135deg, #d97706, #b45309);
-  transform: translateY(-2px);
-}
-.voice-btn.resume {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-.voice-btn.resume:hover {
-  background: linear-gradient(135deg, #059669, #047857);
-  transform: translateY(-2px);
-}
-
-.voice-hint {
-    font-size: 12px;
-    opacity: 0.65;
-    margin-bottom: 10px;
-    text-align: center;
-    line-height: 1.4;
-}
-
-/* ===== Language Dedication Banner ===== */
-
-.lang-dedication {
+/* =========================================================
+   BANNER (Fully Responsive & Fast)
+========================================================= */
+.language-dedication-banner {
     width: 100%;
-    margin: 18px 0;
     display: flex;
     justify-content: center;
-    pointer-events: none;
+    padding: 10px 16px;
+    box-sizing: border-box;
 }
 
-.lang-dedication-inner {
-    max-width: 900px;
-    width: 92%;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(10px);
-    border-radius: 14px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    pointer-events: auto;
+.banner-content {
+    width: 100%;
+    max-width: 1100px;
 }
 
-.dedication-icon {
-    font-size: 22px;
-    flex-shrink: 0;
+.language-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
 }
-
-.dedication-text strong {
-    font-size: 14px;
-    letter-spacing: 0.3px;
-}
-
-.dedication-text p {
-    font-size: 13px;
-    opacity: 0.85;
-    margin-top: 2px;
-    line-height: 1.4;
-}
-
-/* Mobile Optimization */
-@media (max-width: 640px) {
-    .lang-dedication-inner {
-        flex-direction: row;
-        padding: 12px 14px;
-    }
-
-    .dedication-text strong {
-        font-size: 13px;
-    }
-
-    .dedication-text p {
-        font-size: 12px;
-    }
-}
-
-
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      color: #d1d5db;
-      font-size: 14px;
-    }
-
-    .made-in-badge {
-      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-weight: 600;
-      color: white;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-      animation: badgePulse 3s ease-in-out infinite;
-    }
-
-    @keyframes badgePulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
-      }
-    }
-
-    .footer-divider {
-      opacity: 0.5;
-    }
-
-    footer a {
-      color: #4ade80;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #22c55e;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      .footer-content {
-        font-size: 13px;
-        gap: 8px;
-      }
-
-      .made-in-badge {
-        padding: 5px 12px;
-        font-size: 13px;
-      }
-
-      .footer-divider {
-        display: none;
-      }
-    }

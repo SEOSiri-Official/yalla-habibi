@@ -268,6 +268,14 @@ async def localized_faq(request: Request, lang: str):
         }
     ) 
 
+@app.get("/contact", response_class=HTMLResponse)
+async def contact(request: Request):
+    active_lang = get_lang_from_request(request)
+    return templates.TemplateResponse(
+        "contact.html",
+        {"request": request, "active_lang": active_lang},
+    )
+
 
 
 # ============================================================================

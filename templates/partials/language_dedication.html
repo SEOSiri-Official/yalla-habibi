@@ -1,17 +1,116 @@
-<div class="lang-dedication" role="region" aria-label="Language & Inclusion Dedication">
-    <div class="lang-dedication-inner">
-        <span class="dedication-icon">🌍</span>
-        <div class="dedication-text">
-            {% if active_lang == "bn" %}
-                <strong>ভাষার প্রতি শ্রদ্ধা</strong>
-                <p>আপনার মাতৃভাষায় কথা বলুন. ভাষা মানব পরিচয়ের অংশ.</p>
-            {% elif active_lang == "ar" %}
-                <strong>تكريم اللغة</strong>
-                <p>تحدث بلغتك الأم. اللغة جزء من الهوية الإنسانية.</p>
-            {% else %}
-                <strong>Language Matters</strong>
-                <p>Speak in your native language. Language is identity, culture, and connection.</p>
-            {% endif %}
-        </div>
+<!-- International Mother Language Day Banner -->
+<div class="language-dedication-banner">
+  <div class="banner-content">
+    <div class="banner-icon">🌐</div>
+    <div class="banner-text">
+      {% if active_lang == "bn" %}
+        <strong>আন্তর্জাতিক মাতৃভাষা দিবস</strong> উদযাপন করছি | ২১ ফেব্রুয়ারি
+      {% elif active_lang == "ar" %}
+        <strong>اليوم العالمي للغة الأم</strong> | ٢١ فبراير
+      {% elif active_lang == "hi" %}
+        <strong>अंतर्राष्ट्रीय मातृभाषा दिवस</strong> | 21 फरवरी
+      {% elif active_lang == "es" %}
+        <strong>Día Internacional de la Lengua Materna</strong> | 21 de febrero
+      {% elif active_lang == "fr" %}
+        <strong>Journée internationale de la langue maternelle</strong> | 21 février
+      {% elif active_lang == "de" %}
+        <strong>Internationaler Tag der Muttersprache</strong> | 21. Februar
+      {% else %}
+        <strong>International Mother Language Day</strong> | February 21
+      {% endif %}
+      <span class="banner-message">
+        {% if active_lang == "bn" %}
+          সকল ভাষার প্রতি সম্মান জানাই 🕊️
+        {% elif active_lang == "ar" %}
+          احترام لجميع اللغات 🕊️
+        {% elif active_lang == "hi" %}
+          सभी भाषाओं का सम्मान 🕊️
+        {% else %}
+          Honoring all languages 🕊️
+        {% endif %}
+      </span>
     </div>
+  </div>
 </div>
+
+<style>
+.language-dedication-banner {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease-out;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.banner-icon {
+  font-size: 24px;
+  animation: pulse 2s infinite;
+}
+
+.banner-text {
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.banner-text strong {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.banner-message {
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .language-dedication-banner {
+    padding: 10px 15px;
+  }
+  
+  .banner-text {
+    font-size: 13px;
+  }
+  
+  .banner-text strong {
+    font-size: 14px;
+  }
+  
+  .banner-icon {
+    font-size: 20px;
+  }
+}
+</style>

@@ -22,6 +22,7 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="/static/banner.png" fetchpriority="high">
 
   <!-- Icons -->
   <link rel="icon" href="/static/icon.png">
@@ -157,19 +158,21 @@
 <body>
 
   <!-- Language Dedication Banner -->
-  {% include "partials/language_dedication.html" %}
-
-  <div class="header">
-    <div class="logo">
-      Yalla <span>Habibi</span>
+     <div class="language-dedication-banner">
+        <div class="banner-content">
+            <div class="language-banner">
+                <img 
+                    src="/static/banner.webp"
+                    alt="International Mother Language Day"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="1600"
+                    height="500"
+                >
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="page-container">
-    <div class="content-card">
-      {% block content %}{% endblock %}
-    </div>
-  </div>
 
   <footer class="legal-footer">
     <a href="/about">About</a>

@@ -360,11 +360,16 @@ footer a:hover {
 /* =========================================================
    BANNER (Fully Responsive & Fast)
 ========================================================= */
+/* =========================================================
+   LANGUAGE BANNER (CLS-SAFE + RESPONSIVE)
+========================================================= */
+/* ===== Global Banner Wrapper ===== */
+
 .language-dedication-banner {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px 16px;
+    padding: 12px 16px;
     box-sizing: border-box;
 }
 
@@ -373,9 +378,21 @@ footer a:hover {
     max-width: 1100px;
 }
 
+/* Prevent strange spacing bugs */
+.language-banner {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    line-height: 0;
+}
+
 .language-banner img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
+
+    /* Prevents layout instability */
+    aspect-ratio: 16 / 5;
+    object-fit: cover;
 }
+

@@ -1,175 +1,179 @@
 <!DOCTYPE html>
 <html lang="{{ active_lang or 'en' }}">
-
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>{% block title %}Yalla Habibi | Multilingual Voice Assistant for Arabic & Global Languages{% endblock %}</title>
+  <title>{% block title %}Yalla Habibi | Multilingual Voice Assistant for Arabic & Global Languages{% endblock %}</title>
 
-<meta name="description" content="Speak naturally with Yalla Habibi, a multilingual Arabic-first AI voice assistant helping users translate, learn, and navigate across languages and cultures.">
+  <meta name="description" content="Speak naturally with Yalla Habibi, a multilingual Arabic-first AI voice assistant helping users translate, learn, and navigate across languages and cultures.">
 
-<!-- Indexing Control -->
-<meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- Indexing Control -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
 
-<!-- Open Graph -->
-<meta property="og:title" content="{% block og_title %}Yalla Habibi{% endblock %}">
-<meta property="og:description" content="{% block og_description %}Speak naturally. Get intelligent responses in your language.{% endblock %}">
-<meta property="og:url" content="https://yallahabibi.seosiri.com{{ request.url.path }}">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% block og_title %}Yalla Habibi{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Speak naturally. Get intelligent responses in your language.{% endblock %}">
+  <meta property="og:url" content="https://yallahabibi.seosiri.com{{ request.url.path }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://yallahabibi.seosiri.com/static/banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
 
-<!-- Icons -->
-<link rel="icon" href="/static/icon.png">
-<link rel="apple-touch-icon" href="/static/icon.png">
+  <!-- Icons -->
+  <link rel="icon" href="/static/icon.png">
+  <link rel="apple-touch-icon" href="/static/icon.png">
 
-<!-- Canonical (Stable) -->
-<link rel="canonical" href="https://yallahabibi.seosiri.com{{ request.url.path }}" />
+  <!-- Canonical (Stable) -->
+  <link rel="canonical" href="https://yallahabibi.seosiri.com{{ request.url.path }}">
 
-<!-- Hreflang (Correct Multilingual Targeting) -->
-<link rel="alternate" hreflang="en" href="https://yallahabibi.seosiri.com/en" />
-<link rel="alternate" hreflang="bn" href="https://yallahabibi.seosiri.com/bn" />
-<link rel="alternate" hreflang="ar" href="https://yallahabibi.seosiri.com/ar" />
-<link rel="alternate" hreflang="hi" href="https://yallahabibi.seosiri.com/hi" />
-<link rel="alternate" hreflang="es" href="https://yallahabibi.seosiri.com/es" />
-<link rel="alternate" hreflang="fr" href="https://yallahabibi.seosiri.com/fr" />
-<link rel="alternate" hreflang="de" href="https://yallahabibi.seosiri.com/de" />
-<link rel="alternate" hreflang="x-default" href="https://yallahabibi.seosiri.com/" />
+  <!-- Hreflang (Correct Multilingual Targeting) -->
+  <link rel="alternate" hreflang="en" href="https://yallahabibi.seosiri.com/en">
+  <link rel="alternate" hreflang="bn" href="https://yallahabibi.seosiri.com/bn">
+  <link rel="alternate" hreflang="ar" href="https://yallahabibi.seosiri.com/ar">
+  <link rel="alternate" hreflang="hi" href="https://yallahabibi.seosiri.com/hi">
+  <link rel="alternate" hreflang="es" href="https://yallahabibi.seosiri.com/es">
+  <link rel="alternate" hreflang="fr" href="https://yallahabibi.seosiri.com/fr">
+  <link rel="alternate" hreflang="de" href="https://yallahabibi.seosiri.com/de">
+  <link rel="alternate" hreflang="x-default" href="https://yallahabibi.seosiri.com/">
 
-<!-- Fonts & Styles -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css">
+  <!-- Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
 
-<style>
+  <style>
+    body{
+      margin:0;
+      font-family:'Tajawal', sans-serif;
+      background:linear-gradient(135deg,#020617,#0f172a);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
 
-body{
-    margin:0;
-    font-family:'Tajawal', sans-serif;
-    background:linear-gradient(135deg,#020617,#0f172a);
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-}
+    /* HEADER */
+    .header{
+      text-align:center;
+      padding:20px;
+    }
 
-/* HEADER */
-.header{
-    text-align:center;
-    padding:20px;
-}
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+    }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
+    .logo span{
+      color:#4ade80;
+    }
 
-.logo span{
-    color:#4ade80;
-}
+    /* CENTER CONTENT */
+    .page-container{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:40px 20px;
+    }
 
-/* CENTER CONTENT */
-.page-container{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:40px 20px;
-}
+    .content-card{
+      width:100%;
+      max-width:720px;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(14px);
+      border-radius:22px;
+      padding:40px;
+      box-shadow:0 20px 60px rgba(0,0,0,.4);
+    }
 
-.content-card{
-    width:100%;
-    max-width:720px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(14px);
-    border-radius:22px;
-    padding:40px;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
-}
+    /* TYPOGRAPHY */
+    .content-card h1,
+    .content-card h2{
+      color:#4ade80;
+    }
 
-/* TYPOGRAPHY */
-.content-card h1,
-.content-card h2{
-    color:#4ade80;
-}
+    .content-card p, li{
+      color:#d1d5db;
+      line-height:1.7;
+    }
 
-.content-card p, li{
-    color:#d1d5db;
-    line-height:1.7;
-}
+    /* FOOTER */
+    .legal-footer{
+      text-align:center;
+      padding:18px;
+      font-size:13px;
+      opacity:.8;
+    }
 
-/* FOOTER */
-.legal-footer{
-    text-align:center;
-    padding:18px;
-    font-size:13px;
-    opacity:.8;
-}
+    .legal-footer a{
+      color:#4ade80;
+      margin:0 8px;
+      text-decoration:none;
+    }
 
-.legal-footer a{
-    color:#4ade80;
-    margin:0 8px;
-    text-decoration:none;
-}
+    .legal-footer a:hover{
+      color:#22c55e;
+    }
 
-.legal-footer a:hover{
-    color:#22c55e;
-}
+    /* Mobile spacing improvements */
+    @media (max-width: 640px){
+      .page-container{ padding: 22px 14px; }
+      .content-card{ padding: 22px; border-radius: 18px; }
+      .logo{ font-size: 24px; }
+      .legal-footer a{ display:inline-block; margin:6px 10px; }
+    }
+  </style>
 
-</style>
-
-<!-- WebApplication Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Yalla Habibi",
-  "url": "https://yallahabibi.seosiri.com",
-  "applicationCategory": "AssistantApplication",
-  "operatingSystem": "Any",
-  "description": "Multilingual culturally-aware AI voice assistant designed to help global users communicate across languages with an Arabic-first persona.",
-  "inLanguage": ["en","ar","bn","hi","es","fr","de"],
-  "creator": {
-    "@type": "Organization",
-    "name": "SEOSiri",
-    "url": "https://www.seosiri.com"
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Yalla Habibi",
+    "url": "https://yallahabibi.seosiri.com",
+    "applicationCategory": "AssistantApplication",
+    "operatingSystem": "Any",
+    "description": "Multilingual culturally-aware AI voice assistant designed to help global users communicate across languages with an Arabic-first persona.",
+    "inLanguage": ["en","ar","bn","hi","es","fr","de"],
+    "creator": {
+      "@type": "Organization",
+      "name": "SEOSiri",
+      "url": "https://www.seosiri.com"
+    }
   }
-}
-</script>
+  </script>
 
 </head>
 
 <body>
 
-<!-- Language Dedication Banner -->
-{% include "partials/language_dedication.html" %}
+  <!-- Language Dedication Banner -->
+  {% include "partials/language_dedication.html" %}
 
-<div class="header">
-<div class="logo">
-Yalla <span>Habibi</span>
-</div>
-</div>
+  <div class="header">
+    <div class="logo">
+      Yalla <span>Habibi</span>
+    </div>
+  </div>
 
-<div class="page-container">
-<div class="content-card">
-{% block content %}{% endblock %}
-</div>
-</div>
+  <div class="page-container">
+    <div class="content-card">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
 
-<footer class="legal-footer">
-<a href="/about">About</a>
-<a href="/faq">FAQ</a>
-<a href="/security">Security</a>
-<a href="/terms">Terms</a>
-<a href="/privacy">Privacy</a>
-<a href="/ai-policy">AI Transparency</a>
-<a href="/cookies">Cookies</a>
-<a href="/donate">Support</a>
-</footer>
+  <footer class="legal-footer">
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/security">Security</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/ai-policy">AI Transparency</a>
+    <a href="/cookies">Cookies</a>
+    <a href="/donate">Support</a>
+  </footer>
 
 </body>
 </html>

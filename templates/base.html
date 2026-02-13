@@ -22,7 +22,7 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="/static/banner.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/static/banner.png" fetchpriority="high">
 
   <!-- Icons -->
   <link rel="icon" href="/static/icon.png">
@@ -43,12 +43,12 @@
 
   <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.onload=null;this.media='all';">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap"
+        rel="stylesheet"
+        media="print"
+        onload="this.onload=null;this.media='all';">
 
   <link rel="stylesheet" href="/static/style.css">
 
@@ -71,10 +71,31 @@
     .logo{
       font-size:28px;
       font-weight:bold;
+      color:#fff;
     }
 
     .logo span{
       color:#4ade80;
+    }
+
+    /* LANGUAGE BANNER */
+    .language-dedication-banner{
+      width:100%;
+      overflow:hidden;
+    }
+
+    .banner-content{
+      width:100%;
+    }
+
+    .language-banner{
+      width:100%;
+    }
+
+    .language-banner img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     /* CENTER CONTENT */
@@ -113,6 +134,7 @@
       padding:18px;
       font-size:13px;
       opacity:.8;
+      color:#d1d5db;
     }
 
     .legal-footer a{
@@ -157,23 +179,39 @@
 
 <body>
 
-  <!-- Language Dedication Banner -->
-     <div class="language-dedication-banner">
-        <div class="banner-content">
-            <div class="language-banner">
-                <img 
-                    src="/static/banner.webp"
-                    alt="International Mother Language Day"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    width="1600"
-                    height="500"
-                >
-            </div>
-        </div>
-    </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Yalla <span>Habibi</span></div>
+  </header>
 
+  <!-- Language Dedication Banner -->
+  <div class="language-dedication-banner">
+    <div class="banner-content">
+      <div class="language-banner">
+        <img 
+          src="/static/banner.png"
+          alt="International Mother Language Day"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="1600"
+          height="500"
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="page-container">
+    <div class="content-card">
+      {% block content %}
+      <h1>Welcome to Yalla Habibi</h1>
+      <p>Your multilingual AI voice assistant for seamless communication across languages and cultures.</p>
+      {% endblock %}
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="legal-footer">
     <a href="/about">About</a>
     <a href="/faq">FAQ</a>
@@ -184,7 +222,6 @@
     <a href="/cookies">Cookies</a>
     <a href="/donate">Support</a>
     <a href="/contact">Contact</a>
-
   </footer>
 
 </body>

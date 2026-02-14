@@ -11,86 +11,112 @@
     <h1>Yalla <span>Habibi</span></h1>
     <p id="hook">"I am your Native Arabic host. How can I bridge your world today?"</p>
 
+    <!-- Browser Compatibility Warning -->
+    <div id="browser-warning" class="browser-warning" style="display:none;">
+      ⚠️ <strong>Limited Support:</strong> For best experience, use Chrome, Edge, or Safari.
+      <button onclick="document.getElementById('browser-warning').style.display='none'" style="margin-left:10px;">✕</button>
+    </div>
+
     <div class="pref-container">
-      <label for="pref-lang">🌍 Select Your Language:</label>
-      <select id="pref-lang" aria-label="Select your preferred language">
+      <label for="pref-lang">🗣️ <strong>I want response in:</strong></label>
+      <select id="pref-lang" aria-label="Select your preferred response language">
         <!-- Most Popular Languages (Top of List) -->
-        <option value="en-US" selected>🌐 English</option>
-        <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
-        <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
-        <option value="hi-IN">🇮🇳 Hindi (हिंदी)</option>
-        <option value="es-ES">🇪🇸 Spanish (Español)</option>
-        <option value="fr-FR">🇫🇷 French (Français)</option>
-        <option value="de-DE">🇩🇪 German (Deutsch)</option>
+        <optgroup label="🌟 Most Popular">
+          <option value="en-US" selected>🌐 English</option>
+          <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
+          <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
+          <option value="hi-IN">🇮🇳 Hindi (हिंदी)</option>
+          <option value="es-ES">🇪🇸 Spanish (Español)</option>
+          <option value="fr-FR">🇫🇷 French (Français)</option>
+          <option value="de-DE">🇩🇪 German (Deutsch)</option>
+        </optgroup>
         
         <!-- Additional Major Languages -->
-        <option value="pt-BR">🇧🇷 Portuguese (Português)</option>
-        <option value="ru-RU">🇷🇺 Russian (Русский)</option>
-        <option value="ja-JP">🇯🇵 Japanese (日本語)</option>
-        <option value="ko-KR">🇰🇷 Korean (한국어)</option>
-        <option value="zh-CN">🇨🇳 Chinese (中文)</option>
-        <option value="it-IT">🇮🇹 Italian (Italiano)</option>
-        <option value="tr-TR">🇹🇷 Turkish (Türkçe)</option>
+        <optgroup label="🌍 Major Languages">
+          <option value="pt-BR">🇧🇷 Portuguese (Português)</option>
+          <option value="ru-RU">🇷🇺 Russian (Русский)</option>
+          <option value="ja-JP">🇯🇵 Japanese (日本語)</option>
+          <option value="ko-KR">🇰🇷 Korean (한국어)</option>
+          <option value="zh-CN">🇨🇳 Chinese (中文)</option>
+          <option value="it-IT">🇮🇹 Italian (Italiano)</option>
+          <option value="tr-TR">🇹🇷 Turkish (Türkçe)</option>
+        </optgroup>
         
         <!-- Middle Eastern Languages -->
-        <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
-        <option value="fa-IR">🇮🇷 Persian (فارسی)</option>
-        <option value="he-IL">🇮🇱 Hebrew (עברית)</option>
+        <optgroup label="🕌 Middle Eastern">
+          <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
+          <option value="fa-IR">🇮🇷 Persian (فارسی)</option>
+          <option value="he-IL">🇮🇱 Hebrew (עברית)</option>
+        </optgroup>
         
         <!-- South Asian Languages -->
-        <option value="ta-IN">🇮🇳 Tamil (தமிழ்)</option>
-        <option value="te-IN">🇮🇳 Telugu (తెలుగు)</option>
-        <option value="ml-IN">🇮🇳 Malayalam (മലയാളം)</option>
-        <option value="mr-IN">🇮🇳 Marathi (मराठी)</option>
-        <option value="gu-IN">🇮🇳 Gujarati (ગુજરાતી)</option>
-        <option value="kn-IN">🇮🇳 Kannada (ಕನ್ನಡ)</option>
-        <option value="pa-IN">🇮🇳 Punjabi (ਪੰਜਾਬੀ)</option>
+        <optgroup label="🇮🇳 South Asian">
+          <option value="ta-IN">Tamil (தமிழ்)</option>
+          <option value="te-IN">Telugu (తెలుగు)</option>
+          <option value="ml-IN">Malayalam (മലയാളം)</option>
+          <option value="mr-IN">Marathi (मराठी)</option>
+          <option value="gu-IN">Gujarati (ગુજરાતી)</option>
+          <option value="kn-IN">Kannada (ಕನ್ನಡ)</option>
+          <option value="pa-IN">Punjabi (ਪੰਜਾਬੀ)</option>
+        </optgroup>
         
         <!-- Southeast Asian Languages -->
-        <option value="id-ID">🇮🇩 Indonesian (Bahasa Indonesia)</option>
-        <option value="ms-MY">🇲🇾 Malay (Bahasa Melayu)</option>
-        <option value="th-TH">🇹🇭 Thai (ไทย)</option>
-        <option value="vi-VN">🇻🇳 Vietnamese (Tiếng Việt)</option>
+        <optgroup label="🌏 Southeast Asian">
+          <option value="id-ID">🇮🇩 Indonesian</option>
+          <option value="ms-MY">🇲🇾 Malay</option>
+          <option value="th-TH">🇹🇭 Thai (ไทย)</option>
+          <option value="vi-VN">🇻🇳 Vietnamese</option>
+        </optgroup>
         
         <!-- European Languages -->
-        <option value="nl-NL">🇳🇱 Dutch (Nederlands)</option>
-        <option value="pl-PL">🇵🇱 Polish (Polski)</option>
-        <option value="sv-SE">🇸🇪 Swedish (Svenska)</option>
-        <option value="no-NO">🇳🇴 Norwegian (Norsk)</option>
-        <option value="da-DK">🇩🇰 Danish (Dansk)</option>
-        <option value="fi-FI">🇫🇮 Finnish (Suomi)</option>
-        <option value="el-GR">🇬🇷 Greek (Ελληνικά)</option>
-        <option value="cs-CZ">🇨🇿 Czech (Čeština)</option>
-        <option value="hu-HU">🇭🇺 Hungarian (Magyar)</option>
-        <option value="ro-RO">🇷🇴 Romanian (Română)</option>
-        <option value="uk-UA">🇺🇦 Ukrainian (Українська)</option>
+        <optgroup label="🇪🇺 European">
+          <option value="nl-NL">🇳🇱 Dutch</option>
+          <option value="pl-PL">🇵🇱 Polish</option>
+          <option value="sv-SE">🇸🇪 Swedish</option>
+          <option value="no-NO">🇳🇴 Norwegian</option>
+          <option value="da-DK">🇩🇰 Danish</option>
+          <option value="fi-FI">🇫🇮 Finnish</option>
+          <option value="el-GR">🇬🇷 Greek</option>
+          <option value="cs-CZ">🇨🇿 Czech</option>
+          <option value="hu-HU">🇭🇺 Hungarian</option>
+          <option value="ro-RO">🇷🇴 Romanian</option>
+          <option value="uk-UA">🇺🇦 Ukrainian</option>
+        </optgroup>
         
         <!-- African Languages -->
-        <option value="sw-KE">🇰🇪 Swahili (Kiswahili)</option>
-        <option value="am-ET">🇪🇹 Amharic (አማርኛ)</option>
+        <optgroup label="🌍 African">
+          <option value="sw-KE">🇰🇪 Swahili</option>
+          <option value="am-ET">🇪🇹 Amharic</option>
+        </optgroup>
       </select>
+      
+      <p class="lang-note">
+        💡 <strong>Tip:</strong> Speak in ANY language - I'll understand! Select above for response language only.
+      </p>
     </div>
 
     <div class="secondary-links">
       <a href="/manual" title="Learn how to use Yalla Habibi">📘 User Manual</a>
       <span class="divider">|</span>
-      <a href="/api/languages" title="View all supported languages">🌐 All Languages</a>
+      <a href="/api/languages" title="View all supported languages" target="_blank">🌐 Language Info</a>
+      <span class="divider">|</span>
+      <a href="/api/browser-check" title="Check browser compatibility" target="_blank">🔍 Browser Check</a>
     </div>
   </header>
 
   <!-- DEMOGRAPHIC HINT SYMBOLS -->
   <div class="benefit-hints">
-    <span>👷‍♂️ Translation for Work</span> • 
-    <span>🎓 Moral Lessons</span> • 
-    <span>🌍 Eco Tips</span> • 
-    <span>🗺️ Location Help</span>
+    <span>👷‍♂️ Translation</span> • 
+    <span>🎓 Learning</span> • 
+    <span>🌍 Travel</span> • 
+    <span>🗺️ Navigation</span>
   </div>
 
   <!-- ===== VOICE CONTROLS SECTION ===== -->
   <div class="voice-controls">
     <h3>🎚️ Voice Controls</h3>
     <div class="voice-hint" id="voice-setup-hint">
-      💡 <strong>Voice Setup:</strong> To hear responses in your language, enable your language voice in device settings. 
+      💡 <strong>Voice Setup:</strong> Enable language voices in your device settings for best experience. 
       <a href="/manual#voice-setup" target="_blank">Need help?</a>
     </div>
 
@@ -148,7 +174,6 @@
       </button>
     </div>
 
-    <!-- Pause/Resume Controls -->
     <div class="voice-action-buttons">
       <button 
         class="voice-btn pause" 
@@ -184,30 +209,29 @@
   <div class="main-body">
     <div id="status" role="status" aria-live="polite">
       {% if active_lang == "bn" %}
-        হাবিবির সাথে কথা বলতে মাইক চাপুন...
+        মাইক্রোফোনে চাপুন এবং কথা বলুন...
       {% elif active_lang == "ar" %}
-        اضغط على الميكروفون للتحدث مع حبيبي...
+        اضغط على الميكروفون وتحدث...
       {% elif active_lang == "hi" %}
-        हबीबी से बात करने के लिए माइक दबाएं...
+        माइक्रोफ़ोन दबाएं और बोलें...
       {% elif active_lang == "ur" %}
-        حبیبی سے بات کرنے کے لیے مائیک دبائیں...
+        مائیک دبائیں اور بولیں...
       {% elif active_lang == "es" %}
-        Presiona el micrófono para hablar con Habibi...
+        Presiona el micrófono y habla...
       {% elif active_lang == "fr" %}
-        Appuyez sur le micro pour parler avec Habibi...
+        Appuyez sur le micro et parlez...
       {% elif active_lang == "de" %}
-        Drücken Sie das Mikrofon, um mit Habibi zu sprechen...
+        Drücken Sie das Mikrofon und sprechen Sie...
       {% else %}
-        Press the microphone to speak with Habibi...
+        Press microphone and speak...
       {% endif %}
     </div>
 
-    <!-- Microphone Button -->
     <button 
       id="mic-btn" 
       type="button"
       aria-label="Press to start speaking"
-      title="Press and speak (or press SPACE)"
+      title="Press and speak in any language (SPACE)"
     >
       <div class="pulse" id="pulse"></div>
       <span>🎙️</span>
@@ -218,16 +242,17 @@
     <!-- AI Response Box -->
     <div class="ai-box">
       <div id="response-text">
-        Marhaba! 👋 I assist foreigners across the Peninsula in 40+ languages.
+        Marhaba! 👋 I understand 40+ languages. Speak naturally in YOUR language, and I'll respond in the language YOU choose above.
       </div>
       
       <p class="voice-hint">
-        <strong>Try asking:</strong><br>
-        "Translate Arabic to Bengali" • "Find mosque near me" • "Explain visa rules" • 
-        "What's the weather?" • "Direction to hospital"
+        <strong>Examples:</strong><br>
+        • Speak in Bangla, get response in English<br>
+        • Speak in English, get response in Arabic<br>
+        • Speak in Chinese, get response in Urdu<br>
+        • Or speak and respond in the SAME language!
       </p>
 
-      <!-- Map Container -->
       <div id="map-wrap" class="hidden">
         <iframe 
           id="google-map" 
@@ -239,7 +264,6 @@
         ></iframe>
       </div>
 
-      <!-- Wisdom Box -->
       <div id="wisdom-box" class="hidden">
         <p id="wisdom-text"></p>
       </div>
@@ -255,7 +279,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        Yalla Habibi GPT Experience
+        Yalla Habibi GPT
       </a>
     </div>
 
@@ -296,7 +320,7 @@
         class="copy-link-btn" 
         id="copy-btn" 
         onclick="copyShareLink()"
-        aria-label="Copy link to clipboard"
+        aria-label="Copy link"
       >
         📋 Copy Link
       </button>
@@ -310,7 +334,7 @@
   <!-- COMMUNITY TICKER -->
   <div class="community-ticker">
     <div class="ticker-content" id="ticker">
-      "Worlds are waiting to listen to you..." - Share your feedback and join our multilingual community!
+      "Breaking language barriers worldwide..." - Join our multilingual community!
     </div>
   </div>
 
@@ -319,14 +343,13 @@
     <input 
       type="text" 
       id="feedback-in" 
-      placeholder="Loved Yalla Habibi? Share your experience..."
+      placeholder="Share your experience with Yalla Habibi..."
       aria-label="Feedback input"
       maxlength="200"
     >
     <button onclick="postFeedback()" aria-label="Post feedback">Post</button>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <span class="made-in-badge">🇧🇩 Made in Bangladesh</span>
@@ -335,7 +358,7 @@
       <span class="footer-divider">•</span>
       <span><a href="https://www.seosiri.com" target="_blank" rel="noopener">SEOSiri</a></span>
       <span class="footer-divider">•</span>
-      <span>40+ Languages Supported</span>
+      <span>40+ Languages</span>
     </div>
   </footer>
 </div>
@@ -350,12 +373,35 @@
   let isSpeaking = false;
   let isPaused = false;
 
-  // Voice control values
   let speechVolume = 1.0;
   let speechRate = 1.0;
-
-  // Recognition control
   let recognitionActive = false;
+  let detectedInputLang = null; // Track what language user spoke
+
+  // =====================================================================
+  // BROWSER COMPATIBILITY CHECK
+  // =====================================================================
+  function checkBrowserCompatibility() {
+    const ua = navigator.userAgent.toLowerCase();
+    const isChrome = ua.includes('chrome') && !ua.includes('edge');
+    const isEdge = ua.includes('edge') || ua.includes('edg');
+    const isSafari = ua.includes('safari') && !ua.includes('chrome');
+    const isFirefox = ua.includes('firefox');
+    
+    console.log('🌐 Browser Detection:', {
+      chrome: isChrome,
+      edge: isEdge,
+      safari: isSafari,
+      firefox: isFirefox
+    });
+
+    // Show warning for Firefox or unsupported browsers
+    if (isFirefox || (!isChrome && !isEdge && !isSafari)) {
+      document.getElementById('browser-warning').style.display = 'block';
+    }
+
+    return isChrome || isEdge || isSafari;
+  }
 
   // =====================================================================
   // SHARE CONFIGURATION
@@ -366,35 +412,25 @@
     description: "Speak naturally with AI in 40+ languages"
   };
 
-  // Initialize share URL input
   const shareInput = document.getElementById('share-url');
   if (shareInput) shareInput.value = SHARE_CONFIG.url;
 
-  // Share Functions
   function shareOnFacebook() {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_CONFIG.url)}`;
-    window.open(url, 'fb-share', 'width=600,height=400');
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_CONFIG.url)}`, 'fb-share', 'width=600,height=400');
   }
-
   function shareOnTwitter() {
-    const text = encodeURIComponent(`🎙️ ${SHARE_CONFIG.title}\n${SHARE_CONFIG.description}\n${SHARE_CONFIG.url}`);
+    const text = encodeURIComponent(`🎙️ ${SHARE_CONFIG.title}\n${SHARE_CONFIG.url}`);
     window.open(`https://twitter.com/intent/tweet?text=${text}`, 'twitter-share', 'width=600,height=400');
   }
-
   function shareOnLinkedIn() {
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SHARE_CONFIG.url)}`, 'linkedin-share', 'width=600,height=400');
   }
-
   function shareOnWhatsApp() {
-    const text = encodeURIComponent(`${SHARE_CONFIG.title}\n${SHARE_CONFIG.url}`);
-    window.open(`https://wa.me/?text=${text}`, 'whatsapp-share');
+    window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_CONFIG.title + '\n' + SHARE_CONFIG.url)}`, 'whatsapp-share');
   }
-
   function shareOnTelegram() {
-    const text = encodeURIComponent(SHARE_CONFIG.title);
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_CONFIG.url)}&text=${text}`, 'telegram-share');
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_CONFIG.url)}&text=${encodeURIComponent(SHARE_CONFIG.title)}`, 'telegram-share');
   }
-
   function shareOnReddit() {
     window.open(`https://reddit.com/submit?url=${encodeURIComponent(SHARE_CONFIG.url)}&title=${encodeURIComponent(SHARE_CONFIG.title)}`, 'reddit-share', 'width=800,height=600');
   }
@@ -402,25 +438,19 @@
   function copyShareLink() {
     const input = document.getElementById('share-url');
     input.select();
-    input.setSelectionRange(0, 99999); // Mobile support
-    
     navigator.clipboard.writeText(SHARE_CONFIG.url).then(() => {
       const btn = document.getElementById("copy-btn");
-      const originalText = btn.innerHTML;
       btn.innerHTML = "✅ Copied!";
       btn.style.background = "#10b981";
       setTimeout(() => {
-        btn.innerHTML = originalText;
+        btn.innerHTML = "📋 Copy Link";
         btn.style.background = "";
       }, 2000);
-    }).catch(err => {
-      console.error('Copy failed:', err);
-      alert('Link copied: ' + SHARE_CONFIG.url);
     });
   }
 
   // =====================================================================
-  // SPEECH RECOGNITION SETUP
+  // SPEECH RECOGNITION SETUP (NO AUTO-SWITCHING)
   // =====================================================================
   const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = SpeechRec ? new SpeechRec() : null;
@@ -429,68 +459,26 @@
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-  }
-
-  // Enhanced language mapping for recognition
-  const PREF_TO_RECO_LANG = {
-    "bn-BD": "bn-BD", "hi-IN": "hi-IN", "es-ES": "es-ES", "pt-BR": "pt-BR",
-    "fr-FR": "fr-FR", "de-DE": "de-DE", "it-IT": "it-IT", "ru-RU": "ru-RU",
-    "ja-JP": "ja-JP", "ko-KR": "ko-KR", "zh-CN": "zh-CN", "tr-TR": "tr-TR",
-    "ar-SA": "ar-SA", "en-US": "en-US", "ur-PK": "ur-PK", "fa-IR": "fa-IR",
-    "id-ID": "id-ID", "ms-MY": "ms-MY", "th-TH": "th-TH", "vi-VN": "vi-VN",
-    "nl-NL": "nl-NL", "pl-PL": "pl-PL", "sv-SE": "sv-SE", "no-NO": "no-NO",
-    "da-DK": "da-DK", "fi-FI": "fi-FI", "el-GR": "el-GR", "he-IL": "he-IL",
-    "cs-CZ": "cs-CZ", "hu-HU": "hu-HU", "ro-RO": "ro-RO", "uk-UA": "uk-UA",
-    "sw-KE": "sw-KE", "am-ET": "am-ET", "ta-IN": "ta-IN", "te-IN": "te-IN",
-    "ml-IN": "ml-IN", "mr-IN": "mr-IN", "gu-IN": "gu-IN", "kn-IN": "kn-IN",
-    "pa-IN": "pa-IN"
-  };
-
-  function pickRecognitionLang() {
-    const pref = document.getElementById('pref-lang').value;
-    return PREF_TO_RECO_LANG[pref] || "en-US";
-  }
-
-  // Auto-detect and map language codes
-  function mapDetectedToPref(det) {
-    if (!det) return null;
-    const d = det.toLowerCase();
     
-    const langMap = {
-      "bn": "bn-BD", "hi": "hi-IN", "es": "es-ES", "pt": "pt-BR",
-      "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "ru": "ru-RU",
-      "ja": "ja-JP", "ko": "ko-KR", "zh": "zh-CN", "tr": "tr-TR",
-      "ar": "ar-SA", "en": "en-US", "ur": "ur-PK", "fa": "fa-IR",
-      "id": "id-ID", "ms": "ms-MY", "th": "th-TH", "vi": "vi-VN",
-      "nl": "nl-NL", "pl": "pl-PL", "sv": "sv-SE", "no": "no-NO",
-      "da": "da-DK", "fi": "fi-FI", "el": "el-GR", "he": "he-IL",
-      "cs": "cs-CZ", "hu": "hu-HU", "ro": "ro-RO", "uk": "uk-UA",
-      "sw": "sw-KE", "am": "am-ET", "ta": "ta-IN", "te": "te-IN",
-      "ml": "ml-IN", "mr": "mr-IN", "gu": "gu-IN", "kn": "kn-IN",
-      "pa": "pa-IN"
-    };
-    
-    for (const [prefix, code] of Object.entries(langMap)) {
-      if (d.startsWith(prefix)) return code;
-    }
-    return null;
+    // IMPORTANT: Set to empty string for auto-detection
+    recognition.lang = "";
+  } else {
+    console.warn('⚠️ Speech recognition not supported in this browser');
   }
 
   // =====================================================================
-  // VOICE CONTROLS (Perceptual Mapping)
+  // VOICE CONTROLS
   // =====================================================================
   const volumeSlider = document.getElementById('volume-slider');
   const speedSlider = document.getElementById('speed-slider');
   const volumeValue = document.getElementById('volume-value');
   const speedValue = document.getElementById('speed-value');
 
-  // Perceptual volume curve
   function mapVolume(sliderVal) {
     const x = Math.max(0, Math.min(100, sliderVal)) / 100;
     return Math.pow(x, 1.8);
   }
 
-  // Natural rate mapping
   function mapRate(sliderVal) {
     const v = Math.max(50, Math.min(200, sliderVal));
     const t = (v - 50) / 150;
@@ -500,15 +488,13 @@
 
   function updateSpeedLabel(raw) {
     const v = Number(raw);
-    const label = v < 80 ? "Slow" : v < 115 ? "Normal" : "Fast";
-    speedValue.textContent = label;
+    speedValue.textContent = v < 80 ? "Slow" : v < 115 ? "Normal" : "Fast";
   }
 
   function updateVolumeLabel(raw) {
     volumeValue.textContent = `${raw}%`;
   }
 
-  // Initialize
   speechVolume = mapVolume(Number(volumeSlider.value));
   speechRate = mapRate(Number(speedSlider.value));
   updateVolumeLabel(volumeSlider.value);
@@ -517,23 +503,19 @@
   volumeSlider.addEventListener('input', function() {
     speechVolume = mapVolume(Number(this.value));
     updateVolumeLabel(this.value);
-    if (currentUtterance && isSpeaking) {
-      currentUtterance.volume = speechVolume;
-    }
+    if (currentUtterance && isSpeaking) currentUtterance.volume = speechVolume;
   });
 
   speedSlider.addEventListener('input', function() {
     speechRate = mapRate(Number(this.value));
     updateSpeedLabel(this.value);
-    if (currentUtterance && isSpeaking) {
-      currentUtterance.rate = speechRate;
-    }
+    if (currentUtterance && isSpeaking) currentUtterance.rate = speechRate;
   });
 
   // =====================================================================
   // UI HELPERS
   // =====================================================================
-  function resetUI(message = "Press the microphone to speak...") {
+  function resetUI(message = "Press microphone and speak...") {
     document.getElementById('pulse').style.display = 'none';
     document.getElementById('status').innerText = message;
     document.getElementById('mic-btn').classList.remove('recording');
@@ -575,7 +557,7 @@
   }
 
   // =====================================================================
-  // MICROPHONE BUTTON (Mobile-Optimized)
+  // MICROPHONE BUTTON
   // =====================================================================
   const micBtn = document.getElementById('mic-btn');
 
@@ -585,13 +567,13 @@
   }, { passive: false });
 
   // =====================================================================
-  // RECOGNITION HANDLERS
+  // RECOGNITION HANDLERS (NO AUTO-SWITCHING!)
   // =====================================================================
   if (recognition) {
     recognition.onstart = () => {
       recognitionActive = true;
       document.getElementById('pulse').style.display = 'block';
-      document.getElementById('status').innerText = "🎤 Listening...";
+      document.getElementById('status').innerText = "🎤 Listening... (Speak in any language)";
       document.getElementById('mic-btn').classList.add('recording');
     };
 
@@ -601,55 +583,57 @@
       
       const errorMessages = {
         'no-speech': 'No speech detected. Please try again.',
-        'audio-capture': 'Microphone access error. Please check permissions.',
+        'audio-capture': 'Microphone error. Check permissions.',
         'not-allowed': 'Microphone permission denied.',
-        'network': 'Network error. Please check your connection.'
+        'network': 'Network error. Check connection.'
       };
       
-      resetUI(errorMessages[event.error] || `Error: ${event.error}. Try again!`);
+      resetUI(errorMessages[event.error] || `Error: ${event.error}`);
     };
 
     recognition.onend = () => {
       recognitionActive = false;
-      if (document.getElementById('status').innerText === "🎤 Listening...") {
-        resetUI("No speech detected. Please try again!");
+      if (document.getElementById('status').innerText.includes("Listening")) {
+        resetUI("No speech detected. Try again!");
       }
     };
 
     recognition.onresult = (event) => {
       const result = event.results[0][0];
       const text = result.transcript || "";
-      const detectedLang = (result.lang || event.results[0].lang || recognition.lang || "").trim();
+      const detectedLang = result.lang || event.results[0].lang || "";
+      
+      // Store detected language but DON'T auto-switch dropdown
+      detectedInputLang = detectedLang;
+      
+      // Get MANUALLY selected output language
+      const outputLang = document.getElementById('pref-lang').value;
 
-      // Auto-switch language
-      const mapped = mapDetectedToPref(detectedLang);
-      if (mapped) {
-        const prefEl = document.getElementById('pref-lang');
-        if (prefEl && prefEl.value !== mapped) {
-          prefEl.value = mapped;
-          console.log('🌍 Auto-switched to:', mapped);
-        }
-      }
+      console.log('🎤 Input detected:', text);
+      console.log('🗣️ Detected language:', detectedInputLang);
+      console.log('📤 Response language:', outputLang);
 
-      const pref = document.getElementById('pref-lang').value;
-
-      document.getElementById('user-transcript').innerText = `"${text}"`;
+      document.getElementById('user-transcript').innerText = `You said: "${text}"`;
       document.getElementById('status').innerText = "⚙️ Processing...";
       document.getElementById('pulse').style.display = 'none';
 
-      // API Call
-      fetch(`/api/chat?user_input=${encodeURIComponent(text)}&pref=${encodeURIComponent(pref)}`)
+      // Build API URL with both input and output language
+      let apiUrl = `/api/chat?user_input=${encodeURIComponent(text)}&pref=${encodeURIComponent(outputLang)}`;
+      if (detectedInputLang) {
+        apiUrl += `&input_lang=${encodeURIComponent(detectedInputLang)}`;
+      }
+
+      fetch(apiUrl)
         .then(r => {
           if (!r.ok) throw new Error(`HTTP ${r.status}`);
           return r.json();
         })
         .then(data => {
-          resetUI("✅ Response received! Speak again...");
+          resetUI("✅ Response ready! Speak again...");
 
           const parts = (data.reply || "").split('--- Wisdom:');
           document.getElementById('response-text').innerText = parts[0] || "";
 
-          // Wisdom Box
           if (parts[1]) {
             document.getElementById('wisdom-box').classList.remove('hidden');
             document.getElementById('wisdom-text').innerText = "🌱 " + parts[1].trim();
@@ -657,7 +641,6 @@
             document.getElementById('wisdom-box').classList.add('hidden');
           }
 
-          // Map Integration
           if (data.map_link) {
             document.getElementById('map-wrap').classList.remove('hidden');
             document.getElementById('google-map').src = data.map_link;
@@ -666,25 +649,30 @@
           }
 
           lastResponseText = data.reply || "";
-          lastResponseLang = data.voice_lang || pref;
+          lastResponseLang = data.voice_lang || outputLang;
+
+          // Show support level info
+          if (data.support_level === 'limited') {
+            console.warn('⚠️ Limited TTS support for:', lastResponseLang);
+            document.getElementById('voice-setup-hint').style.display = 'block';
+          }
 
           speak(lastResponseText, lastResponseLang);
         })
         .catch(error => {
           console.error('API error:', error);
           resetUI("❌ Connection error. Try again!");
-          document.getElementById('response-text').innerText = "Habibi encountered an error. Please try again or check your internet connection.";
+          document.getElementById('response-text').innerText = "Error connecting to server. Please check your internet and try again.";
         });
     };
   }
 
   function startSpeech() {
     if (!recognition) {
-      alert("⚠️ Speech recognition not supported in this browser. Please use Chrome, Edge, or Safari.");
+      alert("⚠️ Speech recognition not supported.\n\nPlease use:\n• Chrome\n• Edge\n• Safari\n\nFirefox has limited support.");
       return;
     }
 
-    // Stop TTS if speaking
     if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
       window.speechSynthesis.cancel();
       isSpeaking = false;
@@ -695,16 +683,17 @@
     if (recognitionActive) return;
 
     try {
-      recognition.lang = pickRecognitionLang();
+      // Set to empty for auto-detection of ANY language
+      recognition.lang = "";
       recognition.start();
     } catch (e) {
       console.error('Recognition start error:', e);
-      resetUI("Microphone in use. Please try again.");
+      resetUI("Microphone busy. Try again.");
     }
   }
 
   // =====================================================================
-  // TEXT-TO-SPEECH WITH VOICE SELECTION
+  // TEXT-TO-SPEECH
   // =====================================================================
   function speak(text, lang) {
     window.speechSynthesis.cancel();
@@ -715,8 +704,6 @@
     utterance.rate = speechRate;
 
     const voices = window.speechSynthesis.getVoices();
-
-    // Voice selection logic
     let selectedVoice = voices.find(v => v.lang === lang);
 
     if (!selectedVoice) {
@@ -726,10 +713,10 @@
 
     if (selectedVoice) {
       utterance.voice = selectedVoice;
-      console.log("✅ Voice selected:", selectedVoice.name, selectedVoice.lang);
+      console.log("✅ Voice:", selectedVoice.name);
       document.getElementById('voice-setup-hint').style.display = 'none';
     } else {
-      console.warn("⚠️ No native voice for:", lang, "→ Using default");
+      console.warn("⚠️ No native voice for:", lang);
       document.getElementById('voice-setup-hint').style.display = 'block';
     }
 
@@ -741,7 +728,6 @@
       isSpeaking = false;
       isPaused = false;
       setSpeakingUI(false);
-      console.log('✅ Speech ended');
     };
 
     utterance.onerror = (e) => {
@@ -758,7 +744,6 @@
       window.speechSynthesis.pause();
       isPaused = true;
       setPausedUI(true);
-      console.log("⏸️ Paused");
     }
   }
 
@@ -767,7 +752,6 @@
       window.speechSynthesis.resume();
       isPaused = false;
       setPausedUI(false);
-      console.log("▶️ Resumed");
     }
   }
 
@@ -777,18 +761,16 @@
     isPaused = false;
     setSpeakingUI(false);
     setPausedUI(false);
-    console.log('🛑 Speech stopped');
   }
 
   function replaySpeech() {
     if (lastResponseText) {
-      console.log('🔁 Replaying last response');
       speak(lastResponseText, lastResponseLang);
     }
   }
 
   // =====================================================================
-  // FEEDBACK SYSTEM
+  // FEEDBACK
   // =====================================================================
   function postFeedback() {
     const input = document.getElementById('feedback-in');
@@ -798,16 +780,10 @@
       const ticker = document.getElementById('ticker');
       ticker.innerText = `"${val}" - ${ticker.innerText}`;
       input.value = "";
-      
-      // Visual feedback
       input.style.borderColor = "#10b981";
-      setTimeout(() => {
-        input.style.borderColor = "";
-      }, 1000);
-      
-      console.log('💬 Feedback posted:', val);
+      setTimeout(() => input.style.borderColor = "", 1000);
     } else {
-      alert("Please write your feedback before posting!");
+      alert("Please write your feedback!");
     }
   }
 
@@ -815,53 +791,70 @@
   // KEYBOARD SHORTCUTS
   // =====================================================================
   document.addEventListener('keydown', function(event) {
-    // Ignore if typing in input
-    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-      return;
-    }
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
 
-    // SPACE = Start listening
     if (event.code === 'Space') {
       event.preventDefault();
       startSpeech();
     }
-
-    // ESC = Stop speaking
-    if (event.code === 'Escape') {
-      stopSpeaking();
-    }
-
-    // R = Replay
-    if (event.code === 'KeyR' && !event.ctrlKey) {
-      replaySpeech();
-    }
-
-    // P = Pause/Resume
+    if (event.code === 'Escape') stopSpeaking();
+    if (event.code === 'KeyR' && !event.ctrlKey) replaySpeech();
     if (event.code === 'KeyP' && !event.ctrlKey) {
-      if (window.speechSynthesis.paused) {
-        resumeSpeaking();
-      } else if (window.speechSynthesis.speaking) {
-        pauseSpeaking();
-      }
+      if (window.speechSynthesis.paused) resumeSpeaking();
+      else if (window.speechSynthesis.speaking) pauseSpeaking();
     }
   });
 
   // =====================================================================
   // INITIALIZATION
   // =====================================================================
-  // Load voices when available
   if (window.speechSynthesis) {
     window.speechSynthesis.onvoiceschanged = () => {
-      const voices = window.speechSynthesis.getVoices();
-      console.log(`🔊 ${voices.length} voices loaded`);
+      console.log(`🔊 ${window.speechSynthesis.getVoices().length} voices loaded`);
     };
   }
 
-  // Console info
+  // Check browser compatibility on load
+  checkBrowserCompatibility();
+
   console.log('🎙️ Yalla Habibi initialized');
   console.log('⌨️ Shortcuts: SPACE=Listen | ESC=Stop | R=Replay | P=Pause/Resume');
-  console.log('🌍 Share URL:', SHARE_CONFIG.url);
-  console.log('🗣️ Supported languages: 40+');
+  console.log('🌍 Speak in ANY language, get response in YOUR selected language!');
 </script>
+
+<style>
+.browser-warning {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.browser-warning button {
+  background: transparent;
+  border: none;
+  color: #92400e;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.lang-note {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #4ade80;
+  font-style: italic;
+}
+
+.secondary-links .divider {
+  color: #4ade80;
+  margin: 0 8px;
+}
+</style>
 
 {% endblock %}

@@ -20,7 +20,6 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Static + templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
@@ -90,89 +89,57 @@ except Exception as e:
 logger.info(f"✅ Using model: {selected_model}")
 
 # ============================================================================
-# COMPREHENSIVE LANGUAGE MAP
+# SIMPLIFIED LANGUAGE MAP
 # ============================================================================
 LANG_MAP = {
-    # Well-supported languages (Good browser + TTS support)
-    "en-US": {"name": "English", "native": "English", "support": "excellent"},
-    "es-ES": {"name": "Spanish", "native": "Español", "support": "excellent"},
-    "fr-FR": {"name": "French", "native": "Français", "support": "excellent"},
-    "de-DE": {"name": "German", "native": "Deutsch", "support": "excellent"},
-    "it-IT": {"name": "Italian", "native": "Italiano", "support": "excellent"},
-    "pt-BR": {"name": "Portuguese", "native": "Português", "support": "excellent"},
-    "ru-RU": {"name": "Russian", "native": "Русский", "support": "excellent"},
-    "ja-JP": {"name": "Japanese", "native": "日本語", "support": "excellent"},
-    "ko-KR": {"name": "Korean", "native": "한국어", "support": "excellent"},
-    "zh-CN": {"name": "Chinese", "native": "中文", "support": "excellent"},
-    
-    # Good support but may vary by browser
-    "ar-SA": {"name": "Arabic", "native": "العربية", "support": "good"},
-    "hi-IN": {"name": "Hindi", "native": "हिंदी", "support": "good"},
-    "bn-BD": {"name": "Bengali", "native": "বাংলা", "support": "good"},
-    "tr-TR": {"name": "Turkish", "native": "Türkçe", "support": "good"},
-    "nl-NL": {"name": "Dutch", "native": "Nederlands", "support": "good"},
-    "pl-PL": {"name": "Polish", "native": "Polski", "support": "good"},
-    "sv-SE": {"name": "Swedish", "native": "Svenska", "support": "good"},
-    "no-NO": {"name": "Norwegian", "native": "Norsk", "support": "good"},
-    "da-DK": {"name": "Danish", "native": "Dansk", "support": "good"},
-    "fi-FI": {"name": "Finnish", "native": "Suomi", "support": "good"},
-    "el-GR": {"name": "Greek", "native": "Ελληνικά", "support": "good"},
-    "cs-CZ": {"name": "Czech", "native": "Čeština", "support": "good"},
-    "hu-HU": {"name": "Hungarian", "native": "Magyar", "support": "good"},
-    "ro-RO": {"name": "Romanian", "native": "Română", "support": "good"},
-    "uk-UA": {"name": "Ukrainian", "native": "Українська", "support": "good"},
-    "id-ID": {"name": "Indonesian", "native": "Bahasa Indonesia", "support": "good"},
-    "ms-MY": {"name": "Malay", "native": "Bahasa Melayu", "support": "good"},
-    "th-TH": {"name": "Thai", "native": "ไทย", "support": "good"},
-    "vi-VN": {"name": "Vietnamese", "native": "Tiếng Việt", "support": "good"},
-    
-    # Limited support (may need fallback)
-    "ur-PK": {"name": "Urdu", "native": "اردو", "support": "limited"},
-    "fa-IR": {"name": "Persian", "native": "فارسی", "support": "limited"},
-    "he-IL": {"name": "Hebrew", "native": "עברית", "support": "limited"},
-    "ta-IN": {"name": "Tamil", "native": "தமிழ்", "support": "limited"},
-    "te-IN": {"name": "Telugu", "native": "తెలుగు", "support": "limited"},
-    "ml-IN": {"name": "Malayalam", "native": "മലയാളം", "support": "limited"},
-    "mr-IN": {"name": "Marathi", "native": "मराठी", "support": "limited"},
-    "gu-IN": {"name": "Gujarati", "native": "ગુજરાતી", "support": "limited"},
-    "kn-IN": {"name": "Kannada", "native": "ಕನ್ನಡ", "support": "limited"},
-    "pa-IN": {"name": "Punjabi", "native": "ਪੰਜਾਬੀ", "support": "limited"},
-    "sw-KE": {"name": "Swahili", "native": "Kiswahili", "support": "limited"},
-    "am-ET": {"name": "Amharic", "native": "አማርኛ", "support": "limited"},
+    "bn-BD": "Bengali (বাংলা)",
+    "ar-SA": "Arabic (العربية)",
+    "en-US": "English",
+    "hi-IN": "Hindi (हिंदी)",
+    "es-ES": "Spanish (Español)",
+    "pt-BR": "Portuguese (Português)",
+    "fr-FR": "French (Français)",
+    "de-DE": "German (Deutsch)",
+    "it-IT": "Italian (Italiano)",
+    "ru-RU": "Russian (Русский)",
+    "ja-JP": "Japanese (日本語)",
+    "ko-KR": "Korean (한국어)",
+    "zh-CN": "Chinese (中文)",
+    "tr-TR": "Turkish (Türkçe)",
+    "ur-PK": "Urdu (اردو)",
+    "fa-IR": "Persian (فارسی)",
+    "id-ID": "Indonesian (Bahasa Indonesia)",
+    "ms-MY": "Malay (Bahasa Melayu)",
+    "th-TH": "Thai (ไทย)",
+    "vi-VN": "Vietnamese (Tiếng Việt)",
+    "nl-NL": "Dutch (Nederlands)",
+    "pl-PL": "Polish (Polski)",
+    "sv-SE": "Swedish (Svenska)",
+    "no-NO": "Norwegian (Norsk)",
+    "da-DK": "Danish (Dansk)",
+    "fi-FI": "Finnish (Suomi)",
+    "el-GR": "Greek (Ελληνικά)",
+    "he-IL": "Hebrew (עברית)",
+    "cs-CZ": "Czech (Čeština)",
+    "hu-HU": "Hungarian (Magyar)",
+    "ro-RO": "Romanian (Română)",
+    "uk-UA": "Ukrainian (Українська)",
+    "sw-KE": "Swahili (Kiswahili)",
+    "am-ET": "Amharic (አማርኛ)",
+    "ta-IN": "Tamil (தமிழ்)",
+    "te-IN": "Telugu (తెలుగు)",
+    "ml-IN": "Malayalam (മലയാളം)",
+    "mr-IN": "Marathi (मराठी)",
+    "gu-IN": "Gujarati (ગુજરાતી)",
+    "kn-IN": "Kannada (ಕನ್ನಡ)",
+    "pa-IN": "Punjabi (ਪੰਜਾਬੀ)",
 }
 
-# ============================================================================
-# MAP TRIGGER WORDS (Multilingual)
-# ============================================================================
 MAP_TRIGGER_WORDS = [
-    # English
     "find", "where", "map", "location", "direction", "navigate", "address", "route", "near", "nearby",
-    # Bengali
-    "কোথায়", "মানচিত্র", "খুঁজুন", "ঠিকানা",
-    # Arabic
-    "أين", "خريطة", "موقع", "عنوان",
-    # Hindi
-    "कहाँ", "नक्शा", "स्थान",
-    # Spanish
-    "dónde", "mapa", "ubicación",
-    # French
-    "où", "carte", "lieu",
-    # German
-    "wo", "karte", "ort",
-    # Urdu
-    "کہاں", "نقشہ",
-    # Turkish
-    "nerede", "harita",
-    # Indonesian/Malay
-    "dimana", "peta",
-    # Russian
-    "где", "карта",
-    # Japanese
-    "どこ", "地図",
-    # Korean
-    "어디", "지도",
-    # Chinese
-    "哪里", "地图",
+    "কোথায়", "মানচিত্র", "খুঁজুন", "ঠিকানা", "أين", "خريطة", "موقع", "कहाँ", "नक्शा",
+    "dónde", "mapa", "où", "carte", "wo", "karte", "کہاں", "نقشہ", "nerede", "harita",
+    "dimana", "peta", "где", "карта", "どこ", "地図", "어디", "지도", "哪里", "地图",
 ]
 
 SUPPORTED_LANGS = [
@@ -182,27 +149,10 @@ SUPPORTED_LANGS = [
     "ro", "uk", "sw", "am", "ta", "te", "ml", "mr", "gu", "kn", "pa"
 ]
 
-LANG_TO_LOCALE = {
-    "en": "en-US", "bn": "bn-BD", "ar": "ar-SA", "hi": "hi-IN",
-    "es": "es-ES", "fr": "fr-FR", "de": "de-DE", "pt": "pt-BR",
-    "it": "it-IT", "ru": "ru-RU", "ja": "ja-JP", "ko": "ko-KR",
-    "zh": "zh-CN", "tr": "tr-TR", "ur": "ur-PK", "fa": "fa-IR",
-    "id": "id-ID", "ms": "ms-MY", "th": "th-TH", "vi": "vi-VN",
-    "nl": "nl-NL", "pl": "pl-PL", "sv": "sv-SE", "no": "no-NO",
-    "da": "da-DK", "fi": "fi-FI", "el": "el-GR", "he": "he-IL",
-    "cs": "cs-CZ", "hu": "hu-HU", "ro": "ro-RO", "uk": "uk-UA",
-    "sw": "sw-KE", "am": "am-ET", "ta": "ta-IN", "te": "te-IN",
-    "ml": "ml-IN", "mr": "mr-IN", "gu": "gu-IN", "kn": "kn-IN",
-    "pa": "pa-IN",
-}
-
-# ============================================================================
-# LANGUAGE DETECTION FOR UI
-# ============================================================================
 def get_lang_from_request(request: Request) -> str:
     """Enhanced language detection from Accept-Language header"""
     header = (request.headers.get("accept-language") or "").lower()
-
+    
     lang_priorities = [
         ("bn", ["bn-bd", "bn"]), ("ar", ["ar-sa", "ar"]), ("hi", ["hi-in", "hi"]),
         ("es", ["es-es", "es"]), ("fr", ["fr-fr", "fr"]), ("de", ["de-de", "de"]),
@@ -224,54 +174,21 @@ def get_lang_from_request(request: Request) -> str:
         for pattern in patterns:
             if header.startswith(pattern):
                 return lang_code
-
     return "en"
 
 
 # ============================================================================
-# GET AVAILABLE LANGUAGES WITH SUPPORT LEVEL
+# GET AVAILABLE LANGUAGES
 # ============================================================================
 @app.get("/api/languages")
 async def get_languages():
-    """Return all available languages with support information"""
+    """Return all available languages"""
     return {
         "languages": [
-            {
-                "code": code,
-                "name": info["name"],
-                "native": info["native"],
-                "support_level": info["support"]
-            }
-            for code, info in LANG_MAP.items()
+            {"code": code, "name": name}
+            for code, name in LANG_MAP.items()
         ],
-        "supported_page_langs": SUPPORTED_LANGS,
-        "note": "excellent = Full browser support | good = Most browsers | limited = May need fallback"
-    }
-
-
-# ============================================================================
-# BROWSER COMPATIBILITY CHECK
-# ============================================================================
-@app.get("/api/browser-check")
-async def browser_check(request: Request):
-    """Check browser capabilities"""
-    user_agent = request.headers.get("user-agent", "").lower()
-    
-    is_chrome = "chrome" in user_agent and "edge" not in user_agent
-    is_edge = "edge" in user_agent or "edg" in user_agent
-    is_safari = "safari" in user_agent and "chrome" not in user_agent
-    is_firefox = "firefox" in user_agent
-    
-    return {
-        "browser": {
-            "chrome": is_chrome,
-            "edge": is_edge,
-            "safari": is_safari,
-            "firefox": is_firefox
-        },
-        "speech_recognition_support": is_chrome or is_edge or is_safari,
-        "recommended_browser": "Chrome or Edge for best speech recognition support",
-        "note": "Firefox has limited speech recognition support"
+        "supported_page_langs": SUPPORTED_LANGS
     }
 
 
@@ -281,10 +198,7 @@ async def browser_check(request: Request):
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "active_lang": active_lang},
-    )
+    return templates.TemplateResponse("index.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/terms", response_class=HTMLResponse)
 async def terms(request: Request):
@@ -394,72 +308,54 @@ async def localized_privacy(request: Request, lang: str):
 
 
 # ============================================================================
-# ENHANCED CHAT API - BETTER LANGUAGE HANDLING
+# SIMPLIFIED CHAT API - AUTO LANGUAGE MODE
 # ============================================================================
 @app.get("/api/chat")
 async def chat(
     user_input: str = Query(...), 
-    pref: str = Query("en-US"),
-    input_lang: str = Query(None)  # NEW: Optional detected input language
+    pref: str = Query(None),  # Optional: only if user wants different language
+    detected_lang: str = Query(None)  # What language user spoke
 ):
     """
-    Enhanced chat endpoint with better language handling
-    
-    Args:
-        user_input: The text input from user
-        pref: Preferred output language (what language to respond in)
-        input_lang: Detected input language (what language user spoke in)
+    Simplified chat with auto-language:
+    - If no pref given, respond in detected language
+    - If pref given, translate to that language
     """
     
     if not user_input or not user_input.strip():
-        greetings = {
-            "ar-SA": "مرحبا! اسألني شيئًا يا حبيبي.",
-            "bn-BD": "আসসালামু আলাইকুম! আমাকে কিছু জিজ্ঞাসা করুন।",
-            "hi-IN": "नमस्ते! मुझसे कुछ पूछें।",
-            "ur-PK": "السلام علیکم! مجھ سے کچھ پوچھیں۔",
-            "es-ES": "¡Hola! Pregúntame algo.",
-            "fr-FR": "Bonjour! Posez-moi une question.",
-            "de-DE": "Hallo! Frag mich etwas.",
-        }
-        
         return {
-            "reply": greetings.get(pref, "Marhaba! Please ask me something, Habibi."),
-            "voice_lang": pref if pref in LANG_MAP else "en-US",
+            "reply": "Marhaba! Please speak to me.",
+            "voice_lang": "en-US",
             "map_link": None,
-            "support_level": LANG_MAP.get(pref, {}).get("support", "unknown")
         }
-
-    # Validate preference language
-    if pref not in LANG_MAP:
-        logger.warning(f"Invalid pref language: {pref}, falling back to en-US")
-        pref = "en-US"
 
     try:
-        lang_info = LANG_MAP[pref]
-        target_lang_name = lang_info["name"]
-        target_lang_native = lang_info["native"]
-        support_level = lang_info["support"]
+        # AUTO MODE: Use detected language for response if no preference
+        if not pref or pref == "auto":
+            response_lang = detected_lang if detected_lang and detected_lang in LANG_MAP else "en-US"
+        else:
+            response_lang = pref if pref in LANG_MAP else "en-US"
 
-        # Build context-aware prompt
-        if input_lang and input_lang != pref:
-            # User spoke in one language but wants response in another (translation scenario)
+        target_lang_name = LANG_MAP.get(response_lang, "English")
+
+        # Build smart system instruction
+        if detected_lang and pref and detected_lang != pref:
+            # Translation mode: different input and output language
             system_instruction = (
-                f"You are Yalla Habibi, a warm Arabic AI host. "
-                f"The user spoke in {input_lang} but wants your response in {target_lang_name} ({target_lang_native}). "
-                f"Greet briefly in Arabic, then respond naturally in {target_lang_name}. "
-                f"If they're asking for translation, translate accurately. "
-                f"End with '--- Wisdom:' followed by a practical, culturally-appropriate tip. "
-                f"Keep responses clear and helpful."
+                f"You are Yalla Habibi, a warm Arabic AI assistant. "
+                f"The user spoke in {LANG_MAP.get(detected_lang, 'their language')} but wants response in {target_lang_name}. "
+                f"Provide accurate translation and helpful response in {target_lang_name}. "
+                f"Be natural, clear, and culturally sensitive. "
+                f"End with '--- Wisdom:' followed by a practical tip in {target_lang_name}."
             )
         else:
-            # Same language for input and output
+            # Same language mode
             system_instruction = (
-                f"You are Yalla Habibi, a warm, culturally-aware Arabic AI host. "
-                f"Respond naturally in {target_lang_name} ({target_lang_native}). "
-                f"Greet briefly in Arabic first if appropriate. "
-                f"Be helpful, friendly, and respectful of cultural nuances. "
-                f"End with '--- Wisdom:' followed by a practical tip. "
-                f"Keep responses conversational and engaging."
+                f"You are Yalla Habibi, a warm, culturally-aware Arabic AI assistant. "
+                f"Respond naturally in {target_lang_name}. "
+                f"Greet briefly in Arabic if appropriate, then answer clearly in {target_lang_name}. "
+                f"Be helpful, friendly, and respectful. "
+                f"End with '--- Wisdom:' followed by a practical tip."
             )
 
         model = genai.GenerativeModel(
@@ -476,36 +372,25 @@ async def chat(
 
         # Map detection
         map_link = None
-        user_input_lower = user_input.lower()
-        if any(word.lower() in user_input_lower for word in MAP_TRIGGER_WORDS):
+        if any(word.lower() in user_input.lower() for word in MAP_TRIGGER_WORDS):
             q = user_input.replace(" ", "+")
             map_link = f"https://maps.google.com/maps?q={q}&output=embed"
 
         return {
             "reply": reply,
-            "voice_lang": pref,
+            "voice_lang": response_lang,
             "map_link": map_link,
-            "detected_input_lang": input_lang,
-            "support_level": support_level,
-            "supported": True
+            "detected_input": detected_lang,
+            "mode": "translation" if (detected_lang and pref and detected_lang != pref) else "same_language"
         }
 
     except Exception as e:
         logger.error(f"Chat error: {traceback.format_exc()}")
-        
-        error_messages = {
-            "ar-SA": "مرحبا! حدث خطأ ما. يرجى المحاولة مرة أخرى يا حبيبي.",
-            "bn-BD": "দুঃখিত! কিছু ভুল হয়েছে। আবার চেষ্টা করুন।",
-            "hi-IN": "क्षमा करें! कुछ गलत हो गया। कृपया पुनः प्रयास करें।",
-            "ur-PK": "معذرت! کچھ غلط ہو گیا۔ دوبارہ کوشش کریں۔",
-        }
-        
         return {
-            "reply": error_messages.get(pref, "Marhaba! Something went wrong. Please try again, Habibi."),
-            "voice_lang": pref,
+            "reply": "Marhaba! Something went wrong. Please try again.",
+            "voice_lang": "en-US",
             "map_link": None,
-            "error": True,
-            "error_message": str(e)
+            "error": True
         }
 
 
@@ -518,7 +403,6 @@ async def health_check():
         "status": "healthy",
         "model": selected_model,
         "supported_languages": len(LANG_MAP),
-        "supported_page_languages": len(SUPPORTED_LANGS),
         "version": "1.0.0"
     }
 
@@ -534,16 +418,13 @@ async def api_info():
         "description": "Multilingual Arabic-first AI Voice Assistant",
         "features": [
             "40+ Languages Support",
+            "Auto Language Detection",
             "Voice Recognition & TTS",
-            "Location/Map Integration",
-            "Cultural Awareness",
             "Real-time Translation",
-            "Browser Compatibility Check"
+            "Location/Map Integration"
         ],
         "supported_languages": len(LANG_MAP),
-        "supported_locales": len(SUPPORTED_LANGS),
-        "model": selected_model,
-        "recommended_browsers": ["Chrome", "Edge", "Safari"]
+        "model": selected_model
     }
 
 

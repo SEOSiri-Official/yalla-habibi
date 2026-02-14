@@ -2,27 +2,29 @@
 
 {% block title %}Yalla Habibi | Multilingual Voice Assistant{% endblock %}
 {% block og_title %}Yalla Habibi – Multilingual Voice Assistant{% endblock %}
-{% block og_description %}Speak naturally. Get intelligent multilingual responses in 40+ languages.{% endblock %}
+{% block og_description %}Speak naturally. Get intelligent multilingual responses automatically.{% endblock %}
 
 {% block content %}
 
 <div class="glass-card">
   <header>
     <h1>Yalla <span>Habibi</span></h1>
-    <p id="hook">"I am your Native Arabic host. How can I bridge your world today?"</p>
-
-    <!-- Browser Compatibility Warning -->
-    <div id="browser-warning" class="browser-warning" style="display:none;">
-      ⚠️ <strong>Limited Support:</strong> For best experience, use Chrome, Edge, or Safari.
-      <button onclick="document.getElementById('browser-warning').style.display='none'" style="margin-left:10px;">✕</button>
-    </div>
+    <p id="hook">"Speak in your language, I'll understand and respond naturally!"</p>
 
     <div class="pref-container">
-      <label for="pref-lang">🗣️ <strong>I want response in:</strong></label>
-      <select id="pref-lang" aria-label="Select your preferred response language">
-        <!-- Most Popular Languages (Top of List) -->
+      <label for="mode-select">🎯 <strong>Translation Mode:</strong></label>
+      <select id="mode-select" aria-label="Select mode">
+        <option value="auto" selected>🤖 Auto (Same Language)</option>
+        <option value="translate">🌐 Translate to Different Language</option>
+      </select>
+    </div>
+
+    <!-- Translation Language Selector (Hidden by default) -->
+    <div class="pref-container" id="translate-selector" style="display:none;">
+      <label for="pref-lang">📢 <strong>Translate my speech to:</strong></label>
+      <select id="pref-lang" aria-label="Select translation language">
         <optgroup label="🌟 Most Popular">
-          <option value="en-US" selected>🌐 English</option>
+          <option value="en-US">🌐 English</option>
           <option value="ar-SA">🇸🇦 Arabic (العربية)</option>
           <option value="bn-BD">🇧🇩 Bengali (বাংলা)</option>
           <option value="hi-IN">🇮🇳 Hindi (हिंदी)</option>
@@ -31,44 +33,39 @@
           <option value="de-DE">🇩🇪 German (Deutsch)</option>
         </optgroup>
         
-        <!-- Additional Major Languages -->
         <optgroup label="🌍 Major Languages">
-          <option value="pt-BR">🇧🇷 Portuguese (Português)</option>
-          <option value="ru-RU">🇷🇺 Russian (Русский)</option>
-          <option value="ja-JP">🇯🇵 Japanese (日本語)</option>
-          <option value="ko-KR">🇰🇷 Korean (한국어)</option>
-          <option value="zh-CN">🇨🇳 Chinese (中文)</option>
-          <option value="it-IT">🇮🇹 Italian (Italiano)</option>
-          <option value="tr-TR">🇹🇷 Turkish (Türkçe)</option>
+          <option value="pt-BR">🇧🇷 Portuguese</option>
+          <option value="ru-RU">🇷🇺 Russian</option>
+          <option value="ja-JP">🇯🇵 Japanese</option>
+          <option value="ko-KR">🇰🇷 Korean</option>
+          <option value="zh-CN">🇨🇳 Chinese</option>
+          <option value="it-IT">🇮🇹 Italian</option>
+          <option value="tr-TR">🇹🇷 Turkish</option>
         </optgroup>
         
-        <!-- Middle Eastern Languages -->
         <optgroup label="🕌 Middle Eastern">
-          <option value="ur-PK">🇵🇰 Urdu (اردو)</option>
-          <option value="fa-IR">🇮🇷 Persian (فارسی)</option>
-          <option value="he-IL">🇮🇱 Hebrew (עברית)</option>
+          <option value="ur-PK">🇵🇰 Urdu</option>
+          <option value="fa-IR">🇮🇷 Persian</option>
+          <option value="he-IL">🇮🇱 Hebrew</option>
         </optgroup>
         
-        <!-- South Asian Languages -->
         <optgroup label="🇮🇳 South Asian">
-          <option value="ta-IN">Tamil (தமிழ்)</option>
-          <option value="te-IN">Telugu (తెలుగు)</option>
-          <option value="ml-IN">Malayalam (മലയാളം)</option>
-          <option value="mr-IN">Marathi (मराठी)</option>
-          <option value="gu-IN">Gujarati (ગુજરાતી)</option>
-          <option value="kn-IN">Kannada (ಕನ್ನಡ)</option>
-          <option value="pa-IN">Punjabi (ਪੰਜਾਬੀ)</option>
+          <option value="ta-IN">Tamil</option>
+          <option value="te-IN">Telugu</option>
+          <option value="ml-IN">Malayalam</option>
+          <option value="mr-IN">Marathi</option>
+          <option value="gu-IN">Gujarati</option>
+          <option value="kn-IN">Kannada</option>
+          <option value="pa-IN">Punjabi</option>
         </optgroup>
         
-        <!-- Southeast Asian Languages -->
         <optgroup label="🌏 Southeast Asian">
           <option value="id-ID">🇮🇩 Indonesian</option>
           <option value="ms-MY">🇲🇾 Malay</option>
-          <option value="th-TH">🇹🇭 Thai (ไทย)</option>
+          <option value="th-TH">🇹🇭 Thai</option>
           <option value="vi-VN">🇻🇳 Vietnamese</option>
         </optgroup>
         
-        <!-- European Languages -->
         <optgroup label="🇪🇺 European">
           <option value="nl-NL">🇳🇱 Dutch</option>
           <option value="pl-PL">🇵🇱 Polish</option>
@@ -83,42 +80,26 @@
           <option value="uk-UA">🇺🇦 Ukrainian</option>
         </optgroup>
         
-        <!-- African Languages -->
         <optgroup label="🌍 African">
           <option value="sw-KE">🇰🇪 Swahili</option>
           <option value="am-ET">🇪🇹 Amharic</option>
         </optgroup>
       </select>
-      
-      <p class="lang-note">
-        💡 <strong>Tip:</strong> Speak in ANY language - I'll understand! Select above for response language only.
-      </p>
     </div>
 
     <div class="secondary-links">
       <a href="/manual" title="Learn how to use Yalla Habibi">📘 User Manual</a>
-      <span class="divider">|</span>
-      <a href="/api/languages" title="View all supported languages" target="_blank">🌐 Language Info</a>
-      <span class="divider">|</span>
-      <a href="/api/browser-check" title="Check browser compatibility" target="_blank">🔍 Browser Check</a>
     </div>
   </header>
 
-  <!-- DEMOGRAPHIC HINT SYMBOLS -->
-  <div class="benefit-hints">
-    <span>👷‍♂️ Translation</span> • 
-    <span>🎓 Learning</span> • 
-    <span>🌍 Travel</span> • 
-    <span>🗺️ Navigation</span>
+  <!-- MODE EXPLANATION -->
+  <div class="benefit-hints" id="mode-hint">
+    <span id="mode-explanation">🤖 Auto Mode: Speak Bengali → Hear Bengali | Speak English → Hear English</span>
   </div>
 
   <!-- ===== VOICE CONTROLS SECTION ===== -->
   <div class="voice-controls">
     <h3>🎚️ Voice Controls</h3>
-    <div class="voice-hint" id="voice-setup-hint">
-      💡 <strong>Voice Setup:</strong> Enable language voices in your device settings for best experience. 
-      <a href="/manual#voice-setup" target="_blank">Need help?</a>
-    </div>
 
     <div class="control-group">
       <label for="volume-slider">
@@ -209,21 +190,15 @@
   <div class="main-body">
     <div id="status" role="status" aria-live="polite">
       {% if active_lang == "bn" %}
-        মাইক্রোফোনে চাপুন এবং কথা বলুন...
+        মাইক্রোফোনে চাপুন এবং বাংলায় কথা বলুন...
       {% elif active_lang == "ar" %}
-        اضغط على الميكروفون وتحدث...
+        اضغط على الميكروفون وتحدث بالعربية...
       {% elif active_lang == "hi" %}
-        माइक्रोफ़ोन दबाएं और बोलें...
+        माइक्रोफ़ोन दबाएं और हिंदी में बोलें...
       {% elif active_lang == "ur" %}
-        مائیک دبائیں اور بولیں...
-      {% elif active_lang == "es" %}
-        Presiona el micrófono y habla...
-      {% elif active_lang == "fr" %}
-        Appuyez sur le micro et parlez...
-      {% elif active_lang == "de" %}
-        Drücken Sie das Mikrofon und sprechen Sie...
+        مائیک دبائیں اور اردو میں بولیں...
       {% else %}
-        Press microphone and speak...
+        Press microphone and speak naturally...
       {% endif %}
     </div>
 
@@ -231,7 +206,7 @@
       id="mic-btn" 
       type="button"
       aria-label="Press to start speaking"
-      title="Press and speak in any language (SPACE)"
+      title="Press and speak in your language (SPACE)"
     >
       <div class="pulse" id="pulse"></div>
       <span>🎙️</span>
@@ -242,15 +217,13 @@
     <!-- AI Response Box -->
     <div class="ai-box">
       <div id="response-text">
-        Marhaba! 👋 I understand 40+ languages. Speak naturally in YOUR language, and I'll respond in the language YOU choose above.
+        Marhaba! 👋 Speak in YOUR language - I'll understand and respond naturally!
       </div>
       
       <p class="voice-hint">
-        <strong>Examples:</strong><br>
-        • Speak in Bangla, get response in English<br>
-        • Speak in English, get response in Arabic<br>
-        • Speak in Chinese, get response in Urdu<br>
-        • Or speak and respond in the SAME language!
+        <strong>Try it:</strong><br>
+        • Speak in Bangla → Get response in Bangla<br>
+        • Need translation? Switch to Translation Mode above!
       </p>
 
       <div id="map-wrap" class="hidden">
@@ -376,32 +349,24 @@
   let speechVolume = 1.0;
   let speechRate = 1.0;
   let recognitionActive = false;
-  let detectedInputLang = null; // Track what language user spoke
+  let detectedInputLang = null;
 
   // =====================================================================
-  // BROWSER COMPATIBILITY CHECK
+  // MODE TOGGLE
   // =====================================================================
-  function checkBrowserCompatibility() {
-    const ua = navigator.userAgent.toLowerCase();
-    const isChrome = ua.includes('chrome') && !ua.includes('edge');
-    const isEdge = ua.includes('edge') || ua.includes('edg');
-    const isSafari = ua.includes('safari') && !ua.includes('chrome');
-    const isFirefox = ua.includes('firefox');
-    
-    console.log('🌐 Browser Detection:', {
-      chrome: isChrome,
-      edge: isEdge,
-      safari: isSafari,
-      firefox: isFirefox
-    });
+  const modeSelect = document.getElementById('mode-select');
+  const translateSelector = document.getElementById('translate-selector');
+  const modeExplanation = document.getElementById('mode-explanation');
 
-    // Show warning for Firefox or unsupported browsers
-    if (isFirefox || (!isChrome && !isEdge && !isSafari)) {
-      document.getElementById('browser-warning').style.display = 'block';
+  modeSelect.addEventListener('change', function() {
+    if (this.value === 'translate') {
+      translateSelector.style.display = 'block';
+      modeExplanation.textContent = '🌐 Translation Mode: Speak in any language, get response in selected language';
+    } else {
+      translateSelector.style.display = 'none';
+      modeExplanation.textContent = '🤖 Auto Mode: Speak Bengali → Hear Bengali | Speak English → Hear English';
     }
-
-    return isChrome || isEdge || isSafari;
-  }
+  });
 
   // =====================================================================
   // SHARE CONFIGURATION
@@ -450,7 +415,7 @@
   }
 
   // =====================================================================
-  // SPEECH RECOGNITION SETUP (NO AUTO-SWITCHING)
+  // SPEECH RECOGNITION SETUP
   // =====================================================================
   const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = SpeechRec ? new SpeechRec() : null;
@@ -459,11 +424,9 @@
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-    
-    // IMPORTANT: Set to empty string for auto-detection
-    recognition.lang = "";
+    recognition.lang = ""; // Auto-detect
   } else {
-    console.warn('⚠️ Speech recognition not supported in this browser');
+    console.warn('⚠️ Speech recognition not supported');
   }
 
   // =====================================================================
@@ -567,13 +530,13 @@
   }, { passive: false });
 
   // =====================================================================
-  // RECOGNITION HANDLERS (NO AUTO-SWITCHING!)
+  // RECOGNITION HANDLERS (AUTO MODE)
   // =====================================================================
   if (recognition) {
     recognition.onstart = () => {
       recognitionActive = true;
       document.getElementById('pulse').style.display = 'block';
-      document.getElementById('status').innerText = "🎤 Listening... (Speak in any language)";
+      document.getElementById('status').innerText = "🎤 Listening...";
       document.getElementById('mic-btn').classList.add('recording');
     };
 
@@ -601,26 +564,35 @@
     recognition.onresult = (event) => {
       const result = event.results[0][0];
       const text = result.transcript || "";
-      const detectedLang = result.lang || event.results[0].lang || "";
-      
-      // Store detected language but DON'T auto-switch dropdown
-      detectedInputLang = detectedLang;
-      
-      // Get MANUALLY selected output language
-      const outputLang = document.getElementById('pref-lang').value;
+      detectedInputLang = result.lang || "";
 
-      console.log('🎤 Input detected:', text);
+      console.log('🎤 You said:', text);
       console.log('🗣️ Detected language:', detectedInputLang);
-      console.log('📤 Response language:', outputLang);
 
-      document.getElementById('user-transcript').innerText = `You said: "${text}"`;
+      const mode = modeSelect.value;
+      let outputLang;
+
+      if (mode === 'auto') {
+        // AUTO MODE: Same language
+        outputLang = detectedInputLang || 'en-US';
+        console.log('🤖 Auto Mode: Responding in', outputLang);
+      } else {
+        // TRANSLATION MODE: Different language
+        outputLang = document.getElementById('pref-lang').value;
+        console.log('🌐 Translation Mode: Translating to', outputLang);
+      }
+
+      document.getElementById('user-transcript').innerText = `You: "${text}"`;
       document.getElementById('status').innerText = "⚙️ Processing...";
       document.getElementById('pulse').style.display = 'none';
 
-      // Build API URL with both input and output language
-      let apiUrl = `/api/chat?user_input=${encodeURIComponent(text)}&pref=${encodeURIComponent(outputLang)}`;
+      // Build API URL
+      let apiUrl = `/api/chat?user_input=${encodeURIComponent(text)}`;
+      if (mode === 'translate') {
+        apiUrl += `&pref=${encodeURIComponent(outputLang)}`;
+      }
       if (detectedInputLang) {
-        apiUrl += `&input_lang=${encodeURIComponent(detectedInputLang)}`;
+        apiUrl += `&detected_lang=${encodeURIComponent(detectedInputLang)}`;
       }
 
       fetch(apiUrl)
@@ -651,25 +623,20 @@
           lastResponseText = data.reply || "";
           lastResponseLang = data.voice_lang || outputLang;
 
-          // Show support level info
-          if (data.support_level === 'limited') {
-            console.warn('⚠️ Limited TTS support for:', lastResponseLang);
-            document.getElementById('voice-setup-hint').style.display = 'block';
-          }
-
+          console.log('📢 Speaking in:', lastResponseLang);
           speak(lastResponseText, lastResponseLang);
         })
         .catch(error => {
           console.error('API error:', error);
           resetUI("❌ Connection error. Try again!");
-          document.getElementById('response-text').innerText = "Error connecting to server. Please check your internet and try again.";
+          document.getElementById('response-text').innerText = "Error connecting. Please check your internet and try again.";
         });
     };
   }
 
   function startSpeech() {
     if (!recognition) {
-      alert("⚠️ Speech recognition not supported.\n\nPlease use:\n• Chrome\n• Edge\n• Safari\n\nFirefox has limited support.");
+      alert("⚠️ Speech recognition not supported.\n\nPlease use Chrome, Edge, or Safari.");
       return;
     }
 
@@ -683,11 +650,10 @@
     if (recognitionActive) return;
 
     try {
-      // Set to empty for auto-detection of ANY language
       recognition.lang = "";
       recognition.start();
     } catch (e) {
-      console.error('Recognition start error:', e);
+      console.error('Recognition error:', e);
       resetUI("Microphone busy. Try again.");
     }
   }
@@ -714,10 +680,8 @@
     if (selectedVoice) {
       utterance.voice = selectedVoice;
       console.log("✅ Voice:", selectedVoice.name);
-      document.getElementById('voice-setup-hint').style.display = 'none';
     } else {
       console.warn("⚠️ No native voice for:", lang);
-      document.getElementById('voice-setup-hint').style.display = 'block';
     }
 
     currentUtterance = utterance;
@@ -814,47 +778,9 @@
     };
   }
 
-  // Check browser compatibility on load
-  checkBrowserCompatibility();
-
   console.log('🎙️ Yalla Habibi initialized');
   console.log('⌨️ Shortcuts: SPACE=Listen | ESC=Stop | R=Replay | P=Pause/Resume');
-  console.log('🌍 Speak in ANY language, get response in YOUR selected language!');
+  console.log('🤖 Auto Mode: Speak naturally in your language!');
 </script>
-
-<style>
-.browser-warning {
-  background: #fef3c7;
-  color: #92400e;
-  padding: 12px;
-  border-radius: 12px;
-  margin: 10px 0;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.browser-warning button {
-  background: transparent;
-  border: none;
-  color: #92400e;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 8px;
-}
-
-.lang-note {
-  margin-top: 8px;
-  font-size: 13px;
-  color: #4ade80;
-  font-style: italic;
-}
-
-.secondary-links .divider {
-  color: #4ade80;
-  margin: 0 8px;
-}
-</style>
 
 {% endblock %}

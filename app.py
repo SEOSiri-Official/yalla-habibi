@@ -66,7 +66,7 @@ safety_settings = [
 ]
 
 # ============================================================================
-# MODEL SELECTION (keeps your existing fallback behavior)
+# MODEL SELECTION
 # ============================================================================
 try:
     available_models = [
@@ -90,103 +90,91 @@ except Exception as e:
 logger.info(f"✅ Using model: {selected_model}")
 
 # ============================================================================
-# EXPANDED LANGUAGE MAP (More Languages Added)
+# COMPREHENSIVE LANGUAGE MAP
 # ============================================================================
 LANG_MAP = {
-    # Original languages
-    "bn-BD": "Bengali (বাংলা)",
-    "ar-SA": "Arabic (العربية)",
-    "en-US": "English",
-    "hi-IN": "Hindi (हिंदी)",
-    "es-ES": "Spanish (Español)",
-    "pt-BR": "Portuguese (Português)",
-    "fr-FR": "French (Français)",
-    "de-DE": "German (Deutsch)",
-    "it-IT": "Italian (Italiano)",
-    "ru-RU": "Russian (Русский)",
-    "ja-JP": "Japanese (日本語)",
-    "ko-KR": "Korean (한국어)",
-    "zh-CN": "Chinese (中文)",
-    "tr-TR": "Turkish (Türkçe)",
+    # Well-supported languages (Good browser + TTS support)
+    "en-US": {"name": "English", "native": "English", "support": "excellent"},
+    "es-ES": {"name": "Spanish", "native": "Español", "support": "excellent"},
+    "fr-FR": {"name": "French", "native": "Français", "support": "excellent"},
+    "de-DE": {"name": "German", "native": "Deutsch", "support": "excellent"},
+    "it-IT": {"name": "Italian", "native": "Italiano", "support": "excellent"},
+    "pt-BR": {"name": "Portuguese", "native": "Português", "support": "excellent"},
+    "ru-RU": {"name": "Russian", "native": "Русский", "support": "excellent"},
+    "ja-JP": {"name": "Japanese", "native": "日本語", "support": "excellent"},
+    "ko-KR": {"name": "Korean", "native": "한국어", "support": "excellent"},
+    "zh-CN": {"name": "Chinese", "native": "中文", "support": "excellent"},
     
-    # Additional languages for better coverage
-    "ur-PK": "Urdu (اردو)",
-    "fa-IR": "Persian (فارسی)",
-    "id-ID": "Indonesian (Bahasa Indonesia)",
-    "ms-MY": "Malay (Bahasa Melayu)",
-    "th-TH": "Thai (ไทย)",
-    "vi-VN": "Vietnamese (Tiếng Việt)",
-    "nl-NL": "Dutch (Nederlands)",
-    "pl-PL": "Polish (Polski)",
-    "sv-SE": "Swedish (Svenska)",
-    "no-NO": "Norwegian (Norsk)",
-    "da-DK": "Danish (Dansk)",
-    "fi-FI": "Finnish (Suomi)",
-    "el-GR": "Greek (Ελληνικά)",
-    "he-IL": "Hebrew (עברית)",
-    "cs-CZ": "Czech (Čeština)",
-    "hu-HU": "Hungarian (Magyar)",
-    "ro-RO": "Romanian (Română)",
-    "uk-UA": "Ukrainian (Українська)",
-    "sw-KE": "Swahili (Kiswahili)",
-    "am-ET": "Amharic (አማርኛ)",
-    "ta-IN": "Tamil (தமிழ்)",
-    "te-IN": "Telugu (తెలుగు)",
-    "ml-IN": "Malayalam (മലയാളം)",
-    "mr-IN": "Marathi (मराठी)",
-    "gu-IN": "Gujarati (ગુજરાતી)",
-    "kn-IN": "Kannada (ಕನ್ನಡ)",
-    "pa-IN": "Punjabi (ਪੰਜਾਬੀ)",
+    # Good support but may vary by browser
+    "ar-SA": {"name": "Arabic", "native": "العربية", "support": "good"},
+    "hi-IN": {"name": "Hindi", "native": "हिंदी", "support": "good"},
+    "bn-BD": {"name": "Bengali", "native": "বাংলা", "support": "good"},
+    "tr-TR": {"name": "Turkish", "native": "Türkçe", "support": "good"},
+    "nl-NL": {"name": "Dutch", "native": "Nederlands", "support": "good"},
+    "pl-PL": {"name": "Polish", "native": "Polski", "support": "good"},
+    "sv-SE": {"name": "Swedish", "native": "Svenska", "support": "good"},
+    "no-NO": {"name": "Norwegian", "native": "Norsk", "support": "good"},
+    "da-DK": {"name": "Danish", "native": "Dansk", "support": "good"},
+    "fi-FI": {"name": "Finnish", "native": "Suomi", "support": "good"},
+    "el-GR": {"name": "Greek", "native": "Ελληνικά", "support": "good"},
+    "cs-CZ": {"name": "Czech", "native": "Čeština", "support": "good"},
+    "hu-HU": {"name": "Hungarian", "native": "Magyar", "support": "good"},
+    "ro-RO": {"name": "Romanian", "native": "Română", "support": "good"},
+    "uk-UA": {"name": "Ukrainian", "native": "Українська", "support": "good"},
+    "id-ID": {"name": "Indonesian", "native": "Bahasa Indonesia", "support": "good"},
+    "ms-MY": {"name": "Malay", "native": "Bahasa Melayu", "support": "good"},
+    "th-TH": {"name": "Thai", "native": "ไทย", "support": "good"},
+    "vi-VN": {"name": "Vietnamese", "native": "Tiếng Việt", "support": "good"},
+    
+    # Limited support (may need fallback)
+    "ur-PK": {"name": "Urdu", "native": "اردو", "support": "limited"},
+    "fa-IR": {"name": "Persian", "native": "فارسی", "support": "limited"},
+    "he-IL": {"name": "Hebrew", "native": "עברית", "support": "limited"},
+    "ta-IN": {"name": "Tamil", "native": "தமிழ்", "support": "limited"},
+    "te-IN": {"name": "Telugu", "native": "తెలుగు", "support": "limited"},
+    "ml-IN": {"name": "Malayalam", "native": "മലയാളം", "support": "limited"},
+    "mr-IN": {"name": "Marathi", "native": "मराठी", "support": "limited"},
+    "gu-IN": {"name": "Gujarati", "native": "ગુજરાતી", "support": "limited"},
+    "kn-IN": {"name": "Kannada", "native": "ಕನ್ನಡ", "support": "limited"},
+    "pa-IN": {"name": "Punjabi", "native": "ਪੰਜਾਬੀ", "support": "limited"},
+    "sw-KE": {"name": "Swahili", "native": "Kiswahili", "support": "limited"},
+    "am-ET": {"name": "Amharic", "native": "አማርኛ", "support": "limited"},
 }
 
 # ============================================================================
-# EXPANDED MAP TRIGGER WORDS (Multilingual)
+# MAP TRIGGER WORDS (Multilingual)
 # ============================================================================
 MAP_TRIGGER_WORDS = [
     # English
     "find", "where", "map", "location", "direction", "navigate", "address", "route", "near", "nearby",
-    
     # Bengali
-    "কোথায়", "মানচিত্র", "খুঁজুন", "ঠিকানা", "দিকনির্দেশ",
-    
+    "কোথায়", "মানচিত্র", "খুঁজুন", "ঠিকানা",
     # Arabic
-    "أين", "خريطة", "موقع", "عنوان", "اتجاه", "ابحث", "قريب",
-    
+    "أين", "خريطة", "موقع", "عنوان",
     # Hindi
-    "कहाँ", "नक्शा", "स्थान", "पता", "दिशा", "खोजें",
-    
+    "कहाँ", "नक्शा", "स्थान",
     # Spanish
-    "dónde", "mapa", "ubicación", "dirección", "buscar", "cerca",
-    
+    "dónde", "mapa", "ubicación",
     # French
-    "où", "carte", "lieu", "adresse", "direction", "chercher", "près",
-    
+    "où", "carte", "lieu",
     # German
-    "wo", "karte", "ort", "adresse", "richtung", "suchen", "nähe",
-    
+    "wo", "karte", "ort",
     # Urdu
-    "کہاں", "نقشہ", "مقام", "پتہ", "سمت",
-    
+    "کہاں", "نقشہ",
     # Turkish
-    "nerede", "harita", "konum", "adres", "yön",
-    
+    "nerede", "harita",
     # Indonesian/Malay
-    "dimana", "peta", "lokasi", "alamat", "arah",
-    
+    "dimana", "peta",
     # Russian
-    "где", "карта", "местоположение", "адрес", "направление",
-    
+    "где", "карта",
     # Japanese
-    "どこ", "地図", "場所", "住所",
-    
+    "どこ", "地図",
     # Korean
-    "어디", "지도", "위치", "주소",
-    
+    "어디", "지도",
     # Chinese
-    "哪里", "地图", "位置", "地址",
+    "哪里", "地图",
 ]
 
-# For language-based URLs: /en /bn /ar ...
 SUPPORTED_LANGS = [
     "en", "bn", "ar", "hi", "es", "fr", "de", "pt", "it", "ru", 
     "ja", "ko", "zh", "tr", "ur", "fa", "id", "ms", "th", "vi",
@@ -194,99 +182,41 @@ SUPPORTED_LANGS = [
     "ro", "uk", "sw", "am", "ta", "te", "ml", "mr", "gu", "kn", "pa"
 ]
 
-# Language to locale mapping for better voice/TTS support
 LANG_TO_LOCALE = {
-    "en": "en-US",
-    "bn": "bn-BD",
-    "ar": "ar-SA",
-    "hi": "hi-IN",
-    "es": "es-ES",
-    "fr": "fr-FR",
-    "de": "de-DE",
-    "pt": "pt-BR",
-    "it": "it-IT",
-    "ru": "ru-RU",
-    "ja": "ja-JP",
-    "ko": "ko-KR",
-    "zh": "zh-CN",
-    "tr": "tr-TR",
-    "ur": "ur-PK",
-    "fa": "fa-IR",
-    "id": "id-ID",
-    "ms": "ms-MY",
-    "th": "th-TH",
-    "vi": "vi-VN",
-    "nl": "nl-NL",
-    "pl": "pl-PL",
-    "sv": "sv-SE",
-    "no": "no-NO",
-    "da": "da-DK",
-    "fi": "fi-FI",
-    "el": "el-GR",
-    "he": "he-IL",
-    "cs": "cs-CZ",
-    "hu": "hu-HU",
-    "ro": "ro-RO",
-    "uk": "uk-UA",
-    "sw": "sw-KE",
-    "am": "am-ET",
-    "ta": "ta-IN",
-    "te": "te-IN",
-    "ml": "ml-IN",
-    "mr": "mr-IN",
-    "gu": "gu-IN",
-    "kn": "kn-IN",
+    "en": "en-US", "bn": "bn-BD", "ar": "ar-SA", "hi": "hi-IN",
+    "es": "es-ES", "fr": "fr-FR", "de": "de-DE", "pt": "pt-BR",
+    "it": "it-IT", "ru": "ru-RU", "ja": "ja-JP", "ko": "ko-KR",
+    "zh": "zh-CN", "tr": "tr-TR", "ur": "ur-PK", "fa": "fa-IR",
+    "id": "id-ID", "ms": "ms-MY", "th": "th-TH", "vi": "vi-VN",
+    "nl": "nl-NL", "pl": "pl-PL", "sv": "sv-SE", "no": "no-NO",
+    "da": "da-DK", "fi": "fi-FI", "el": "el-GR", "he": "he-IL",
+    "cs": "cs-CZ", "hu": "hu-HU", "ro": "ro-RO", "uk": "uk-UA",
+    "sw": "sw-KE", "am": "am-ET", "ta": "ta-IN", "te": "te-IN",
+    "ml": "ml-IN", "mr": "mr-IN", "gu": "gu-IN", "kn": "kn-IN",
     "pa": "pa-IN",
 }
 
 # ============================================================================
-# ENHANCED LANGUAGE DETECTION FOR UI (active_lang)
+# LANGUAGE DETECTION FOR UI
 # ============================================================================
 def get_lang_from_request(request: Request) -> str:
     """Enhanced language detection from Accept-Language header"""
     header = (request.headers.get("accept-language") or "").lower()
 
-    # Priority order language detection
     lang_priorities = [
-        ("bn", ["bn-bd", "bn"]),
-        ("ar", ["ar-sa", "ar"]),
-        ("hi", ["hi-in", "hi"]),
-        ("es", ["es-es", "es"]),
-        ("fr", ["fr-fr", "fr"]),
-        ("de", ["de-de", "de"]),
-        ("pt", ["pt-br", "pt"]),
-        ("it", ["it-it", "it"]),
-        ("ru", ["ru-ru", "ru"]),
-        ("ja", ["ja-jp", "ja"]),
-        ("ko", ["ko-kr", "ko"]),
-        ("zh", ["zh-cn", "zh"]),
-        ("tr", ["tr-tr", "tr"]),
-        ("ur", ["ur-pk", "ur"]),
-        ("fa", ["fa-ir", "fa"]),
-        ("id", ["id-id", "id"]),
-        ("ms", ["ms-my", "ms"]),
-        ("th", ["th-th", "th"]),
-        ("vi", ["vi-vn", "vi"]),
-        ("nl", ["nl-nl", "nl"]),
-        ("pl", ["pl-pl", "pl"]),
-        ("sv", ["sv-se", "sv"]),
-        ("no", ["no-no", "no"]),
-        ("da", ["da-dk", "da"]),
-        ("fi", ["fi-fi", "fi"]),
-        ("el", ["el-gr", "el"]),
-        ("he", ["he-il", "he"]),
-        ("cs", ["cs-cz", "cs"]),
-        ("hu", ["hu-hu", "hu"]),
-        ("ro", ["ro-ro", "ro"]),
-        ("uk", ["uk-ua", "uk"]),
-        ("sw", ["sw-ke", "sw"]),
-        ("am", ["am-et", "am"]),
-        ("ta", ["ta-in", "ta"]),
-        ("te", ["te-in", "te"]),
-        ("ml", ["ml-in", "ml"]),
-        ("mr", ["mr-in", "mr"]),
-        ("gu", ["gu-in", "gu"]),
-        ("kn", ["kn-in", "kn"]),
+        ("bn", ["bn-bd", "bn"]), ("ar", ["ar-sa", "ar"]), ("hi", ["hi-in", "hi"]),
+        ("es", ["es-es", "es"]), ("fr", ["fr-fr", "fr"]), ("de", ["de-de", "de"]),
+        ("pt", ["pt-br", "pt"]), ("it", ["it-it", "it"]), ("ru", ["ru-ru", "ru"]),
+        ("ja", ["ja-jp", "ja"]), ("ko", ["ko-kr", "ko"]), ("zh", ["zh-cn", "zh"]),
+        ("tr", ["tr-tr", "tr"]), ("ur", ["ur-pk", "ur"]), ("fa", ["fa-ir", "fa"]),
+        ("id", ["id-id", "id"]), ("ms", ["ms-my", "ms"]), ("th", ["th-th", "th"]),
+        ("vi", ["vi-vn", "vi"]), ("nl", ["nl-nl", "nl"]), ("pl", ["pl-pl", "pl"]),
+        ("sv", ["sv-se", "sv"]), ("no", ["no-no", "no"]), ("da", ["da-dk", "da"]),
+        ("fi", ["fi-fi", "fi"]), ("el", ["el-gr", "el"]), ("he", ["he-il", "he"]),
+        ("cs", ["cs-cz", "cs"]), ("hu", ["hu-hu", "hu"]), ("ro", ["ro-ro", "ro"]),
+        ("uk", ["uk-ua", "uk"]), ("sw", ["sw-ke", "sw"]), ("am", ["am-et", "am"]),
+        ("ta", ["ta-in", "ta"]), ("te", ["te-in", "te"]), ("ml", ["ml-in", "ml"]),
+        ("mr", ["mr-in", "mr"]), ("gu", ["gu-in", "gu"]), ("kn", ["kn-in", "kn"]),
         ("pa", ["pa-in", "pa"]),
     ]
 
@@ -299,22 +229,54 @@ def get_lang_from_request(request: Request) -> str:
 
 
 # ============================================================================
-# UTILITY: Get Available Languages List (for frontend dropdowns)
+# GET AVAILABLE LANGUAGES WITH SUPPORT LEVEL
 # ============================================================================
 @app.get("/api/languages")
 async def get_languages():
-    """Return all available languages for UI dropdown"""
+    """Return all available languages with support information"""
     return {
         "languages": [
-            {"code": code, "name": name}
-            for code, name in LANG_MAP.items()
+            {
+                "code": code,
+                "name": info["name"],
+                "native": info["native"],
+                "support_level": info["support"]
+            }
+            for code, info in LANG_MAP.items()
         ],
-        "supported_page_langs": SUPPORTED_LANGS
+        "supported_page_langs": SUPPORTED_LANGS,
+        "note": "excellent = Full browser support | good = Most browsers | limited = May need fallback"
     }
 
 
 # ============================================================================
-# ROUTES – STATIC PAGES (ALL pass active_lang now)
+# BROWSER COMPATIBILITY CHECK
+# ============================================================================
+@app.get("/api/browser-check")
+async def browser_check(request: Request):
+    """Check browser capabilities"""
+    user_agent = request.headers.get("user-agent", "").lower()
+    
+    is_chrome = "chrome" in user_agent and "edge" not in user_agent
+    is_edge = "edge" in user_agent or "edg" in user_agent
+    is_safari = "safari" in user_agent and "chrome" not in user_agent
+    is_firefox = "firefox" in user_agent
+    
+    return {
+        "browser": {
+            "chrome": is_chrome,
+            "edge": is_edge,
+            "safari": is_safari,
+            "firefox": is_firefox
+        },
+        "speech_recognition_support": is_chrome or is_edge or is_safari,
+        "recommended_browser": "Chrome or Edge for best speech recognition support",
+        "note": "Firefox has limited speech recognition support"
+    }
+
+
+# ============================================================================
+# STATIC PAGES
 # ============================================================================
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -324,96 +286,55 @@ async def home(request: Request):
         {"request": request, "active_lang": active_lang},
     )
 
-
 @app.get("/terms", response_class=HTMLResponse)
 async def terms(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "legal/terms.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("legal/terms.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/privacy", response_class=HTMLResponse)
 async def privacy(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "legal/privacy.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("legal/privacy.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/ai-policy", response_class=HTMLResponse)
 async def ai_policy(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "legal/ai-policy.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("legal/ai-policy.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/cookies", response_class=HTMLResponse)
 async def cookies(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "legal/cookies.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("legal/cookies.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "about.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("about.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/security", response_class=HTMLResponse)
 async def security(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "security.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("security.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/manual", response_class=HTMLResponse)
 async def manual_page(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "manual.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("manual.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/donate", response_class=HTMLResponse)
 async def donate(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "donate.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("donate.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/faq", response_class=HTMLResponse)
 async def faq_page(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "faq.html",
-        {"request": request, "active_lang": active_lang}
-    )
-
+    return templates.TemplateResponse("faq.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/contact", response_class=HTMLResponse)
 async def contact(request: Request):
     active_lang = get_lang_from_request(request)
-    return templates.TemplateResponse(
-        "contact.html",
-        {"request": request, "active_lang": active_lang},
-    )
-
+    return templates.TemplateResponse("contact.html", {"request": request, "active_lang": active_lang})
 
 @app.get("/robots.txt")
 async def robots():
@@ -421,113 +342,76 @@ async def robots():
 
 
 # ============================================================================
-# LOCALIZED ROUTES (Enhanced for all pages)
+# LOCALIZED ROUTES
 # ============================================================================
 @app.get("/{lang}", response_class=HTMLResponse)
 async def localized_home(request: Request, lang: str):
-    """Localized home page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("index.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/faq", response_class=HTMLResponse)
 async def localized_faq(request: Request, lang: str):
-    """Localized FAQ page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-
-    return templates.TemplateResponse(
-        "faq.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("faq.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/about", response_class=HTMLResponse)
 async def localized_about(request: Request, lang: str):
-    """Localized About page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "about.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("about.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/contact", response_class=HTMLResponse)
 async def localized_contact(request: Request, lang: str):
-    """Localized Contact page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "contact.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("contact.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/donate", response_class=HTMLResponse)
 async def localized_donate(request: Request, lang: str):
-    """Localized Donate page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "donate.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("donate.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/security", response_class=HTMLResponse)
 async def localized_security(request: Request, lang: str):
-    """Localized Security page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "security.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("security.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/terms", response_class=HTMLResponse)
 async def localized_terms(request: Request, lang: str):
-    """Localized Terms page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "legal/terms.html",
-        {"request": request, "active_lang": lang}
-    )
-
+    return templates.TemplateResponse("legal/terms.html", {"request": request, "active_lang": lang})
 
 @app.get("/{lang}/privacy", response_class=HTMLResponse)
 async def localized_privacy(request: Request, lang: str):
-    """Localized Privacy page"""
     if lang not in SUPPORTED_LANGS:
         lang = "en"
-    
-    return templates.TemplateResponse(
-        "legal/privacy.html",
-        {"request": request, "active_lang": lang}
-    )
+    return templates.TemplateResponse("legal/privacy.html", {"request": request, "active_lang": lang})
 
 
 # ============================================================================
-# ENHANCED CHAT API (Better multilingual support)
+# ENHANCED CHAT API - BETTER LANGUAGE HANDLING
 # ============================================================================
 @app.get("/api/chat")
-async def chat(user_input: str = Query(...), pref: str = Query("en-US")):
-    """Enhanced chat endpoint with better language handling"""
+async def chat(
+    user_input: str = Query(...), 
+    pref: str = Query("en-US"),
+    input_lang: str = Query(None)  # NEW: Optional detected input language
+):
+    """
+    Enhanced chat endpoint with better language handling
+    
+    Args:
+        user_input: The text input from user
+        pref: Preferred output language (what language to respond in)
+        input_lang: Detected input language (what language user spoke in)
+    """
     
     if not user_input or not user_input.strip():
-        # Get appropriate greeting based on language
         greetings = {
             "ar-SA": "مرحبا! اسألني شيئًا يا حبيبي.",
             "bn-BD": "আসসালামু আলাইকুম! আমাকে কিছু জিজ্ঞাসা করুন।",
@@ -542,22 +426,41 @@ async def chat(user_input: str = Query(...), pref: str = Query("en-US")):
             "reply": greetings.get(pref, "Marhaba! Please ask me something, Habibi."),
             "voice_lang": pref if pref in LANG_MAP else "en-US",
             "map_link": None,
+            "support_level": LANG_MAP.get(pref, {}).get("support", "unknown")
         }
 
+    # Validate preference language
     if pref not in LANG_MAP:
+        logger.warning(f"Invalid pref language: {pref}, falling back to en-US")
         pref = "en-US"
 
     try:
-        target_lang = LANG_MAP[pref]
+        lang_info = LANG_MAP[pref]
+        target_lang_name = lang_info["name"]
+        target_lang_native = lang_info["native"]
+        support_level = lang_info["support"]
 
-        # Enhanced system instruction with cultural awareness
-        system_instruction = (
-            f"You are Yalla Habibi, a warm, culturally-aware Arabic AI host. "
-            f"Always greet briefly in Arabic first, then respond naturally in {target_lang}. "
-            f"Be helpful, friendly, and respectful of cultural nuances. "
-            f"End your response with '--- Wisdom:' followed by a practical, culturally-appropriate tip or insight. "
-            f"Keep responses conversational and engaging."
-        )
+        # Build context-aware prompt
+        if input_lang and input_lang != pref:
+            # User spoke in one language but wants response in another (translation scenario)
+            system_instruction = (
+                f"You are Yalla Habibi, a warm Arabic AI host. "
+                f"The user spoke in {input_lang} but wants your response in {target_lang_name} ({target_lang_native}). "
+                f"Greet briefly in Arabic, then respond naturally in {target_lang_name}. "
+                f"If they're asking for translation, translate accurately. "
+                f"End with '--- Wisdom:' followed by a practical, culturally-appropriate tip. "
+                f"Keep responses clear and helpful."
+            )
+        else:
+            # Same language for input and output
+            system_instruction = (
+                f"You are Yalla Habibi, a warm, culturally-aware Arabic AI host. "
+                f"Respond naturally in {target_lang_name} ({target_lang_native}). "
+                f"Greet briefly in Arabic first if appropriate. "
+                f"Be helpful, friendly, and respectful of cultural nuances. "
+                f"End with '--- Wisdom:' followed by a practical tip. "
+                f"Keep responses conversational and engaging."
+            )
 
         model = genai.GenerativeModel(
             model_name=selected_model,
@@ -571,7 +474,7 @@ async def chat(user_input: str = Query(...), pref: str = Query("en-US")):
         if not reply:
             raise HTTPException(status_code=502, detail="Empty reply from model")
 
-        # Enhanced map trigger detection (case-insensitive, multilingual)
+        # Map detection
         map_link = None
         user_input_lower = user_input.lower()
         if any(word.lower() in user_input_lower for word in MAP_TRIGGER_WORDS):
@@ -582,14 +485,14 @@ async def chat(user_input: str = Query(...), pref: str = Query("en-US")):
             "reply": reply,
             "voice_lang": pref,
             "map_link": map_link,
-            "detected_language": pref,
+            "detected_input_lang": input_lang,
+            "support_level": support_level,
             "supported": True
         }
 
     except Exception as e:
         logger.error(f"Chat error: {traceback.format_exc()}")
         
-        # Localized error messages
         error_messages = {
             "ar-SA": "مرحبا! حدث خطأ ما. يرجى المحاولة مرة أخرى يا حبيبي.",
             "bn-BD": "দুঃখিত! কিছু ভুল হয়েছে। আবার চেষ্টা করুন।",
@@ -601,16 +504,16 @@ async def chat(user_input: str = Query(...), pref: str = Query("en-US")):
             "reply": error_messages.get(pref, "Marhaba! Something went wrong. Please try again, Habibi."),
             "voice_lang": pref,
             "map_link": None,
-            "error": True
+            "error": True,
+            "error_message": str(e)
         }
 
 
 # ============================================================================
-# HEALTH CHECK (Enhanced)
+# HEALTH CHECK
 # ============================================================================
 @app.get("/health")
 async def health_check():
-    """Enhanced health check with more details"""
     return {
         "status": "healthy",
         "model": selected_model,
@@ -621,11 +524,10 @@ async def health_check():
 
 
 # ============================================================================
-# API INFO ENDPOINT
+# API INFO
 # ============================================================================
 @app.get("/api/info")
 async def api_info():
-    """API information endpoint"""
     return {
         "app_name": "Yalla Habibi AI",
         "version": "1.0.0",
@@ -635,20 +537,21 @@ async def api_info():
             "Voice Recognition & TTS",
             "Location/Map Integration",
             "Cultural Awareness",
-            "Real-time Translation"
+            "Real-time Translation",
+            "Browser Compatibility Check"
         ],
         "supported_languages": len(LANG_MAP),
         "supported_locales": len(SUPPORTED_LANGS),
-        "model": selected_model
+        "model": selected_model,
+        "recommended_browsers": ["Chrome", "Edge", "Safari"]
     }
 
 
 # ============================================================================
-# ERROR HANDLERS (Better UX)
+# ERROR HANDLERS
 # ============================================================================
 @app.exception_handler(404)
 async def not_found_handler(request: Request, exc):
-    """Custom 404 handler"""
     active_lang = get_lang_from_request(request)
     return templates.TemplateResponse(
         "404.html",
@@ -656,10 +559,8 @@ async def not_found_handler(request: Request, exc):
         status_code=404
     )
 
-
 @app.exception_handler(500)
 async def server_error_handler(request: Request, exc):
-    """Custom 500 handler"""
     active_lang = get_lang_from_request(request)
     logger.error(f"Internal server error: {exc}")
     return templates.TemplateResponse(
